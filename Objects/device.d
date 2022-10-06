@@ -1,0 +1,13 @@
+.\objects\device.o: rt-thread\src\device.c
+.\objects\device.o: rt-thread\include\rtthread.h
+.\objects\device.o: .\rtconfig.h
+.\objects\device.o: rt-thread\include\rtdebug.h
+.\objects\device.o: rt-thread\include\rtdef.h
+.\objects\device.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\device.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\device.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\device.o: rt-thread\include\rtservice.h
+.\objects\device.o: rt-thread\include\rtm.h
+.\objects\device.o: rt-thread\include\rtthread.h
+.\objects\device.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\device.o: rt-thread\components\finsh\finsh.h

@@ -1,0 +1,11 @@
+.\objects\cstdio.o: rt-thread\components\libc\compilers\common\cstdio.c
+.\objects\cstdio.o: rt-thread\components\libc\compilers\common\include\posix/stdio.h
+.\objects\cstdio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\cstdio.o: rt-thread\components\libc\compilers\common\extension\sys/types.h
+.\objects\cstdio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\cstdio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\cstdio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+.\objects\cstdio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\cstdio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\cstdio.o: rt-thread\components\libc\compilers\common\extension\sys/errno.h
+.\objects\cstdio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h

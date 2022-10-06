@@ -1,0 +1,14 @@
+.\objects\clock.o: rt-thread\src\clock.c
+.\objects\clock.o: rt-thread\include\rthw.h
+.\objects\clock.o: rt-thread\include\rtthread.h
+.\objects\clock.o: .\rtconfig.h
+.\objects\clock.o: rt-thread\include\rtdebug.h
+.\objects\clock.o: rt-thread\include\rtdef.h
+.\objects\clock.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\clock.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\clock.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\clock.o: rt-thread\include\rtservice.h
+.\objects\clock.o: rt-thread\include\rtm.h
+.\objects\clock.o: rt-thread\include\rtthread.h
+.\objects\clock.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\clock.o: rt-thread\components\finsh\finsh.h

@@ -1,0 +1,17 @@
+.\objects\pm.o: rt-thread\components\drivers\pm\pm.c
+.\objects\pm.o: rt-thread\include\rthw.h
+.\objects\pm.o: rt-thread\include\rtthread.h
+.\objects\pm.o: .\rtconfig.h
+.\objects\pm.o: rt-thread\include\rtdebug.h
+.\objects\pm.o: rt-thread\include\rtdef.h
+.\objects\pm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\pm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\pm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\pm.o: rt-thread\include\rtservice.h
+.\objects\pm.o: rt-thread\include\rtm.h
+.\objects\pm.o: rt-thread\include\rtthread.h
+.\objects\pm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\pm.o: rt-thread\components\finsh\finsh.h
+.\objects\pm.o: rt-thread\components\drivers\include\drivers/pm.h
+.\objects\pm.o: rt-thread\components\drivers\include\drivers/lptimer.h
+.\objects\pm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

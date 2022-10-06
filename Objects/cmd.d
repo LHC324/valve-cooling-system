@@ -1,0 +1,14 @@
+.\objects\cmd.o: rt-thread\components\finsh\cmd.c
+.\objects\cmd.o: rt-thread\include\rthw.h
+.\objects\cmd.o: rt-thread\include\rtthread.h
+.\objects\cmd.o: .\rtconfig.h
+.\objects\cmd.o: rt-thread\include\rtdebug.h
+.\objects\cmd.o: rt-thread\include\rtdef.h
+.\objects\cmd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\cmd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\cmd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\cmd.o: rt-thread\include\rtservice.h
+.\objects\cmd.o: rt-thread\include\rtm.h
+.\objects\cmd.o: rt-thread\include\rtthread.h
+.\objects\cmd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\cmd.o: rt-thread\components\finsh\finsh.h

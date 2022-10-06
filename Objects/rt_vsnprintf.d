@@ -1,0 +1,15 @@
+.\objects\rt_vsnprintf.o: packages\rt_vsnprintf_full-latest\rt_vsnprintf.c
+.\objects\rt_vsnprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\rt_vsnprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\rt_vsnprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\rt_vsnprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\rt_vsnprintf.o: rt-thread\include\rtthread.h
+.\objects\rt_vsnprintf.o: .\rtconfig.h
+.\objects\rt_vsnprintf.o: rt-thread\include\rtdebug.h
+.\objects\rt_vsnprintf.o: rt-thread\include\rtdef.h
+.\objects\rt_vsnprintf.o: rt-thread\include\rtservice.h
+.\objects\rt_vsnprintf.o: rt-thread\include\rtm.h
+.\objects\rt_vsnprintf.o: rt-thread\include\rtthread.h
+.\objects\rt_vsnprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\rt_vsnprintf.o: rt-thread\components\finsh\finsh.h
+.\objects\rt_vsnprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\float.h

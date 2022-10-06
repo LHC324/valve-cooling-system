@@ -1,0 +1,24 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "tool.h": "c",
+        "small_modbus.h": "c",
+        "limits": "c",
+        "memory": "c",
+        "streambuf": "c",
+        "condition_variable": "c",
+        "measure.h": "c",
+        "mutex": "c",
+        "adc.h": "c",
+        "main.h": "c",
+        "small_modbus_port.h": "c",
+        "small_modbus_cfg.h": "c",
+        "io_signal.h": "c",
+        "dwin_port.h": "c",
+        "list.h": "c",
+        "string": "c",
+        "dwin.h": "c",
+        "dwin_cfg.h": "c",
+        "functional": "c"
+    }
+}

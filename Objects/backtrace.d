@@ -1,0 +1,13 @@
+.\objects\backtrace.o: rt-thread\libcpu\arm\common\backtrace.c
+.\objects\backtrace.o: rt-thread\include\rtthread.h
+.\objects\backtrace.o: .\rtconfig.h
+.\objects\backtrace.o: rt-thread\include\rtdebug.h
+.\objects\backtrace.o: rt-thread\include\rtdef.h
+.\objects\backtrace.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\backtrace.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\backtrace.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\backtrace.o: rt-thread\include\rtservice.h
+.\objects\backtrace.o: rt-thread\include\rtm.h
+.\objects\backtrace.o: rt-thread\include\rtthread.h
+.\objects\backtrace.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\backtrace.o: rt-thread\components\finsh\finsh.h
