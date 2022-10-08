@@ -19,6 +19,7 @@
         "string": "c",
         "dwin.h": "c",
         "dwin_cfg.h": "c",
-        "functional": "c"
+        "functional": "c",
+        "flash.h": "c"
     }
 }

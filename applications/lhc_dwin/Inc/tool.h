@@ -67,6 +67,13 @@ extern "C"
     } while (0)
 #endif
 
+    typedef struct
+    {
+        void *pGPIOx;
+        unsigned short Gpio_Pin;
+        // unsigned char PinState;
+    } Gpiox_info;
+
 #if (TOOL_USING_KALMAN)
 /*以下为卡尔曼滤波参数*/
 #define LASTP 0.500F   //上次估算协方差

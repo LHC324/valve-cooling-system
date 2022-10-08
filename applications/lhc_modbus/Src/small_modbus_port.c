@@ -15,21 +15,22 @@
  */
 #include "small_modbus_port.h"
 
-#define __init_modbus(__name, __type, __master_id, __slave_id,                          \
-                      __callback, __lock, __unlock, __error_handle, __transmit, __uart, \
-                      __pools, __user_handle)                                           \
-    MdbusHandle __name##_small_modbus = {                                               \
-        .type = __type,                                                                 \
-        .Master.id = __master_id,                                                       \
-        .Slave.id = __slave_id,                                                         \
-        .Mod_CallBack = __callback,                                                     \
-        .Mod_Lock = __lock,                                                             \
-        .Mod_Unlock = __unlock,                                                         \
-        .Mod_Error = __error_handle,                                                    \
-        .Mod_Transmit = __transmit,                                                     \
-        .Uart = __uart,                                                                 \
-        .pPools = &__pools,                                                             \
-        .Slave.pHandle = __user_handle,                                                 \
+#define __init_modbus(__name, __type, __master_id, __slave_id,                    \
+                      __callback, __lock, __unlock, __ota_update, __error_handle, \
+                      __transmit, __uart, __pools, __user_handle)                 \
+    MdbusHandle __name##_small_modbus = {                                         \
+        .type = __type,                                                           \
+        .Master.id = __master_id,                                                 \
+        .Slave.id = __slave_id,                                                   \
+        .Mod_CallBack = __callback,                                               \
+        .Mod_Lock = __lock,                                                       \
+        .Mod_Unlock = __unlock,                                                   \
+        .Mod_Ota = __ota_update,                                                  \
+        .Mod_Error = __error_handle,                                              \
+        .Mod_Transmit = __transmit,                                               \
+        .Uart = __uart,                                                           \
+        .pPools = &__pools,                                                       \
+        .Slave.pHandle = __user_handle,                                           \
     };
 
 /*定义Modbus对象*/
@@ -44,6 +45,7 @@ static void Modbus_ErrorHadle(pModbusHandle pd, Lhc_Modbus_State_Code error_code
 static void Modbus_Lock(void);
 static void Modbus_UnLock(void);
 #endif
+static void lhc_ota_update(pModbusHandle pd);
 static void Modbus_Send(pModbusHandle pd, enum Using_Crc crc);
 
 #if (SMODBUS_USING_RTOS == 2)
@@ -79,8 +81,8 @@ int rt_small_modbus_init(void)
         },
     };
     __init_modbus(temp, Smd_Slave, SMALL_MODBUS_MASTER_ADDR, SMALL_MODBUS_SLAVE_ADDR,
-                  Modbus_CallBack, Modbus_Lock, Modbus_UnLock, Modbus_ErrorHadle, Modbus_Send,
-                  small_modbus_uart, Spool, NULL);
+                  Modbus_CallBack, Modbus_Lock, Modbus_UnLock, lhc_ota_update, Modbus_ErrorHadle,
+                  Modbus_Send, small_modbus_uart, Spool, NULL);
     Create_ModObject(&Modbus_Object, &temp_small_modbus);
     return 0;
 }
@@ -136,8 +138,7 @@ static void Modbus_CallBack(pModbusHandle pd, Function_Code code)
 #if (SMODBUS_USING_RTOS)
 /**
  * @brief  modbus协议栈加锁函数
- * @param  pd 需要初始化对象指针
- * @param  code 功能码
+ * @param  None
  * @retval None
  */
 static void Modbus_Lock(void)
@@ -147,8 +148,7 @@ static void Modbus_Lock(void)
 
 /**
  * @brief  modbus协议栈解锁函数
- * @param  pd 需要初始化对象指针
- * @param  code 功能码
+ * @param  None
  * @retval None
  */
 static void Modbus_UnLock(void)
@@ -156,6 +156,62 @@ static void Modbus_UnLock(void)
     rt_mutex_release(modbus_mutex);
 }
 #endif
+
+/**
+ * @brief  modbus协议栈进行ota升级
+ * @param  pd modbus协议站句柄
+ * @retval None
+ */
+static void lhc_ota_update(pModbusHandle pd)
+{
+#include <rtthread.h>
+#include "flash.h"
+#include "dwin_port.h"
+
+#if (SMODBUS_USING_DEBUG)
+    SMODBUS_DEBUG_D("@note:About to enter upgrade mode .......\r\n");
+#endif
+    /*Switch to the upgrade page*/
+    if (Dwin_Object)
+    {
+        Dwin_Object->Dw_Page(Dwin_Object, Update_Page);
+    }
+
+    uint32_t update_flag = (*(__IO uint32_t *)OTA_UPDATE_SAVE_ADDRESS);
+
+    if (((update_flag & 0xFFFF0000) >> 16U) == OTA_UPDATE_APP1)
+    {
+        update_flag = (((uint32_t)OTA_UPDATE_APP2 << 16U) | OTA_UPDATE_CMD);
+    }
+    else
+    {
+        update_flag = (((uint32_t)OTA_UPDATE_APP1 << 16U) | OTA_UPDATE_CMD);
+    }
+/*调度器上锁，上锁后不再切换到其他线程，仅响应中断*/
+#if (SMODBUS_USING_RTOS == 1)
+    taskENTER_CRITICAL();
+#elif (SMODBUS_USING_RTOS == 2)
+    rt_enter_critical();
+#endif
+    FLASH_Write(OTA_UPDATE_SAVE_ADDRESS, (uint16_t *)&update_flag, sizeof(update_flag));
+#if (SMODBUS_USING_RTOS == 1)
+    taskEXIT_CRITICAL();
+#define __RESET_SYSTEM
+    {
+        __set_FAULTMASK(1);
+        NVIC_SystemReset();
+    }
+#elif (SMODBUS_USING_RTOS == 2)
+    /*调度器解锁*/
+    rt_exit_critical();
+#if (SMODBUS_USING_DEBUG)
+    SMODBUS_DEBUG_D("@note:The system starts to restart, please wait .......\r\n");
+#endif
+    extern void rt_hw_cpu_reset(void);
+    /*重启系统*/
+    rt_hw_cpu_reset();
+#endif
+}
 
 /**
  * @brief  modbus协议栈接收帧错误处理

@@ -62,6 +62,7 @@ void Create_ModObject(pModbusHandle *pd, pModbusHandle ps)
     (*pd)->type = ps->type > Smd_Slave ? Smd_Slave : ps->type;
     (*pd)->Mod_CallBack = ps->Mod_CallBack;
     (*pd)->Mod_Error = ps->Mod_Error;
+    (*pd)->Mod_Ota = ps->Mod_Ota;
 #if (SMODBUS_USING_RTOS)
     (*pd)->Mod_Lock = ps->Mod_Lock;
     (*pd)->Mod_Unlock = ps->Mod_Unlock;
@@ -219,6 +220,20 @@ static Lhc_Modbus_State_Code Modbus_Recive_Check(pModbusHandle pd)
 }
 
 /**
+ * @brief	Determine how the wifi module works
+ * @details
+ * @param	pd:modbus master/slave handle
+ * @retval	true：MODBUS;fasle:shell
+ */
+static bool lhc_check_is_ota(pModbusHandle pd)
+{
+#define ENTER_OTA_MODE_CODE 0x0D
+    return (((smd_rx_count(pd) == 1U) &&
+             (smd_rx_buf[0] == ENTER_OTA_MODE_CODE)));
+#undef ENTER_OTA_MODE_CODE
+}
+
+/**
  * @brief  Modbus接收数据解析[支持主机/从机]
  * @param  pd small modbus对象句柄
  * @retval None
@@ -230,6 +245,12 @@ static void Modbus_Poll(pModbusHandle pd)
         return;
     pd->Uart.recive_finish_flag = false;
 #endif
+    /*检查是否进入OTA升级*/
+    if (lhc_check_is_ota(pd))
+    {
+        if (pd->Mod_Ota)
+            pd->Mod_Ota(pd);
+    }
     /*可以利用功能码和数据长度预测帧长度：可解析粘包数据*/
     Lhc_Modbus_State_Code lhc_state = Modbus_Recive_Check(pd);
     if (lhc_state != lhc_mod_ok)

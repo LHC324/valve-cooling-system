@@ -1,10 +1,67 @@
 Dependencies for Project 'project', Target 'rt-thread': (DO NOT MODIFY !)
+F (applications\main.c)(0x63413D17)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (rt-thread\include\rtthread.h)(0x632C0AD6)
+I (.\rtconfig.h)(0x633AAE0E)
+I (rt-thread\include\rtdebug.h)(0x63291C9B)
+I (rt-thread\include\rtdef.h)(0x63291C9B)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
+I (rt-thread\include\rtservice.h)(0x63291C9B)
+I (rt-thread\include\rtm.h)(0x63291C9B)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
+I (rt-thread\components\finsh\finsh.h)(0x63291C99)
+I (rt-thread\include\rtdbg.h)(0x63291C9B)
+I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
+I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
+I (applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+I (applications\lhc_dwin\Inc\dwin_port.h)(0x6340E340)
+I (applications\lhc_dwin\Inc\dwin.h)(0x6333E618)
+I (applications\lhc_dwin\Inc\dwin_cfg.h)(0x63368397)
+I (applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
+I (applications\lhc_modbus\Inc\small_modbus.h)(0x63401B96)
+I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
+I (applications\io_signal.h)(0x633AA941)
+I (applications\measure.h)(0x633D7F52)
+I (applications\flash.h)(0x63402D84)
 F (applications\lhc_dwin\Src\dwin.c)(0x633D04A3)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\dwin.o --omf_browse .\objects\dwin.crf --depend .\objects\dwin.d)
 I (applications\lhc_dwin\Inc\dwin.h)(0x6333E618)
 I (applications\lhc_dwin\Inc\dwin_cfg.h)(0x63368397)
 I (rt-thread\include\rtdbg.h)(0x63291C9B)
 I (.\rtconfig.h)(0x633AAE0E)
-I (applications\lhc_dwin\Inc\tool.h)(0x6333E3D0)
+I (applications\lhc_dwin\Inc\tool.h)(0x6340D332)
 I (rt-thread\include\rtthread.h)(0x632C0AD6)
 I (rt-thread\include\rtdebug.h)(0x63291C9B)
 I (rt-thread\include\rtdef.h)(0x63291C9B)
@@ -17,7 +74,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (rt-thread\components\finsh\finsh.h)(0x63291C99)
 I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -49,117 +106,12 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-F (applications\lhc_dwin\Src\dwin_port.c)(0x633E3DC2)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\dwin_port.o --omf_browse .\objects\dwin_port.crf --depend .\objects\dwin_port.d)
-I (applications\lhc_dwin\Inc\dwin_port.h)(0x63342EC0)
-I (applications\lhc_dwin\Inc\dwin.h)(0x6333E618)
-I (applications\lhc_dwin\Inc\dwin_cfg.h)(0x63368397)
-I (rt-thread\include\rtdbg.h)(0x63291C9B)
-I (.\rtconfig.h)(0x633AAE0E)
-I (applications\lhc_dwin\Inc\tool.h)(0x6333E3D0)
-I (rt-thread\include\rtthread.h)(0x632C0AD6)
-I (rt-thread\include\rtdebug.h)(0x63291C9B)
-I (rt-thread\include\rtdef.h)(0x63291C9B)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
-I (rt-thread\include\rtservice.h)(0x63291C9B)
-I (rt-thread\include\rtm.h)(0x63291C9B)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (rt-thread\components\finsh\finsh.h)(0x63291C99)
-I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
-I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (applications\measure.h)(0x633D7F52)
-I (applications\flash.h)(0x633572F0)
-F (applications\io_signal.c)(0x633AA9A0)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\io_signal.o --omf_browse .\objects\io_signal.crf --depend .\objects\io_signal.d)
-I (applications\io_signal.h)(0x633AA941)
-I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
-I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
-I (applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
-I (applications\lhc_modbus\Inc\small_modbus.h)(0x632C0AB1)
+F (applications\lhc_modbus\Src\small_modbus.c)(0x6340D015)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\small_modbus.o --omf_browse .\objects\small_modbus.crf --depend .\objects\small_modbus.d)
+I (applications\lhc_modbus\Inc\small_modbus.h)(0x63401B96)
 I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
 I (rt-thread\include\rtdbg.h)(0x63291C9B)
 I (.\rtconfig.h)(0x633AAE0E)
-I (applications\lhc_dwin\Inc\tool.h)(0x6333E3D0)
-I (rt-thread\include\rtthread.h)(0x632C0AD6)
-I (rt-thread\include\rtdebug.h)(0x63291C9B)
-I (rt-thread\include\rtdef.h)(0x63291C9B)
-I (rt-thread\include\rtservice.h)(0x63291C9B)
-I (rt-thread\include\rtm.h)(0x63291C9B)
-I (rt-thread\components\finsh\finsh.h)(0x63291C99)
-F (applications\lhc_modbus\Src\small_modbus.c)(0x633AA81A)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\small_modbus.o --omf_browse .\objects\small_modbus.crf --depend .\objects\small_modbus.d)
-I (applications\lhc_modbus\Inc\small_modbus.h)(0x632C0AB1)
-I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
-I (rt-thread\include\rtdbg.h)(0x63291C9B)
-I (.\rtconfig.h)(0x633AAE0E)
-I (applications\lhc_dwin\Inc\tool.h)(0x6333E3D0)
+I (applications\lhc_dwin\Inc\tool.h)(0x6340D332)
 I (rt-thread\include\rtthread.h)(0x632C0AD6)
 I (rt-thread\include\rtdebug.h)(0x63291C9B)
 I (rt-thread\include\rtdef.h)(0x63291C9B)
@@ -172,7 +124,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (rt-thread\components\finsh\finsh.h)(0x63291C99)
 I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -204,215 +156,6 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-F (applications\measure.c)(0x633E34FE)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\measure.o --omf_browse .\objects\measure.crf --depend .\objects\measure.d)
-I (applications\measure.h)(0x633D7F52)
-I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
-I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
-I (applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
-I (applications\lhc_modbus\Inc\small_modbus.h)(0x632C0AB1)
-I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
-I (rt-thread\include\rtdbg.h)(0x63291C9B)
-I (.\rtconfig.h)(0x633AAE0E)
-I (applications\lhc_dwin\Inc\tool.h)(0x6333E3D0)
-I (rt-thread\include\rtthread.h)(0x632C0AD6)
-I (rt-thread\include\rtdebug.h)(0x63291C9B)
-I (rt-thread\include\rtdef.h)(0x63291C9B)
-I (rt-thread\include\rtservice.h)(0x63291C9B)
-I (rt-thread\include\rtm.h)(0x63291C9B)
-I (rt-thread\components\finsh\finsh.h)(0x63291C99)
-I (applications\io_signal.h)(0x633AA941)
-I (applications\flash.h)(0x633572F0)
-F (applications\lhc_dwin\Src\tool.c)(0x63295F68)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\tool.o --omf_browse .\objects\tool.crf --depend .\objects\tool.d)
-I (applications\lhc_dwin\Inc\tool.h)(0x6333E3D0)
-I (rt-thread\include\rtthread.h)(0x632C0AD6)
-I (.\rtconfig.h)(0x633AAE0E)
-I (rt-thread\include\rtdebug.h)(0x63291C9B)
-I (rt-thread\include\rtdef.h)(0x63291C9B)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
-I (rt-thread\include\rtservice.h)(0x63291C9B)
-I (rt-thread\include\rtm.h)(0x63291C9B)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (rt-thread\components\finsh\finsh.h)(0x63291C99)
-I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
-I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-F (applications\lhc_modbus\Src\small_modbus_port.c)(0x633B92AD)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\small_modbus_port.o --omf_browse .\objects\small_modbus_port.crf --depend .\objects\small_modbus_port.d)
-I (applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
-I (applications\lhc_modbus\Inc\small_modbus.h)(0x632C0AB1)
-I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
-I (rt-thread\include\rtdbg.h)(0x63291C9B)
-I (.\rtconfig.h)(0x633AAE0E)
-I (applications\lhc_dwin\Inc\tool.h)(0x6333E3D0)
-I (rt-thread\include\rtthread.h)(0x632C0AD6)
-I (rt-thread\include\rtdebug.h)(0x63291C9B)
-I (rt-thread\include\rtdef.h)(0x63291C9B)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
-I (rt-thread\include\rtservice.h)(0x63291C9B)
-I (rt-thread\include\rtm.h)(0x63291C9B)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (rt-thread\components\finsh\finsh.h)(0x63291C99)
-I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
-I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-F (applications\main.c)(0x633D9391)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (rt-thread\include\rtthread.h)(0x632C0AD6)
-I (.\rtconfig.h)(0x633AAE0E)
-I (rt-thread\include\rtdebug.h)(0x63291C9B)
-I (rt-thread\include\rtdef.h)(0x63291C9B)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
-I (rt-thread\include\rtservice.h)(0x63291C9B)
-I (rt-thread\include\rtm.h)(0x63291C9B)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (rt-thread\components\finsh\finsh.h)(0x63291C99)
-I (rt-thread\include\rtdbg.h)(0x63291C9B)
-I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
-I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
-I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
-I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
-I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (applications\lhc_dwin\Inc\tool.h)(0x6333E3D0)
-I (applications\lhc_dwin\Inc\dwin_port.h)(0x63342EC0)
-I (applications\lhc_dwin\Inc\dwin.h)(0x6333E618)
-I (applications\lhc_dwin\Inc\dwin_cfg.h)(0x63368397)
-I (applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
-I (applications\lhc_modbus\Inc\small_modbus.h)(0x632C0AB1)
-I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
-I (applications\io_signal.h)(0x633AA941)
-I (applications\measure.h)(0x633D7F52)
-I (applications\flash.h)(0x633572F0)
 F (applications\stm32_irq.c)(0x632C29A2)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32_irq.o --omf_browse .\objects\stm32_irq.crf --depend .\objects\stm32_irq.d)
 I (rt-thread\include\rtthread.h)(0x632C0AD6)
 I (.\rtconfig.h)(0x633AAE0E)
@@ -428,7 +171,7 @@ I (rt-thread\components\finsh\finsh.h)(0x63291C99)
 I (rt-thread\include\rtdbg.h)(0x63291C9B)
 I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -460,18 +203,73 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (applications\lhc_dwin\Inc\tool.h)(0x6333E3D0)
-I (applications\lhc_dwin\Inc\dwin_port.h)(0x63342EC0)
+I (applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+I (applications\lhc_dwin\Inc\dwin_port.h)(0x6340E340)
 I (applications\lhc_dwin\Inc\dwin.h)(0x6333E618)
 I (applications\lhc_dwin\Inc\dwin_cfg.h)(0x63368397)
 I (applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
-I (applications\lhc_modbus\Inc\small_modbus.h)(0x632C0AB1)
+I (applications\lhc_modbus\Inc\small_modbus.h)(0x63401B96)
 I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
-F (applications\flash.c)(0x6334319B)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\flash.o --omf_browse .\objects\flash.crf --depend .\objects\flash.d)
-I (applications\flash.h)(0x633572F0)
+F (applications\lhc_modbus\Src\small_modbus_port.c)(0x6340F13B)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\small_modbus_port.o --omf_browse .\objects\small_modbus_port.crf --depend .\objects\small_modbus_port.d)
+I (applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
+I (applications\lhc_modbus\Inc\small_modbus.h)(0x63401B96)
+I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
+I (rt-thread\include\rtdbg.h)(0x63291C9B)
+I (.\rtconfig.h)(0x633AAE0E)
+I (applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+I (rt-thread\include\rtthread.h)(0x632C0AD6)
+I (rt-thread\include\rtdebug.h)(0x63291C9B)
+I (rt-thread\include\rtdef.h)(0x63291C9B)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
+I (rt-thread\include\rtservice.h)(0x63291C9B)
+I (rt-thread\include\rtm.h)(0x63291C9B)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
+I (rt-thread\components\finsh\finsh.h)(0x63291C99)
 I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
+I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
+I (applications\flash.h)(0x63402D84)
+I (applications\lhc_dwin\Inc\dwin_port.h)(0x6340E340)
+I (applications\lhc_dwin\Inc\dwin.h)(0x6333E618)
+I (applications\lhc_dwin\Inc\dwin_cfg.h)(0x63368397)
+F (applications\measure.c)(0x633E34FE)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\measure.o --omf_browse .\objects\measure.crf --depend .\objects\measure.d)
+I (applications\measure.h)(0x633D7F52)
+I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -507,6 +305,212 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
+I (applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
+I (applications\lhc_modbus\Inc\small_modbus.h)(0x63401B96)
+I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
+I (rt-thread\include\rtdbg.h)(0x63291C9B)
+I (.\rtconfig.h)(0x633AAE0E)
+I (applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+I (rt-thread\include\rtthread.h)(0x632C0AD6)
+I (rt-thread\include\rtdebug.h)(0x63291C9B)
+I (rt-thread\include\rtdef.h)(0x63291C9B)
+I (rt-thread\include\rtservice.h)(0x63291C9B)
+I (rt-thread\include\rtm.h)(0x63291C9B)
+I (rt-thread\components\finsh\finsh.h)(0x63291C99)
+I (applications\io_signal.h)(0x633AA941)
+I (applications\flash.h)(0x63402D84)
+F (applications\flash.c)(0x6334319B)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\flash.o --omf_browse .\objects\flash.crf --depend .\objects\flash.d)
+I (applications\flash.h)(0x63402D84)
+I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
+I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
+F (applications\lhc_dwin\Src\tool.c)(0x63295F68)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\tool.o --omf_browse .\objects\tool.crf --depend .\objects\tool.d)
+I (applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+I (rt-thread\include\rtthread.h)(0x632C0AD6)
+I (.\rtconfig.h)(0x633AAE0E)
+I (rt-thread\include\rtdebug.h)(0x63291C9B)
+I (rt-thread\include\rtdef.h)(0x63291C9B)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
+I (rt-thread\include\rtservice.h)(0x63291C9B)
+I (rt-thread\include\rtm.h)(0x63291C9B)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
+I (rt-thread\components\finsh\finsh.h)(0x63291C99)
+I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
+I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
+F (applications\lhc_dwin\Src\dwin_port.c)(0x6340ED22)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\dwin_port.o --omf_browse .\objects\dwin_port.crf --depend .\objects\dwin_port.d)
+I (applications\lhc_dwin\Inc\dwin_port.h)(0x6340E340)
+I (applications\lhc_dwin\Inc\dwin.h)(0x6333E618)
+I (applications\lhc_dwin\Inc\dwin_cfg.h)(0x63368397)
+I (rt-thread\include\rtdbg.h)(0x63291C9B)
+I (.\rtconfig.h)(0x633AAE0E)
+I (applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+I (rt-thread\include\rtthread.h)(0x632C0AD6)
+I (rt-thread\include\rtdebug.h)(0x63291C9B)
+I (rt-thread\include\rtdef.h)(0x63291C9B)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
+I (rt-thread\include\rtservice.h)(0x63291C9B)
+I (rt-thread\include\rtm.h)(0x63291C9B)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
+I (rt-thread\components\finsh\finsh.h)(0x63291C99)
+I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
+I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
+I (applications\measure.h)(0x633D7F52)
+I (applications\flash.h)(0x63402D84)
+F (applications\io_signal.c)(0x633AA9A0)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\io_signal.o --omf_browse .\objects\io_signal.crf --depend .\objects\io_signal.d)
+I (applications\io_signal.h)(0x633AA941)
+I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x63291C87)
+I (libraries\HAL_Drivers\CMSIS\Include\core_cm3.h)(0x63291C86)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_version.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
+I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
+I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63291C87)
+I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x599ECD2A)
+I (applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
+I (applications\lhc_modbus\Inc\small_modbus.h)(0x63401B96)
+I (applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x6326FF2F)
+I (rt-thread\include\rtdbg.h)(0x63291C9B)
+I (.\rtconfig.h)(0x633AAE0E)
+I (applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+I (rt-thread\include\rtthread.h)(0x632C0AD6)
+I (rt-thread\include\rtdebug.h)(0x63291C9B)
+I (rt-thread\include\rtdef.h)(0x63291C9B)
+I (rt-thread\include\rtservice.h)(0x63291C9B)
+I (rt-thread\include\rtm.h)(0x63291C9B)
+I (rt-thread\components\finsh\finsh.h)(0x63291C99)
 F (packages\CmBacktrace-v1.4.1\cmb_port.c)(0x6329B9EF)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\cmb_port.o --omf_browse .\objects\cmb_port.crf --depend .\objects\cmb_port.d)
 I (rt-thread\include\rtthread.h)(0x632C0AD6)
 I (.\rtconfig.h)(0x633AAE0E)
@@ -956,10 +960,10 @@ I (rt-thread\components\drivers\include\drivers/pin.h)(0x63291C99)
 I (rt-thread\components\drivers\include\drivers/pm.h)(0x63291C99)
 I (rt-thread\components\drivers\include\drivers/lptimer.h)(0x63291C99)
 I (rt-thread\include\rtdbg.h)(0x63291C9B)
-F (board\CubeMX_Config\Src\main.c)(0x633D19BD)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\src_main.o --omf_browse .\objects\src_main.crf --depend .\objects\src_main.d)
+F (board\CubeMX_Config\Src\main.c)(0x633FFA2F)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\src_main.o --omf_browse .\objects\src_main.crf --depend .\objects\src_main.d)
 I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -1005,7 +1009,7 @@ I (rt-thread\components\finsh\finsh.h)(0x63291C99)
 F (board\CubeMX_Config\Src\stm32f1xx_hal_msp.c)(0x633A67F0)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_msp.o --omf_browse .\objects\stm32f1xx_hal_msp.crf --depend .\objects\stm32f1xx_hal_msp.d)
 I (board\CubeMX_Config\Inc\main.h)(0x633A6E97)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -1062,7 +1066,7 @@ I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
 I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
@@ -1100,7 +1104,7 @@ I (rt-thread\components\drivers\include\drivers/pm.h)(0x63291C99)
 I (rt-thread\components\drivers\include\drivers/lptimer.h)(0x63291C99)
 I (libraries\HAL_Drivers\drv_gpio.h)(0x63291C86)
 F (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Source\Templates\arm\startup_stm32f103xe.s)(0x63291C87)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 527" --pd "STM32F10X_HD SETA 1"--list .\listings\startup_stm32f103xe.lst --xref -o .\objects\startup_stm32f103xe.o --depend .\objects\startup_stm32f103xe.d)
-F (libraries\HAL_Drivers\drv_common.c)(0x63291C86)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\drv_common.o --omf_browse .\objects\drv_common.crf --depend .\objects\drv_common.d)
+F (libraries\HAL_Drivers\drv_common.c)(0x634122DD)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\drv_common.o --omf_browse .\objects\drv_common.crf --depend .\objects\drv_common.d)
 I (libraries\HAL_Drivers\drv_common.h)(0x63291C86)
 I (rt-thread\include\rtthread.h)(0x632C0AD6)
 I (.\rtconfig.h)(0x633AAE0E)
@@ -1136,7 +1140,7 @@ I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
 I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
@@ -1182,7 +1186,7 @@ I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
 I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
@@ -1240,7 +1244,7 @@ I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
 I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
@@ -1757,7 +1761,7 @@ I (rt-thread\components\finsh\finsh.h)(0x63291C99)
 I (rt-thread\include\rthw.h)(0x63291C9B)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_adc.o --omf_browse .\objects\stm32f1xx_hal_adc.crf --depend .\objects\stm32f1xx_hal_adc.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -1789,7 +1793,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_dma.o --omf_browse .\objects\stm32f1xx_hal_dma.crf --depend .\objects\stm32f1xx_hal_dma.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -1821,7 +1825,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_crc.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_crc.o --omf_browse .\objects\stm32f1xx_hal_crc.crf --depend .\objects\stm32f1xx_hal_crc.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -1861,7 +1865,7 @@ I (libraries\HAL_Drivers\CMSIS\Include\cmsis_compiler.h)(0x63291C86)
 I (libraries\HAL_Drivers\CMSIS\Include\cmsis_armcc.h)(0x63291C86)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x63291C87)
@@ -1885,7 +1889,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cec.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_cec.o --omf_browse .\objects\stm32f1xx_hal_cec.crf --depend .\objects\stm32f1xx_hal_cec.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -1917,7 +1921,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal.o --omf_browse .\objects\stm32f1xx_hal.crf --depend .\objects\stm32f1xx_hal.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -1949,7 +1953,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio_ex.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_gpio_ex.o --omf_browse .\objects\stm32f1xx_hal_gpio_ex.crf --depend .\objects\stm32f1xx_hal_gpio_ex.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -1981,7 +1985,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc_ex.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_rcc_ex.o --omf_browse .\objects\stm32f1xx_hal_rcc_ex.crf --depend .\objects\stm32f1xx_hal_rcc_ex.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2013,7 +2017,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_pwr.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_pwr.o --omf_browse .\objects\stm32f1xx_hal_pwr.crf --depend .\objects\stm32f1xx_hal_pwr.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2045,7 +2049,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc_ex.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_adc_ex.o --omf_browse .\objects\stm32f1xx_hal_adc_ex.crf --depend .\objects\stm32f1xx_hal_adc_ex.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2077,7 +2081,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dac.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_dac.o --omf_browse .\objects\stm32f1xx_hal_dac.crf --depend .\objects\stm32f1xx_hal_dac.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2109,7 +2113,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim_ex.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_tim_ex.o --omf_browse .\objects\stm32f1xx_hal_tim_ex.crf --depend .\objects\stm32f1xx_hal_tim_ex.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2141,7 +2145,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_uart.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_uart.o --omf_browse .\objects\stm32f1xx_hal_uart.crf --depend .\objects\stm32f1xx_hal_uart.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2173,7 +2177,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_usart.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_usart.o --omf_browse .\objects\stm32f1xx_hal_usart.crf --depend .\objects\stm32f1xx_hal_usart.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2205,7 +2209,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_gpio.o --omf_browse .\objects\stm32f1xx_hal_gpio.crf --depend .\objects\stm32f1xx_hal_gpio.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2237,7 +2241,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cortex.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_cortex.o --omf_browse .\objects\stm32f1xx_hal_cortex.crf --depend .\objects\stm32f1xx_hal_cortex.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2269,7 +2273,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dac_ex.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_dac_ex.o --omf_browse .\objects\stm32f1xx_hal_dac_ex.crf --depend .\objects\stm32f1xx_hal_dac_ex.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2301,7 +2305,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_rcc.o --omf_browse .\objects\stm32f1xx_hal_rcc.crf --depend .\objects\stm32f1xx_hal_rcc.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2333,7 +2337,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_tim.o --omf_browse .\objects\stm32f1xx_hal_tim.crf --depend .\objects\stm32f1xx_hal_tim.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2365,7 +2369,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_iwdg.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_iwdg.o --omf_browse .\objects\stm32f1xx_hal_iwdg.crf --depend .\objects\stm32f1xx_hal_iwdg.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2397,7 +2401,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_flash.o --omf_browse .\objects\stm32f1xx_hal_flash.crf --depend .\objects\stm32f1xx_hal_flash.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)
@@ -2429,7 +2433,7 @@ I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x63
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x63291C87)
 F (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash_ex.c)(0x63291C87)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I applications -I applications -I applications\lhc_modbus\Inc -I applications\lhc_dwin\Inc -I board\CubeMX_Config\Inc -I . -I packages\CmBacktrace-v1.4.1 -I rt-thread\components\libc\compilers\common\include -I rt-thread\components\libc\compilers\common\extension -I rt-thread\components\libc\compilers\common\extension\fcntl\octal -I rt-thread\libcpu\arm\common -I rt-thread\libcpu\arm\cortex-m3 -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I rt-thread\components\drivers\include -I board -I board\CubeMX_Config\Inc -I board\ports -I libraries\HAL_Drivers -I libraries\HAL_Drivers\config -I libraries\HAL_Drivers\CMSIS\Include -I rt-thread\components\dfs\include -I rt-thread\components\finsh -I . -I rt-thread\include -I libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include -I libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc -I rt-thread\components\libc\posix\io\poll -I rt-thread\components\libc\posix\io\stdio -I rt-thread\components\libc\posix\ipc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD -D__STDC_LIMIT_MACROS -DSTM32F103xE -DUSE_HAL_DRIVER -DRT_USING_LIBC -D__CLK_TCK="RT_TICK_PER_SECOND" -D__RTTHREAD__ -DRT_USING_ARM_LIBC-o .\objects\stm32f1xx_hal_flash_ex.o --omf_browse .\objects\stm32f1xx_hal_flash_ex.crf --depend .\objects\stm32f1xx_hal_flash_ex.d)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x63291C87)
-I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633A6612)
+I (board\CubeMX_Config\Inc\stm32f1xx_hal_conf.h)(0x633FF9F4)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x63291C87)
 I (libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x63291C87)

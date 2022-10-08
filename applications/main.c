@@ -314,6 +314,81 @@ void measure_poll_thread_entry(void *parameter)
 }
 
 /**
+ * @brief   获取wifi状态
+ * @details
+ * @param	None
+ * @retval  None
+ */
+static uint8_t get_wifi_state(void)
+{
+    static Gpiox_info wifi_gpio[] = {
+        {.pGPIOx = WIIF_READY_GPIO_Port, .Gpio_Pin = WIIF_READY_Pin},
+        {.pGPIOx = WIFI_LINK_GPIO_Port, .Gpio_Pin = WIFI_LINK_Pin},
+    };
+    uint8_t wifi_state = 0;
+    for (Gpiox_info *p = wifi_gpio;
+         p < wifi_gpio + sizeof(wifi_gpio) / sizeof(wifi_gpio[0]); ++p)
+    {
+        uint8_t site = p - wifi_gpio;
+        uint8_t bit = HAL_GPIO_ReadPin((GPIO_TypeDef *)p->pGPIOx, p->Gpio_Pin) ? 0 : 1;
+        wifi_state |= bit << site;
+    }
+    return wifi_state;
+}
+
+typedef struct
+{
+    uint32_t system_version;
+    uint32_t update_flag;
+} System_InfoTypeDef;
+
+#define CURRENT_HARDWARE_VERSION 100
+#define CURRENT_SOFT_VERSION 103
+#define SYSTEM_VERSION() ((uint32_t)((CURRENT_SOFT_VERSION << 16U) | CURRENT_HARDWARE_VERSION))
+/**
+ * @brief   获取系统信息
+ * @details
+ * @param	None
+ * @retval  None
+ */
+static void get_system_infomation(void)
+{
+    pModbusHandle pd = Modbus_Object;
+    pmeasure_handle pm = &measure_object;
+    System_InfoTypeDef system_info = {
+        .system_version = SYSTEM_VERSION(),
+        .update_flag = (*(__IO uint32_t *)OTA_UPDATE_SAVE_ADDRESS),
+    };
+#define SYSTEM_INFO_SIZE()                          \
+    (sizeof(system_info) + sizeof(pm->error_code) + \
+     sizeof(pm->me[0].back) * SYSYTEM_NUM)
+
+    uint8_t info_buf[SYSTEM_INFO_SIZE()];
+    /*版本信息存储到保持寄存器:跟在模拟输出的后面*/
+    if (pd)
+    {
+        memset(info_buf, 0x00, sizeof(info_buf));
+        memcpy(info_buf, &system_info, sizeof(system_info));
+        memcpy(&info_buf[sizeof(system_info)], &pm->error_code, sizeof(pm->error_code));
+        uint8_t base_addr = sizeof(system_info) + sizeof(pm->error_code);
+        for (uint8_t i = 0; i < SYSYTEM_NUM; ++i)
+        {
+            memcpy(&info_buf[base_addr + i * sizeof(pm->me[0].back)],
+                   &pm->me[0].back, sizeof(pm->me[0].back));
+        }
+
+        if (!pd->Mod_Operatex(pd, HoldRegister, Write,
+                              EXTERN_ANALOGOUT_MAX * sizeof(pd->pPools->HoldRegister[0]),
+                              info_buf, sizeof(info_buf)))
+        {
+            LOG_D("@error:Error writing system information.");
+        }
+    }
+#undef CURRENT_HARDWARE_VERSION
+#undef CURRENT_SOFT_VERSION
+}
+
+/**
  * @brief   定时上报数据到屏幕
  * @details
  * @param	parameter:线程初始参数
@@ -330,12 +405,20 @@ void report_thread_entry(void *parameter)
     // uint16_t temp_buf[22U];
     uint8_t buf[22U * 2U + VAL_FLOAT_NUM * 4U];
     UNUSED(p_rt_thread_pool);
-
+    /*首次切换到主界面*/
+    if (pw)
+    {
+        pw->Dw_Page(pw, MAIN_PAGE);
+        rt_thread_mdelay(10);
+    }
     for (;;)
     {
         if (pd && pw && pm)
         {
+            get_system_infomation();
             memset(buf, 0x00, sizeof(buf));
+            /*WiFi状态*/
+            buf[0] = get_wifi_state();
             /*数字输入*/
             pd->Mod_Operatex(pd, InputCoil, Read, 0x00, in_coil, sizeof(in_coil));
             /*数字输出*/

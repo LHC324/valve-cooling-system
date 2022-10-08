@@ -23,7 +23,7 @@ extern void MX_DwinInit(void);
 #endif
 
 /*迪文屏幕页面*/
-#define MAIN_PAGE 0x03
+#define MAIN_PAGE 0x01
 #define DIGITAL_INPUT_PAGE 0x04
 #define DIFITAL_OUTPUT_PAGE 0x05
 #define ANALOG_INPUT_PAGE 0x06
@@ -33,6 +33,7 @@ extern void MX_DwinInit(void);
 #define ERROR_PAGE 0x10
 #define RESET_POEWR_NOTE_PAGE 28U
 #define NEXT_DELAT_TIMES 50U
+#define Update_Page 28U
 
 #define DIGITAL_INPUT_ADDR 0x2000              //数字输入开始地址
 #define PFL_SYSTWM_PROJECT_ADDR 0x2004         //压力、流量、液位系统项目显示地址

@@ -51,3 +51,7 @@
 .\objects\small_modbus_port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\small_modbus_port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\small_modbus_port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\small_modbus_port.o: applications\flash.h
+.\objects\small_modbus_port.o: applications\lhc_dwin\Inc\dwin_port.h
+.\objects\small_modbus_port.o: applications\lhc_dwin\Inc\dwin.h
+.\objects\small_modbus_port.o: applications\lhc_dwin\Inc\dwin_cfg.h

@@ -294,7 +294,7 @@ static void Dwin_LimitHandle(pDwinHandle pd, uint8_t site)
             // ps->me[i].front.cur_sensor = sensor_null;
             // ps->me[i].front.percentage = 0;
             // ps->me[i].front.cur_time = 0;
-            memset(&ps->me[i].front, 0x00, sizeof(&ps->me[0].front));
+            memset(&ps->me[i].front, 0x00, sizeof(ps->me[0].front));
         }
         /*置位存储标志*/
         __SET_FLAG(ps->flag, measure_save);
