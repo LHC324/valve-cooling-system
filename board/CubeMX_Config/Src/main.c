@@ -87,13 +87,14 @@ int rt_stm32_hal_init(void)
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
   MX_TIM4_Init();
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
   /*启动时复位一下wifi*/
   HAL_GPIO_WritePin(WIFI_RESET_GPIO_Port, WIFI_RESET_Pin, GPIO_PIN_RESET);
   HAL_Delay(100);
   HAL_GPIO_WritePin(WIFI_RESET_GPIO_Port, WIFI_RESET_Pin, GPIO_PIN_SET);
   return 0;
 }
-/*在内核对象中初始�?:https://blog.csdn.net/yang1111111112/article/details/93982354*/
+/*在内核对象中初始�??:https://blog.csdn.net/yang1111111112/article/details/93982354*/
 // INIT_COMPONENT_EXPORT(rt_stm32_hal_init);
 // INIT_ENV_EXPORT(rt_stm32_hal_init);
 INIT_DEVICE_EXPORT(rt_stm32_hal_init);
@@ -380,7 +381,7 @@ static void MX_TIM4_Init(void)
   htim4.Instance = TIM4;
   htim4.Init.Prescaler = 720 - 1;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 2000;
+  htim4.Init.Period = 2000 - 1;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim4) != HAL_OK)

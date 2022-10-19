@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>阀冷测试系统 V1.0.0 文档</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> 阀冷测试系统
+          </a>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-summary">1. 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-te_characteristics">2. 技术特性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-work_principle">3. 设计原理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-structural_characteristics">4. 结构特性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-operation_guide">5. 操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-note">6. 注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-fault">7. 故障分析与排除</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-rapair">8. 维修与保养</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">阀冷测试系统</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>阀冷测试系统 V1.0.0 文档</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="id1">
+<h1>阀冷测试系统使用说明书<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/01_开机界面.jpg"><img alt="NULL" src="_images/01_%E5%BC%80%E6%9C%BA%E7%95%8C%E9%9D%A2.jpg" style="width: 1024.0px; height: 600.0px;" /></a>
+<p class="caption"><span class="caption-text">图 0 总体结构图</span><a class="headerlink" href="#id3" title="此图像的永久链接"></a></p>
+</div>
+<ul class="simple">
+<li><p><strong>公司主页(homepage)</strong>:<a class="reference external" href="http://www.ynpax.com/cn/home/index.asp">http://www.ynpax.com/cn/home/index.asp</a></p></li>
+<li><p><strong>合作方主页</strong>:<a class="reference external" href="http://www.yn.csg.cn/">http://www.yn.csg.cn/</a></p></li>
+<li><p><strong>公司地址</strong>:云南省昆明市经开区云大西路39号创业大厦C栋202室</p></li>
+<li><p><strong>联系电话</strong>:0871-6732300/67322190</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h1>目录<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h1>
+<div class="toctree-wrapper compound">
+<span id="document-summary"></span><div class="section" id="id1">
+<h2><span class="section-number">1. </span>概述<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<p>本产品为阀冷传感器校对系统,公司遵循国家行业执行标准：<code class="docutils literal notranslate"><span class="pre">DL/T</span> <span class="pre">1582-2016</span></code>,确属本公司产品质量问题,
+自购置之日起保修期为3个月(非正常使用而致使产品损坏，烧坏的，不属保修之列)。</p>
+<ul class="simple">
+<li><p>阀冷却系统是（特）高年压直流输电换流站的重要辅助设备，按功能可分为阀冷保护仪表和阀冷监控仪表两种，
+测量物理量有：压力、温度、流量、液位和电导率，这些传感器是实现换流阀冷却系统安全可靠控制、稳定运行的有效保证。</p></li>
+<li><p>然而，目前国内一些工程仪表传感器因测量误差导致控制系统误判异常导致拒动、误动或引出直流闭锁事故的情况时有发生。
+若不定期对阀冷系统仪表进行检测，将给阀冷系统安全、稳定、可靠运行造成麻烦，甚至影响直流换流站的正常运行。</p></li>
+<li><p>本系统是一种通用型可移动式现场检测装置，不需要人员轮流拆卸返厂进行检测，可在停电检修时间紧迫的情况下对换流阀冷
+却系统的各种仪表传感器进行检测。
+实现现场高效精确检测，提升精益化、智能化检修水平，并且极大的节约了第三方机构检修所带来的时间和经济成本。</p></li>
+</ul>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/1.png"><img alt="NULL" src="_images/1.png" style="width: 427.20000000000005px; height: 476.0px;" /></a>
+<p class="caption"><span class="caption-text">图 1.1</span><a class="headerlink" href="#id2" title="此图像的永久链接"></a></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/1.png"><img alt="NULL" src="_images/1.png" style="width: 427.20000000000005px; height: 476.0px;" /></a>
+<p class="caption"><span class="caption-text">图 1.2</span><a class="headerlink" href="#id3" title="此图像的永久链接"></a></p>
+</div>
+</div>
+<span id="document-te_characteristics"></span><div class="section" id="id1">
+<h2><span class="section-number">2. </span>技术特性<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p><strong>本产品严格遵循国家行业执行标准：``DL/T 1582-2016``进行开发、生产和制造</strong></p></li>
+<li><p><strong>本产品工作电源为DC24V</strong></p></li>
+<li><p><strong>本产品可校对任意4-20ma/0-10v目标传感器</strong></p></li>
+<li><p><strong>本产品包括水循环、温度、电导率校对系统，三系统可同时并行运行，彼此间互不影响</strong></p></li>
+<li><p><strong>本产品带有WIFI物联网功能，可把保存在本地采样数据通过物联网终端导出至用户目标设备，以备查阅、分析</strong></p></li>
+<li><p><strong>本产品亦可通过wifi远程在线实时设置系统的后台参数</strong></p></li>
+<li><p><strong>本产品自带完备的故障检测及急停功能，可及时检测到一些人员操作所造成的错误，或者目标校对传感器故障，
+避免系统的不正常启动造成的安全问题</strong></p></li>
+<li><p><strong>本产品具有灵活的可移动性</strong></p></li>
+</ul>
+</div>
+<span id="document-work_principle"></span><div class="section" id="id1">
+<h2><span class="section-number">3. </span>设计原理<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="section" id="id2">
+<h3><span class="section-number">3.1. </span>阀冷系统采用的各类传感器工作原理<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h3>
+<div class="section" id="id3">
+<h4><span class="section-number">3.1.1. </span>压力传感器<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h4>
+<ul class="simple">
+<li><p>压力传感器结构图如下:</p></li>
+</ul>
+<div class="figure align-left" id="id11">
+<a class="reference internal image-reference" href="_images/3.1.1_压力传感器.png"><img alt="NULL" src="_images/3.1.1_%E5%8E%8B%E5%8A%9B%E4%BC%A0%E6%84%9F%E5%99%A8.png" style="width: 124.5px; height: 212.0px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.1.1 压力传感器</span><a class="headerlink" href="#id11" title="此图像的永久链接"></a></p>
+</div>
+<div class="figure align-right" id="id12">
+<a class="reference internal image-reference" href="_images/3.1.2_压力传感器结构.png"><img alt="NULL" src="_images/3.1.2_%E5%8E%8B%E5%8A%9B%E4%BC%A0%E6%84%9F%E5%99%A8%E7%BB%93%E6%9E%84.png" style="width: 319.5px; height: 177.5px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.1.2 压力传感器</span><a class="headerlink" href="#id12" title="此图像的永久链接"></a></p>
+</div>
+<ul class="simple">
+<li><p>工作压力使隔膜密封的金属膜片产生便宜，并通过填充液吧压力送到传感器膜片上，
+该膜片产生的形变再通过填充液把压力传送到电桥上，与压力相关的桥路输出电压的变化被测量并进一步处理。</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h4><span class="section-number">3.1.2. </span>温度传感器<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h4>
+<ul class="simple">
+<li><p>温度传感器结构图如下:</p></li>
+</ul>
+<div class="figure align-left" id="id13">
+<a class="reference internal image-reference" href="_images/3.1.3_温度传感器.png"><img alt="NULL" src="_images/3.1.3_%E6%B8%A9%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8.png" style="width: 137.0px; height: 161.0px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.2.1 温度传感器</span><a class="headerlink" href="#id13" title="此图像的永久链接"></a></p>
+</div>
+<div class="figure align-right" id="id14">
+<a class="reference internal image-reference" href="_images/3.1.4_铂热电阻温度与电阻关系.png"><img alt="NULL" src="_images/3.1.4_%E9%93%82%E7%83%AD%E7%94%B5%E9%98%BB%E6%B8%A9%E5%BA%A6%E4%B8%8E%E7%94%B5%E9%98%BB%E5%85%B3%E7%B3%BB.png" style="width: 222.5px; height: 209.5px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.2.2 铂热电阻温度与电阻关系</span><a class="headerlink" href="#id14" title="此图像的永久链接"></a></p>
+</div>
+<ul class="simple">
+<li><p>温度传感器通过内部铂热电阻的电阻值与温度的线性关系来测量温度。</p></li>
+<li><p>铂热电阻在0℃时，阻抗为100Ω，温度系数为α=0.003851℃。按IEC60751标准，
+铂热电阻的使用温度范围为-200～+850℃。</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h4><span class="section-number">3.1.3. </span>流量传感器<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h4>
+<ul class="simple">
+<li><p>流量传感器结构图如下:</p></li>
+</ul>
+<div class="figure align-left" id="id15">
+<a class="reference internal image-reference" href="_images/3.1.5_涡街流量计.png"><img alt="NULL" src="_images/3.1.5_%E6%B6%A1%E8%A1%97%E6%B5%81%E9%87%8F%E8%AE%A1.png" style="width: 150.5px; height: 182.5px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.3.1 涡街流量计</span><a class="headerlink" href="#id15" title="此图像的永久链接"></a></p>
+</div>
+<div class="figure align-right" id="id16">
+<a class="reference internal image-reference" href="_images/3.1.6_涡街流量计工作原理1.png"><img alt="NULL" src="_images/3.1.6_%E6%B6%A1%E8%A1%97%E6%B5%81%E9%87%8F%E8%AE%A1%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%861.png" style="width: 200.5px; height: 111.0px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.3.2 涡街流量计工作原理1</span><a class="headerlink" href="#id16" title="此图像的永久链接"></a></p>
+</div>
+<ul class="simple">
+<li><p>流量传感器种类较多，阀冷系统常用有涡街流量计和涡轮流量计。</p></li>
+<li><p>涡街流量计测量过程为，在流量计管道中，设一滞流件，流体流经滞流件时，
+下游会产生两列不对称的旋涡，在滞流件的侧后方分开，形成卡门（Karman）旋涡列–卡门涡街，
+旋涡产生的频率f与流量计管道中流体流速v成比例关系，对于一种固定的滞流件，卡门涡街的频率与流速一一对应，
+电脑用查表或解析算法就能算出流速v，流速v与管道截面乘积即得管道流量。</p></li>
+</ul>
+<div class="figure align-right" id="id17">
+<a class="reference internal image-reference" href="_images/3.1.7_涡街流量计工作原理2.png"><img alt="NULL" src="_images/3.1.7_%E6%B6%A1%E8%A1%97%E6%B5%81%E9%87%8F%E8%AE%A1%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%862.png" style="width: 275.5px; height: 266.5px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.3.3 涡街流量计工作原理2</span><a class="headerlink" href="#id17" title="此图像的永久链接"></a></p>
+</div>
+<ul class="simple">
+<li><p>涡轮流量计测量原理比较直接，在流体作用下，涡轮受力旋转，转速与平均流速成正比，
+涡轮转动周期改变磁电转换器的磁阻。监测线圈中磁通随之发生的周期性变化，
+产生周期性感应电势，即电脉冲信号，经放大器放大后，送至显示仪表显示。</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h4><span class="section-number">3.1.4. </span>液位传感器<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h4>
+<ul class="simple">
+<li><p>液位传感器结构图如下:</p></li>
+</ul>
+<div class="figure align-left" id="id18">
+<a class="reference internal image-reference" href="_images/3.1.8_电容式液位计.png"><img alt="NULL" src="_images/3.1.8_%E7%94%B5%E5%AE%B9%E5%BC%8F%E6%B6%B2%E4%BD%8D%E8%AE%A1.png" style="width: 368.0px; height: 85.0px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.4.1 电容式液位计</span><a class="headerlink" href="#id18" title="此图像的永久链接"></a></p>
+</div>
+<div class="figure align-right" id="id19">
+<a class="reference internal image-reference" href="_images/3.1.9_磁翻板液位计.png"><img alt="NULL" src="_images/3.1.9_%E7%A3%81%E7%BF%BB%E6%9D%BF%E6%B6%B2%E4%BD%8D%E8%AE%A1.png" style="width: 103.0px; height: 258.0px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.4.2 磁翻板液位计</span><a class="headerlink" href="#id19" title="此图像的永久链接"></a></p>
+</div>
+<ul class="simple">
+<li><p>液位传感器种类也比较多，阀冷系统多采用电容式液位计和磁翻板液位计。</p></li>
+<li><p>电容式液位计是采用测量电容的变化来测量液面的高低的。
+它是一根金属棒插入盛液容器内，金属棒作为电容的一个极，容器壁作为电容的另一极。
+两电极间的介质即为液体及其上面的气体。由于液体的介电常数 ε1和液面上的介电常数ε2不同，
+比如： ε1&gt;ε2，则当液位升高时，
+电容式液位计两电极间总的介电常数值随之加大因而电容量增大。反之当液位下降，
+ε值减小，电容量也减小。所以，电容式液位计可通过两电极间的电容量的变化来测量液位的高低。</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h4><span class="section-number">3.1.5. </span>电导率传感器<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h4>
+<ul class="simple">
+<li><p>电导率传感器结构图如下:</p></li>
+</ul>
+<div class="figure align-left" id="id20">
+<a class="reference internal image-reference" href="_images/3.1.11_电导率传感器.png"><img alt="NULL" src="_images/3.1.11_%E7%94%B5%E5%AF%BC%E7%8E%87%E4%BC%A0%E6%84%9F%E5%99%A8.png" style="width: 110.0px; height: 167.5px;" /></a>
+<p class="caption"><span class="caption-text">图 3.1.5.1 温度传感器</span><a class="headerlink" href="#id20" title="此图像的永久链接"></a></p>
+</div>
+<ul class="simple">
+<li><p>电导率传感器根据工作原理主要可分为电极式电导率传感器和电磁式电导率传感器。</p></li>
+<li><p>电磁式电导率传感器是根据电磁感应原理进行测量，通过感应电动势的变化反应电导率的变化；
+电极式电导率传感器是根据电解导电原理进行测量，通过被测液体电阻的变化反应电导率的变化。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">3.2. </span>水循环校准系统设计原理<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h3>
+<ul class="simple">
+<li><p>本系统主要由压力传感器、流量传感器、液位传感器三个校准子系统组成，这样划分是因为这个三个子系统的工作都依赖于同一硬件资源，
+彼此之间无法同时工作。</p></li>
+<li><p>基于该特性，规定测试传感器流程为：压力传感器、流量传感器、液位传感器依次有序进行。</p></li>
+<li><p>测试压力传感器时：压力电磁阀和液位电磁阀处于关闭状态，此时增压泵在变频器调节下开始加压至用户设定的目标值，进行对比校准。</p></li>
+<li><p>测试流量传感器时：打开压力电磁阀，让水流循环起来，关闭液位电磁阀，此时增压泵在变频器调节下开始加压至用户设定的目标值，进行对比校准。</p></li>
+<li><p>测试液位传感器时：关闭压力电磁阀，打开液位电磁阀，让水流过液位检测支路，此时增压泵在变频器调节下开始加压至用户设定的目标值，进行对比校准。</p></li>
+<li><p>水循坏系统结构图如下：</p></li>
+</ul>
+<div class="figure align-center" id="id21">
+<a class="reference internal image-reference" href="_images/1.png"><img alt="NULL" src="_images/1.png" style="width: 320.4px; height: 357.0px;" /></a>
+<p class="caption"><span class="caption-text">图 3.2.1 水循环系统结构图</span><a class="headerlink" href="#id21" title="此图像的永久链接"></a></p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>水循坏系统仅使用2个电磁阀。</p>
+</div>
+</div>
+<div class="section" id="id9">
+<h3><span class="section-number">3.3. </span>温度校准系统设计原理<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h3>
+<ul class="simple">
+<li><p>本系统仅包含一类校准传感器，即温度传感器。</p></li>
+<li><p>本系统在测试校准前，如果温度过高，可以打开风扇开关进行物理降温，此时需要手动打开箱门。</p></li>
+<li><p>本系统测试校准原理和水循环校准系统一致。</p></li>
+</ul>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>温度校准系统降温，必须要手动打开箱门。</p>
+</div>
+<div class="figure align-center" id="id22">
+<a class="reference internal image-reference" href="_images/1.png"><img alt="NULL" src="_images/1.png" style="width: 534.0px; height: 595.0px;" /></a>
+<p class="caption"><span class="caption-text">图 3.3.1 温度校准系统结构图</span><a class="headerlink" href="#id22" title="此图像的永久链接"></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>略。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">3.4. </span>电导率校准系统设计原理<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h3>
+<ul class="simple">
+<li><p>本系统仅包含一类校准传感器，即电导率传感器。</p></li>
+<li><p>本系统开始校准前，需要通过排空电磁阀将电导率检测箱中废液排至废液箱，然后在通过加水电磁阀把纯水加到电导率检测箱中。</p></li>
+<li><p>本系统测试校准原理和温度校准系统一致。</p></li>
+</ul>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>开始测试前，需要注意水箱中是否有充足纯水，并且确保废液箱中废液已人工倾倒干净。</p>
+</div>
+<div class="figure align-center" id="id23">
+<a class="reference internal image-reference" href="_images/1.png"><img alt="NULL" src="_images/1.png" style="width: 534.0px; height: 595.0px;" /></a>
+<p class="caption"><span class="caption-text">图 3.4.1 电导率校准系统结构图</span><a class="headerlink" href="#id23" title="此图像的永久链接"></a></p>
+</div>
+</div>
+</div>
+<span id="document-structural_characteristics"></span><div class="section" id="id1">
+<h2><span class="section-number">4. </span>结构特性<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>此部分，暂不做说明。</p></li>
+</ul>
+</div>
+<span id="document-operation_guide"></span><div class="section" id="id1">
+<h2><span class="section-number">5. </span>操作指南<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="section" id="id2">
+<h3><span class="section-number">5.1. </span>后盖接线组说明<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h3>
+</div>
+</div>
+<span id="document-note"></span><div class="section" id="id1">
+<h2><span class="section-number">6. </span>注意事项<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>本产品需要专业人员进行规范操作。</p></li>
+<li><p>本产品正常使用需要按照操作指导部分规范操作。</p></li>
+</ul>
+</div>
+<span id="document-fault"></span><div class="section" id="id1">
+<h2><span class="section-number">7. </span>故障分析与排除<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<ul class="simple">
+<li><p>略。</p></li>
+</ul>
+</div>
+<span id="document-rapair"></span><div class="section" id="id1">
+<h2><span class="section-number">8. </span>维修与保养<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+</div>
+</div>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">模块索引</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">搜索页面</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, LHC@云南兆富科技有限公司.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

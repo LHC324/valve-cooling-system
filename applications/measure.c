@@ -192,7 +192,7 @@ static void measure_check_error(pmeasure_handle pm)
 static void measure_coil_handle(pmeasure_handle pm)
 {
     pModbusHandle pd = (pModbusHandle)pm->phandle;
-    if (!pd || !pm)
+    if (pd == NULL || pm == NULL)
         return;
     pd->Mod_Operatex(pd, Coil, Write, OUT_DIGITAL_START_ADDR,
                      pm->coil, sizeof(pm->coil));
@@ -373,7 +373,7 @@ static void adjust_inverter_out_handle(pmeasure_handle pm)
 {
     // float ratio = 0;
     pModbusHandle pd = (pModbusHandle)pm->phandle;
-    if ((!pd) || (!pm))
+    if (pd == NULL || pm == NULL)
         return;
     padjust_handle pa = &pm->adjust[Get_Sensor(sensor_pressure)];
     struct measure *pthis = &pm->me[0];
@@ -401,6 +401,49 @@ static void adjust_inverter_out_handle(pmeasure_handle pm)
 }
 
 /**
+ * @brief   通过占空比获得目标装载值
+ * @details
+ * @param   duty
+ * @retval  目标装载值
+ */
+static uint32_t get_pwm_value_base_on_duty(TIM_HandleTypeDef *ptimer, float duty)
+{
+    if ((ptimer == NULL) || (duty > 1.0F))
+        return 0;
+    /*百分百时必须是满载值*/
+    // uint32_t arr_val = duty == 1.0F
+    //                        ? __HAL_TIM_GET_AUTORELOAD(ptimer) + 1U
+    //                        : __HAL_TIM_GET_AUTORELOAD(ptimer);
+    return (uint32_t)((float)(__HAL_TIM_GET_AUTORELOAD(ptimer) + 1U) * duty);
+}
+
+/**
+ * @brief   设置AO输出4-20ma
+ * @details
+ * @param   none
+ * @retval  none
+ */
+static void set_pwm(int argc, char **argv)
+{
+    if (argc > 2)
+    {
+        SMODBUS_DEBUG_R("@error:too many parameters,please input'set_pwm<(0 - 100)>.'\n");
+        return;
+    }
+    uint16_t duty = (uint16_t)atoi(argv[1]);
+    if (duty > 100)
+    {
+        SMODBUS_DEBUG_R("@error:wrong pwm duty number,please input'set_pwm<(0 - 100)>.'\n");
+        return;
+    }
+    SMODBUS_DEBUG_R("pwm duty= %d.\n", duty);
+    duty = (uint16_t)get_pwm_value_base_on_duty(&htim4, (float)duty / 100.0F);
+    __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, duty);
+}
+MSH_CMD_EXPORT(set_pwm, set_pwm sample
+               : set_pwm<(0 - 100)>);
+
+/**
  * @brief	调节加热棒输出目标值
  * @details
  * @param	pm 测量系统句柄
@@ -419,6 +462,8 @@ static void adjust_temperature_out_handle(pmeasure_handle pm)
     // float ratio = Get_Ratio(pa->cur_val);
     float ratio = get_ratio(pa);
     pa->comp_val += get_target_microcompensate(pa->cur_val, pa->tar_val, ratio);
+    // __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, 1000);
+    // __HAL_TIM_GET_AUTORELOAD(__HANDLE__)
     /*温度调节策略*/
 }
 

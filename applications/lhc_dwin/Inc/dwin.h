@@ -39,6 +39,7 @@ extern "C"
 		err_event,			 /*事件错误*/
 		err_max_upper_limit, /*超出数据上限*/
 		err_min_lower_limit, /*低于数据下限*/
+		err_data_len,		 /*数据长度错误*/
 		err_other,			 /*其他错误*/
 		dwin_ok,
 	} dwin_result;
