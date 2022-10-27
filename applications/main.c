@@ -343,7 +343,7 @@ typedef struct
 } System_InfoTypeDef;
 
 #define CURRENT_HARDWARE_VERSION 100
-#define CURRENT_SOFT_VERSION 103
+#define CURRENT_SOFT_VERSION 106
 #define SYSTEM_VERSION() ((uint32_t)((CURRENT_SOFT_VERSION << 16U) | CURRENT_HARDWARE_VERSION))
 /**
  * @brief   获取系统信息
@@ -354,7 +354,7 @@ typedef struct
 static void get_system_infomation(void)
 {
     pModbusHandle pd = Modbus_Object;
-    pmeasure_handle pm = &measure_object;
+    pmeasure_t pm = &measure_object;
     System_InfoTypeDef system_info = {
         .system_version = SYSTEM_VERSION(),
         .update_flag = (*(__IO uint32_t *)OTA_UPDATE_SAVE_ADDRESS),
@@ -400,15 +400,24 @@ void report_thread_entry(void *parameter)
     rt_thread_pools_t *p_rt_thread_pool = (rt_thread_pools_t *)parameter;
     pModbusHandle pd = Modbus_Object;
     pDwinHandle pw = Dwin_Object;
-    pmeasure_handle pm = &measure_object;
+    pmeasure_t pm = &measure_object;
     uint8_t in_coil[EXTERN_DIGITALIN_MAX], out_coil[EXTERN_DIGITALOUT_MAX];
-    // uint16_t temp_buf[22U];
     uint8_t buf[22U * 2U + VAL_FLOAT_NUM * 4U];
     UNUSED(p_rt_thread_pool);
+
     /*首次切换到主界面*/
     if (pw)
     {
+        rt_thread_mdelay(3000); //解决首次上电迪文屏幕不接收参数问题
         pw->Dw_Page(pw, MAIN_PAGE);
+        rt_thread_mdelay(10);
+        /*首次上报上下限实验标准*/
+        memcpy(buf, pm->limits, sizeof(pm->limits));
+        memcpy(&buf[sizeof(float) * 24U], pm->expe_std, sizeof(pm->expe_std));
+        /*4字节数据交换*/
+        for (uint8_t i = 0; i < VAL_FLOAT_NUM; ++i)
+            endian_swap(&buf[i * sizeof(float)], 0, sizeof(float));
+        pw->Dw_Write(pw, PRE_SENSOR_STD_UPPER_ADDR, (uint8_t *)buf, sizeof(float) * 30U);
         rt_thread_mdelay(10);
     }
     for (;;)
@@ -429,8 +438,10 @@ void report_thread_entry(void *parameter)
                 if (i < sizeof(out_coil))
                     buf[3] |= out_coil[i] << i;
             }
-            /*错误代码、检验结果*/
+            /*错误代码*/
             buf[5] = (uint8_t)(pm->error_code & 0x00FF);
+            /*检验结果*/
+            buf[6] = (uint8_t)((pm->flag & 0xFF00) >> 8U);
             /*系统项目*/
             for (uint8_t this = 0; this < sizeof(pm->me) / sizeof(pm->me[0]); ++this)
             {
@@ -443,7 +454,8 @@ void report_thread_entry(void *parameter)
             }
 
             /*动画组*/
-            memcpy(&buf[(ANIMATION_START_ADDR - DIGITAL_INPUT_ADDR) * 2U], &pm->cartoon, sizeof(pm->cartoon));
+            memcpy(&buf[(ANIMATION_START_ADDR - DIGITAL_INPUT_ADDR) * 2U], &pm->presour->cartoon,
+                   sizeof(pm->presour->cartoon));
             /*4字节数据读取*/
             /*模拟输入*/
             pd->Mod_Operatex(pd, InputRegister, Read, 0x00, &buf[(22 * 2 + 9 * 4)],
@@ -453,15 +465,19 @@ void report_thread_entry(void *parameter)
                              sizeof(float) * EXTERN_ANALOGOUT_MAX);
             for (uint8_t i = 0; i < MEASURE_SENSOR_NUM; ++i)
             {
-                /*std sensor data*/
-                memcpy(&buf[(22 * 2 + 25 * 4) + i * sizeof(float) * 2U], &pm->data[i][0], sizeof(float));
-                /*test sensor data*/
-                memcpy(&buf[(22 * 2 + 25 * 4) + i * sizeof(float) * 2U + 4U], &pm->data[i][1], sizeof(float));
+                // /*std sensor data*/
+                // memcpy(&buf[(22 * 2 + 25 * 4) + i * sizeof(float) * 2U], &pm->data[i][0], sizeof(float));
+                // /*test sensor data*/
+                // memcpy(&buf[(22 * 2 + 25 * 4) + i * sizeof(float) * 2U + 4U], &pm->data[i][1], sizeof(float));
+
+                /*std sensor data、test sensor data*/
+                memcpy(&buf[(22 * 2 + 25 * 4) + i * sizeof(pm->presour->data[0])],
+                       &pm->presour->data[i][0], sizeof(pm->presour->data[0]));
 
                 /*sensor upper limit*/
-                memcpy(&buf[(22 * 2 + 35 * 4) + i * sizeof(float) * 2U], &pm->data[i][3], sizeof(float));
+                // memcpy(&buf[(22 * 2 + 35 * 4) + i * sizeof(float) * 2U], &pm->data[i][3], sizeof(float));
                 /*sensor lower limit*/
-                memcpy(&buf[(22 * 2 + 35 * 4) + i * sizeof(float) * 2U + 4U], &pm->data[i][2], sizeof(float));
+                // memcpy(&buf[(22 * 2 + 35 * 4) + i * sizeof(float) * 2U + 4U], &pm->data[i][2], sizeof(float));
                 /*根据屏幕回传传感器信息获取历史数据*/
                 // /*std sensor history data*/
                 // memcpy(&buf[(22 * 2 + 45 * 4) + i * sizeof(float) + 4U], &pm->his_data[i][0], sizeof(float));

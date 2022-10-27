@@ -166,7 +166,7 @@ void rt_hw_us_delay(rt_uint32_t us)
  */
 RT_WEAK void rt_hw_board_init(void)
 {
-	SCB->VTOR = FLASH_BASE | 0x42000;  //中断向量表地址偏移量 偏移20K
+	SCB->VTOR = FLASH_BASE | 0x05000;  //中断向量表地址偏移量 偏移20K
 #ifdef BSP_SCB_ENABLE_I_CACHE
     /* Enable I-Cache---------------------------------------------------------*/
     SCB_EnableICache();

@@ -23,7 +23,7 @@ extern "C"
 /*small_modbusCRC校验*/
 #define SMODBUS_USING_CRC 1
 /*small_modbus调试选项*/
-#define SMODBUS_USING_DEBUG 2
+#define SMODBUS_USING_DEBUG 0
 /*small_modbus调试输出终端选择:[0:不使用调试终端；1：leeter shell; 2:finish shell]*/
 #define SMODBUS_USING_SHELL 2
 /*small_modbus数据缓冲区尺寸*/

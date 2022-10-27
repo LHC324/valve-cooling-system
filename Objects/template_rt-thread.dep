@@ -1,1 +1,20 @@
 Dependencies for Project 'template', Target 'rt-thread': (DO NOT MODIFY !)
+F (.\applications\lhc_dwin\Src\dwin.c)(0x63566679)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\applications\lhc_dwin\Inc -I .\applications\lhc_modbus\Inc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD-o .\objects\dwin.o --omf_browse .\objects\dwin.crf --depend .\objects\dwin.d)
+I (.\applications\lhc_dwin\Inc\dwin.h)(0x63566597)
+I (.\applications\lhc_dwin\Inc\dwin_cfg.h)(0x63368397)
+F (.\applications\lhc_dwin\Src\dwin_port.c)(0x63578B18)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\applications\lhc_dwin\Inc -I .\applications\lhc_modbus\Inc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD-o .\objects\dwin_port.o --omf_browse .\objects\dwin_port.crf --depend .\objects\dwin_port.d)
+I (.\applications\lhc_dwin\Inc\dwin_port.h)(0x6353A9A5)
+I (.\applications\lhc_dwin\Inc\dwin.h)(0x63566597)
+I (.\applications\lhc_dwin\Inc\dwin_cfg.h)(0x63368397)
+F (.\applications\lhc_dwin\Src\tool.c)(0x63295F68)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\applications\lhc_dwin\Inc -I .\applications\lhc_modbus\Inc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD-o .\objects\tool.o --omf_browse .\objects\tool.crf --depend .\objects\tool.d)
+I (.\applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+F (.\applications\lhc_modbus\Src\small_modbus.c)(0x6340D015)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\applications\lhc_dwin\Inc -I .\applications\lhc_modbus\Inc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD-o .\objects\small_modbus.o --omf_browse .\objects\small_modbus.crf --depend .\objects\small_modbus.d)
+I (.\applications\lhc_modbus\Inc\small_modbus.h)(0x63401B96)
+I (.\applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x63562792)
+I (.\applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+F (.\applications\lhc_modbus\Src\small_modbus_port.c)(0x6340F13B)(--c99 --gnu -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I .\applications\lhc_dwin\Inc -I .\applications\lhc_modbus\Inc-I.\RTE\_rt-thread-IC:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_HD-o .\objects\small_modbus_port.o --omf_browse .\objects\small_modbus_port.crf --depend .\objects\small_modbus_port.d)
+I (.\applications\lhc_modbus\Inc\small_modbus_port.h)(0x632599A3)
+I (.\applications\lhc_modbus\Inc\small_modbus.h)(0x63401B96)
+I (.\applications\lhc_modbus\Inc\small_modbus_cfg.h)(0x63562792)
+I (.\applications\lhc_dwin\Inc\tool.h)(0x6340D332)
+F (.\applications\arm_cortexM3l_math.lib)(0x5F90F93B)()

@@ -56,7 +56,8 @@ extern "C"
 		void (*Dw_Read)(pDwinHandle, uint16_t, uint8_t);
 		void (*Dw_Page)(pDwinHandle, uint16_t);
 		void (*Dw_Poll)(pDwinHandle);
-		void (*Dw_Error)(pDwinHandle, dwin_result, uint8_t);
+		short int (*Dw_GetSignedData)(pDwinHandle, unsigned short int);
+		void (*Dw_Error)(pDwinHandle, dwin_result, uint8_t, void *);
 		void (*Dw_Delay)(uint32_t);
 		struct
 		{

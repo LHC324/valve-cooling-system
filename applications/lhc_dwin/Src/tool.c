@@ -118,6 +118,7 @@ float kalmanFilter(KFP *kfp, float input)
         kfp->Output = 0;
     }
     return kfp->Output;
+#undef EPS
 }
 #else
 /**

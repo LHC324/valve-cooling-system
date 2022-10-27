@@ -1,10 +1,9 @@
 .\objects\small_modbus.o: applications\lhc_modbus\Src\small_modbus.c
 .\objects\small_modbus.o: applications\lhc_modbus\Inc\small_modbus.h
 .\objects\small_modbus.o: applications\lhc_modbus\Inc\small_modbus_cfg.h
-.\objects\small_modbus.o: rt-thread\include\rtdbg.h
-.\objects\small_modbus.o: .\rtconfig.h
 .\objects\small_modbus.o: applications\lhc_dwin\Inc\tool.h
 .\objects\small_modbus.o: rt-thread\include\rtthread.h
+.\objects\small_modbus.o: .\rtconfig.h
 .\objects\small_modbus.o: rt-thread\include\rtdebug.h
 .\objects\small_modbus.o: rt-thread\include\rtdef.h
 .\objects\small_modbus.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

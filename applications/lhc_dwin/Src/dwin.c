@@ -10,6 +10,7 @@
 static void Dwin_Write(pDwinHandle pd, uint16_t start_addr, uint8_t *dat, uint16_t len);
 static void Dwin_Read(pDwinHandle pd, uint16_t start_addr, uint8_t words);
 static void Dwin_PageChange(pDwinHandle pd, uint16_t page);
+static short int Dwin_GetSignedData(pDwinHandle pd, uint16_t udata);
 static void Dwin_Poll(pDwinHandle pd);
 
 /**
@@ -65,6 +66,7 @@ void Create_DwinObject(pDwinHandle *pd, pDwinHandle ps)
 	(*pd)->Dw_Write = Dwin_Write;
 	(*pd)->Dw_Read = Dwin_Read;
 	(*pd)->Dw_Page = Dwin_PageChange;
+	(*pd)->Dw_GetSignedData = Dwin_GetSignedData;
 	(*pd)->Dw_Poll = Dwin_Poll;
 
 	if (!ps->Uart.tx.pbuf)
@@ -176,6 +178,26 @@ static void Dwin_PageChange(pDwinHandle pd, uint16_t page)
 	dwin_tx_count(pd) += sizeof(buf);
 
 	pd->Dw_Transmit(pd);
+}
+
+/**
+ * @brief  迪文屏幕识别16bit数据的正负
+ * @param  pd 迪文屏幕对象句柄
+ * @param  page 目标页面
+ * @retval None
+ */
+static short int Dwin_GetSignedData(pDwinHandle pd, uint16_t udata)
+{
+	(void)pd;
+
+	short int sdata = 0;
+	/*识别负数*/
+	if (udata & 0x1000)
+		sdata = -1 * (short int)(~udata + 1U);
+	else
+		sdata = (short int)udata;
+
+	return sdata;
 }
 
 /**

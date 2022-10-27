@@ -20,6 +20,8 @@
         "dwin.h": "c",
         "dwin_cfg.h": "c",
         "functional": "c",
-        "flash.h": "c"
+        "flash.h": "c",
+        "system_error": "c",
+        "stdbool.h": "c"
     }
 }

@@ -1,0 +1,44 @@
+T4DA4 23447:302 SEGGER J-Link V6.44a Log File (0000ms, 2017ms total)
+T4DA4 23447:302 DLL Compiled: Mar  8 2019 17:31:48 (0000ms, 2017ms total)
+T4DA4 23447:302 Logging started @ 2022-10-22 17:55 (0000ms, 2017ms total)
+T4DA4 23447:302 JLINK_SetWarnOutHandler(...) (0000ms, 2017ms total)
+T4DA4 23447:302 JLINK_OpenEx(...)
+Firmware: J-Link V11 compiled Mar 18 2020 17:39:21
+Hardware: V11.00
+S/N: 941000024
+Feature(s): GDB, JFlash, FlashDL, RDI, FlashBP
+TELNET listener socket opened on port 19021WEBSRV 
+Starting webserver (0013ms, 2030ms total)
+T4DA4 23447:302 WEBSRV Webserver running on local port 19080 (0013ms, 2030ms total)
+T4DA4 23447:302   returns O.K. (0013ms, 2030ms total)
+T4DA4 23447:315 JLINK_GetEmuCaps()  returns 0xB9FF7BBF (0000ms, 2030ms total)
+T4DA4 23447:315 JLINK_TIF_GetAvailable(...) (0001ms, 2031ms total)
+T4DA4 23447:316 JLINK_SetErrorOutHandler(...) (0000ms, 2031ms total)
+T4DA4 23447:316 JLINK_ExecCommand("ProjectFile = "G:\STM32_Workers\valve cooling system\JLinkSettings.ini"", ...).   returns 0x00 (0001ms, 2032ms total)
+T4DA4 23447:317 JLINK_ExecCommand("Device = STM32F103VE", ...). Device "STM32F103VE" selected.  returns 0x00 (0000ms, 2032ms total)
+T4DA4 23447:317 JLINK_ExecCommand("DisableConnectionTimeout", ...).   returns 0x01 (0000ms, 2032ms total)
+T4DA4 23447:317 JLINK_GetHardwareVersion()  returns 0x1ADB0 (0001ms, 2033ms total)
+T4DA4 23447:318 JLINK_GetDLLVersion()  returns 64401 (0000ms, 2033ms total)
+T4DA4 23447:318 JLINK_GetFirmwareString(...) (0000ms, 2033ms total)
+T4DA4 23447:318 JLINK_GetDLLVersion()  returns 64401 (0000ms, 2033ms total)
+T4DA4 23447:318 JLINK_GetCompileDateTime() (0000ms, 2033ms total)
+T4DA4 23447:318 JLINK_GetFirmwareString(...) (0000ms, 2033ms total)
+T4DA4 23447:318 JLINK_GetHardwareVersion()  returns 0x1ADB0 (0000ms, 2033ms total)
+T4DA4 23447:318 JLINK_TIF_Select(JLINKARM_TIF_JTAG)  returns 0x00 (0001ms, 2034ms total)
+T4DA4 23447:319 JLINK_SetSpeed(5000) (0001ms, 2035ms total)
+T4DA4 23447:320 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)  returns JLINKARM_RESET_TYPE_NORMAL (0000ms, 2035ms total)
+T4DA4 23447:320 JLINK_Reset() >0x2F8 JTAG>TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>STM32 (connect): Can not attach to CPU. Trying connect under reset. >0x2F8 JTAG>TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>
+  ***** Error: STM32: Connecting to CPU via connect under reset failed. >0x2F8 JTAG>TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>STM32 (connect): Can not attach to CPU. Trying connect under reset. >0x2F8 JTAG>
+TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>
+  ***** Error: STM32: Connecting to CPU via connect under reset failed.JLINK_GetIdData(...) >0x2F8 JTAG>TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>STM32 (connect): Can not attach to CPU. Trying connect under reset. >0x2F8 JTAG>TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>
+  ***** Error: STM32: Connecting to CPU via connect under reset failed. >0x2F8 JTAG>
+TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>STM32 (connect): Can not attach to CPU. Trying connect under reset. >0x2F8 JTAG>TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>
+  ***** Error: STM32: Connecting to CPU via connect under reset failed. (0276ms, 2587ms total)
+T4DA4 23447:872 JLINK_GetIdData(...) >0x2F8 JTAG>TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>STM32 (connect): Can not attach to CPU. Trying connect under reset. >0x2F8 JTAG>TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>
+  ***** Error: STM32: Connecting to CPU via connect under reset failed. >0x2F8 JTAG>TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>STM32 (connect): Can not attach to CPU. Trying connect under reset. >0x2F8 JTAG>
+TotalIRLen = ?, IRPrint = 0x..000000000000000000000000 >0xC8 JTAG>
+  ***** Error: STM32: Connecting to CPU via connect under reset failed. (0274ms, 2861ms total)
+T4DA4 23448:149 JLINK_GetFirmwareString(...) (0000ms, 2861ms total)
+T4DA4 23449:249 JLINK_Close() (0013ms, 2874ms total)
+T4DA4 23449:249  (0013ms, 2874ms total)
+T4DA4 23449:249 Closed (0013ms, 2874ms total)

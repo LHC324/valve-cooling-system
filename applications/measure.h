@@ -17,11 +17,11 @@ extern "C"
 /*独立检测系统数量*/
 #define SYSYTEM_NUM 3U
 #define MEASURE_MAX_SENSOR_NUM 7U                //最大传感器数量
-#define MEASURE_SENSOR_NUM 5U                    //传感器数量
+#define MEASURE_SENSOR_NUM 6U                    //传感器数量
 #define MEASURE_MAX_ROW 5U                       //测量数据最大行
 #define MEASURE_MAX_POINT (MEASURE_MAX_ROW + 1U) // 测量的最大点数:段数+1U
 #define MEASURE_MAX_COLUMN 2U                    //测量数据最大列
-#define SOFT_TIMER_NUM 6U                        //软件定时器数量
+#define SOFT_TIMER_NUM 7U                        //软件定时器数量
 #define ADJUST_NUM 2U                            //调整对象数量
 #define COIL_NUM 7U                              //线圈数量
 #define CARTOON_NUM 6U                           //动画数量
@@ -30,6 +30,9 @@ extern "C"
 /*https://blog.csdn.net/weixin_36443823/article/details/112775994*/
 #define Get_Target(__current, __upper, __lower) \
     (((__current)-CURRENT_LOWER) / CURRENT_UPPER * ((__upper) - (__lower)) + (__lower))
+
+#define Get_Error(__std, __test) \
+    (!(__std) ? 0 : (fabsf((__test) - (__std)) / (__std)) * 100.0F)
 
     // /*工作模式*/
     // // enum measure_mode
@@ -86,6 +89,7 @@ extern "C"
         temp_measure_flag = 11, /*温度传感器校准标志*/
         con_measure_flag = 12,  /*电导率传感器校准标志*/
         measure_save = 15,      /*参数存储标志*/
+        measure_flag_max,
     } measure_flag_group;
     /*开关组*/
     typedef enum
@@ -95,7 +99,8 @@ extern "C"
         sw_add_level,    /*电导率：加液开关*/
         sw_empty,        /*电导率:排空开关*/
         sw_fan,          /*温度:风扇开关*/
-        sw_max = 0xFF,   /*最大开关量*/
+        sw_fwd,          /*变频器:启动开关*/
+        sw_max = 7U,     /*最大开关量*/
     } measure_switch_group;
     /*动画组*/
     typedef enum
@@ -118,9 +123,12 @@ extern "C"
         tim_id_pfl = 0, /*压力 流量 液位系统静默定时器*/
         tim_id_tempe,   /*温度系统静默定时器*/
         tim_id_conv,    /*电导率系统静默定时器*/
-        tim_id_fan,     /*风扇定时器*/
-        tim_id_dra,     /*废液排空定时器*/
-        tim_id_add_le,  /*加水定时器*/
+        // tim_id_fan,         /*风扇定时器*/
+        tim_id_close_level, /*加水开关关闭定时器*/
+        tim_id_dra,         /*废液排空定时器*/
+        tim_id_add_le,      /*加水定时器*/
+        tim_id_invalid,     /*进入开发者模式超时定时器*/
+        tim_id_max,
     } measure_timer_id;
 
     /*前台显示参数*/
@@ -142,17 +150,10 @@ extern "C"
         float silence_time; /*静默时间:auto和fp均生效*/
         float permit_error; /*允许的误差*/
         float offset;       /*测试点偏移量*/
-
-        // struct
-        // {
-        //     float *p; /*传感器数据上下限*/
-        //     unsigned int size;
-        // } limit;
-        // unsigned short limit_size; /*数据尺寸*/
     } measure_back __attribute__((aligned(4)));
 
-    typedef struct measure_adjust adjust_handle;
-    typedef struct measure_adjust *padjust_handle;
+    typedef struct measure_adjust adjust_t;
+    typedef struct measure_adjust *padjust_t;
     struct measure_adjust
     {
         float comp_val;     /*当前补偿值*/
@@ -168,56 +169,42 @@ extern "C"
         unsigned int count; /*时间计数器*/
     } measure_timer;
 
-    typedef struct measure_systemx measure_handle;
-    typedef struct measure_systemx *pmeasure_handle;
+    /*创建一个资源池*/
+    typedef struct
+    {
+        unsigned char coil[COIL_NUM];        /*阀门*/
+        unsigned short cartoon[CARTOON_NUM]; /*动画标志组*/
+        measure_timer timer[SOFT_TIMER_NUM];
+        adjust_t adjust[MEASURE_MAX_SENSOR_NUM];                                         /*调整对象*/
+        float his_data[(MEASURE_MAX_ROW + 1U) * MEASURE_SENSOR_NUM][MEASURE_MAX_COLUMN]; /*传感器历史记录*/
+        float data[MEASURE_MAX_SENSOR_NUM][3U];                                          /*传感器数据：std、tset、error*/
+    } measure_resources_pools_t;
+
+    typedef struct measure_system measure_t;
+    typedef struct measure_system *pmeasure_t;
     struct measure
     {
         measure_front front;
         measure_back back;
-        /*当前节点*/
-        unsigned char cur_node;
-        void (*measure_event)(pmeasure_handle, struct measure *);
+        unsigned char cur_node; /*当前节点*/
+        void (*measure_event)(pmeasure_t, struct measure *);
     };
-    struct measure_systemx
+    struct measure_system
     {
         unsigned short flag;       /*系统标志：低8位系统错误，高7位校验结果.第8bit存储标志*/
         unsigned short error_code; /*系统错误代码*/
         measure_system current_system;
-        /*传感器历史记录*/
-        float his_data[(MEASURE_MAX_ROW + 1U) * MEASURE_SENSOR_NUM][MEASURE_MAX_COLUMN];
-        float data[7U][4U];
-        /*阀门*/
-        unsigned char coil[COIL_NUM];
-        /*动画标志组*/
-        unsigned short cartoon[CARTOON_NUM];
+        float limits[MEASURE_MAX_SENSOR_NUM * 4U]; /*传感器下限和上限*/
+        float expe_std[MEASURE_MAX_SENSOR_NUM];    /*待测传感器检测标准*/
+        measure_resources_pools_t *presour;        /*资源池*/
         struct measure me[SYSYTEM_NUM];
-        measure_timer timer[SOFT_TIMER_NUM];
-        adjust_handle adjust[MEASURE_MAX_SENSOR_NUM]; /*调整对象*/
-        void *phandle;                                /*外部结构*/
+        void *phandle; /*外部结构*/
         unsigned int crc16;
     } __attribute__((aligned(4)));
 
-    // typedef enum
-    // {
-    //     measure_other = 0,
-    //     measure_save,
-    // } measure_storage_flag_group;
-    // /*存储参数*/
-    // typedef struct
-    // {
-    //     measure_system current_system;
-    //     unsigned int flag;  /*存储参数标志组*/
-    //     pmeasure_handle pm; /*校准系统指针*/
-    //     measure_front front[SYSYTEM_NUM];
-    //     measure_back back[SYSYTEM_NUM];
-    //     adjust_handle adjust[MEASURE_SENSOR_NUM]; /*调整对象*/
-    //     float measure_limit[MEASURE_MAX_ROW][MEASURE_MAX_COLUMN];
-    //     unsigned int crc16;
-    // } measure_storage __attribute__((aligned(4)));
+#define sssss sizeof(struct measure_system)
 
-#define sssss sizeof(struct measure_systemx)
-
-    extern measure_handle measure_object;
+    extern measure_t measure_object;
     //    extern measure_storage measure_storage_object;
     extern void measure_timer_poll(void);
     extern void measure_poll(void);

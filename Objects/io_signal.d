@@ -42,13 +42,13 @@
 .\objects\io_signal.o: applications\lhc_modbus\Inc\small_modbus_port.h
 .\objects\io_signal.o: applications\lhc_modbus\Inc\small_modbus.h
 .\objects\io_signal.o: applications\lhc_modbus\Inc\small_modbus_cfg.h
-.\objects\io_signal.o: rt-thread\include\rtdbg.h
-.\objects\io_signal.o: .\rtconfig.h
 .\objects\io_signal.o: applications\lhc_dwin\Inc\tool.h
 .\objects\io_signal.o: rt-thread\include\rtthread.h
+.\objects\io_signal.o: .\rtconfig.h
 .\objects\io_signal.o: rt-thread\include\rtdebug.h
 .\objects\io_signal.o: rt-thread\include\rtdef.h
 .\objects\io_signal.o: rt-thread\include\rtservice.h
 .\objects\io_signal.o: rt-thread\include\rtm.h
 .\objects\io_signal.o: rt-thread\include\rtthread.h
 .\objects\io_signal.o: rt-thread\components\finsh\finsh.h
+.\objects\io_signal.o: rt-thread\include\rtdbg.h

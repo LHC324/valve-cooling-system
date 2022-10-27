@@ -415,6 +415,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>arm_lib</GroupName>
+          <Files>
+            <File>
+              <FileName>arm_cortexM3l_math.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>.\applications\arm_cortexM3l_math.lib</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Source Group 1</GroupName>
         </Group>
       </Groups>

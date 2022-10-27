@@ -16,9 +16,12 @@
 
 #ifdef DBG_TAG
 #undef DBG_TAG
-#define DBG_TAG "io_signal"
 #endif
+#define DBG_TAG "io_signal"
 #define DBG_LVL DBG_LOG
+#include <rtdbg.h>
+#define IO_DEBUG_R dbg_raw
+#define IO_DEBUG_D LOG_D
 
 #define Get_DI_GPIO_Port(__Port, __P1, __P2) \
     ((__Port) ? (__P1) : (__P2))
@@ -69,17 +72,17 @@ static unsigned int Get_AdcValue(const unsigned int Channel)
     unsigned int sum = 0;
     unsigned int *pAdc_Str = &Adc_buffer[0];
 
-  /*Prevent array out of bounds*/
-  if (Channel > ADC_DMA_CHANNEL)
-  {
-    return 0;
-  }
-  /*Add channel offset*/
-     pAdc_Str += Channel;
-
-    for( ; pAdc_Str < Adc_buffer + ADC_DMA_SIZE ; pAdc_Str += ADC_DMA_CHANNEL)
+    /*Prevent array out of bounds*/
+    if (Channel > ADC_DMA_CHANNEL)
     {
-      sum += *pAdc_Str;
+        return 0;
+    }
+    /*Add channel offset*/
+    pAdc_Str += Channel;
+
+    for (; pAdc_Str < Adc_buffer + ADC_DMA_SIZE; pAdc_Str += ADC_DMA_CHANNEL)
+    {
+        sum += *pAdc_Str;
     }
 
     return (sum >> ADC_FILTER_SHIFT);
@@ -108,10 +111,10 @@ static void see_di(void)
 #endif
             return;
         }
-        SMODBUS_DEBUG_R("\t\t\t[----digital_output_info----]\nsn\tpinx\n");
-        SMODBUS_DEBUG_R("--\t----\n");
+        IO_DEBUG_R("\t\t\t[----digital_output_info----]\nsn\tpinx\n");
+        IO_DEBUG_R("--\t----\n");
         for (uint16_t i = 0; i < EXTERN_DIGITALIN_MAX; i++)
-            SMODBUS_DEBUG_R("%d\t%d\n", i, rbits[i]);
+            IO_DEBUG_R("%d\t%d\n", i, rbits[i]);
     }
 }
 MSH_CMD_EXPORT(see_di, display digital output value.);
@@ -136,10 +139,10 @@ static void see_do(void)
             SMODBUS_DEBUG_D("@error:coil read failed.");
 #endif
         }
-        SMODBUS_DEBUG_R("\t\t\t[----digital_output_info----]\nsn\tpinx\n");
-        SMODBUS_DEBUG_R("---\t----\n");
+        IO_DEBUG_R("\t\t\t[----digital_output_info----]\nsn\tpinx\n");
+        IO_DEBUG_R("---\t----\n");
         for (uint16_t i = 0; i < EXTERN_DIGITALOUT_MAX; ++i)
-            SMODBUS_DEBUG_R("%d\t%d\n", i, rbits[i]);
+            IO_DEBUG_R("%d\t%d\n", i, rbits[i]);
     }
 }
 MSH_CMD_EXPORT(see_do, display digital output value.);
@@ -156,12 +159,12 @@ static void set_do(int argc, char **argv)
 
     if (argc < 2)
     {
-        SMODBUS_DEBUG_R("@error: Please input'set_do <(0~9) | (0/1)>.'\n");
+        IO_DEBUG_R("@error: Please input'set_do <(0~9) | (0/1)>.'\n");
         return;
     }
     if (argc > 3)
     {
-        SMODBUS_DEBUG_R("@error:parameter is too long,please input'set_do <(0~9) | (0/1)>.'\n");
+        IO_DEBUG_R("@error:parameter is too long,please input'set_do <(0~9) | (0/1)>.'\n");
         return;
     }
 
@@ -169,12 +172,12 @@ static void set_do(int argc, char **argv)
 
     if (pin > 9)
     {
-        SMODBUS_DEBUG_D("@error:parameter[1]%d error,please input'0~9'.\n", pin);
+        IO_DEBUG_D("@error:parameter[1]%d error,please input'0~9'.\n", pin);
         return;
     }
     if (state > 1U)
     {
-        SMODBUS_DEBUG_D("@error:parameter[2]:%d error,please input'0/1'.\n", state);
+        IO_DEBUG_D("@error:parameter[2]:%d error,please input'0/1'.\n", state);
         return;
     }
 
@@ -202,15 +205,15 @@ MSH_CMD_EXPORT(set_do, set_do sample
  */
 static void see_adc(void)
 {
-    SMODBUS_DEBUG_R("\t\t\t\t[----adc_info----]\nsn\tchannel\tvalue\tcurrent(mA)\n");
-    SMODBUS_DEBUG_R("---\t--------\t-----\t-----------\n");
+    IO_DEBUG_R("\t\t\t\t[----adc_info----]\nsn\tchannel\tvalue\tcurrent(mA)\n");
+    IO_DEBUG_R("---\t--------\t-----\t-----------\n");
     for (uint16_t i = 0; i < EXTERN_ANALOGIN_MAX; ++i)
     {
         uint16_t actual_ch = Get_ADC_Channel(i);
         /*获取DAC值*/
         uint32_t adc_value = Get_AdcValue(actual_ch);
         actual_ch = actual_ch > 3 ? actual_ch + 2U : actual_ch;
-        SMODBUS_DEBUG_R("%d\t%d\t%d\t%.3f\n", i, actual_ch, adc_value, Get_Current_Value(adc_value));
+        IO_DEBUG_R("%d\t%d\t%d\t%.3f\n", i, actual_ch, adc_value, Get_Current_Value(adc_value));
     }
 }
 MSH_CMD_EXPORT(see_adc, display adc channel value.);
@@ -225,22 +228,22 @@ static void set_dac(int argc, char **argv)
 {
     if (argc > 3)
     {
-        SMODBUS_DEBUG_R("@error:too many parameters,please input'set_dac <(0~1)|(0~4095)>.'\n");
+        IO_DEBUG_R("@error:too many parameters,please input'set_dac <(0~1)|(0~4095)>.'\n");
         return;
     }
     uint32_t channel = (uint16_t)atoi(argv[1]);
     uint16_t data = (uint16_t)atoi(argv[2]);
     if (channel > 1)
     {
-        SMODBUS_DEBUG_R("@error:wrong channel number,please input'set_dac (0~1)|(0~4095).'\n");
+        IO_DEBUG_R("@error:wrong channel number,please input'set_dac (0~1)|(0~4095).'\n");
         return;
     }
     if (data > 4095U)
     {
-        SMODBUS_DEBUG_R("@error:invalid input,please input'set_dac (0~1)|(0~4095).'\n");
+        IO_DEBUG_R("@error:invalid input,please input'set_dac (0~1)|(0~4095).'\n");
         return;
     }
-    SMODBUS_DEBUG_R("channel[%d]= %d.\n", channel, data);
+    IO_DEBUG_R("channel[%d]= %d.\n", channel, data);
     set_dac_flag = data ? true : false;
     void *pHandle = &hdac;
     HAL_DAC_SetValue((DAC_HandleTypeDef *)pHandle, channel,
@@ -259,22 +262,22 @@ static void set_ao(int argc, char **argv)
 {
     if (argc > 3)
     {
-        SMODBUS_DEBUG_R("@error:too many parameters,please input'set_ao <(0~1)|(0~20)>.'\n");
+        IO_DEBUG_R("@error:too many parameters,please input'set_ao <(0~1)|(0~20)>.'\n");
         return;
     }
     uint32_t channel = (uint16_t)atoi(argv[1]);
     float data = (float)atof(argv[2]);
     if (channel > 1)
     {
-        SMODBUS_DEBUG_R("@error:wrong channel number,please input'set_ao <(0~1)|(0~20)>.'\n");
+        IO_DEBUG_R("@error:wrong channel number,please input'set_ao <(0~1)|(0~20)>.'\n");
         return;
     }
     if (data > 20.0F)
     {
-        SMODBUS_DEBUG_R("@error:invalid input,please input'set_ao <(0~1)|(0~20)>.'\n");
+        IO_DEBUG_R("@error:invalid input,please input'set_ao <(0~1)|(0~20)>.'\n");
         return;
     }
-    SMODBUS_DEBUG_R("channel[%d]= %.3f.\n", channel, data);
+    IO_DEBUG_R("channel[%d]= %.3f.\n", channel, data);
     set_dac_flag = data ? true : false;
     for (uint16_t ch = 0; ch < EXTERN_ANALOGOUT_MAX; ch++)
         Output_Current(&dac_map[ch], data);
@@ -290,10 +293,10 @@ MSH_CMD_EXPORT(set_ao, set_ao sample
  */
 static void see_dac(void)
 {
-    SMODBUS_DEBUG_R("\t\t\t\t[----dac_info----]\nsn\tcp\t\tcq\n");
-    SMODBUS_DEBUG_R("---\t------\t------\n");
+    IO_DEBUG_R("\t\t\t\t[----dac_info----]\nsn\tcp\t\tcq\n");
+    IO_DEBUG_R("---\t------\t------\n");
     for (uint16_t ch = 0; ch < EXTERN_ANALOGOUT_MAX; ch++)
-        SMODBUS_DEBUG_R("%d\t%.3f\t\t%.3f\n", ch, dac_param[ch][0], dac_param[ch][1]);
+        IO_DEBUG_R("%d\t%.3f\t\t%.3f\n", ch, dac_param[ch][0], dac_param[ch][1]);
 }
 MSH_CMD_EXPORT(see_dac, display dac output value.);
 
@@ -453,7 +456,7 @@ void Read_Analog_Io(void)
         if (!pd->Mod_Operatex(pd, InputRegister, Write, INPUT_ANALOG_START_ADDR,
                               (uint8_t *)pdata, EXTERN_ANALOGIN_MAX * sizeof(float)))
         {
-#if defined(SMODBUS_USING_DEBUG)
+#if (SMODBUS_USING_DEBUG)
             SMODBUS_DEBUG_D("@error:Input register write failed!\r\n");
 #endif
         }

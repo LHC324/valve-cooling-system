@@ -134,11 +134,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4096</DriverSelection>
+            <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -383,34 +383,9 @@
           <GroupName>Applications</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>tool.c</FileName>
               <FileType>1</FileType>
-              <FilePath>applications\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>dwin.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\lhc_dwin\Src\dwin.c</FilePath>
-            </File>
-            <File>
-              <FileName>small_modbus.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\lhc_modbus\Src\small_modbus.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32_irq.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\stm32_irq.c</FilePath>
-            </File>
-            <File>
-              <FileName>small_modbus_port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\lhc_modbus\Src\small_modbus_port.c</FilePath>
-            </File>
-            <File>
-              <FileName>measure.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\measure.c</FilePath>
+              <FilePath>applications\lhc_dwin\Src\tool.c</FilePath>
             </File>
             <File>
               <FileName>flash.c</FileName>
@@ -418,9 +393,14 @@
               <FilePath>applications\flash.c</FilePath>
             </File>
             <File>
-              <FileName>tool.c</FileName>
+              <FileName>measure.c</FileName>
               <FileType>1</FileType>
-              <FilePath>applications\lhc_dwin\Src\tool.c</FilePath>
+              <FilePath>applications\measure.c</FilePath>
+            </File>
+            <File>
+              <FileName>dwin.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\lhc_dwin\Src\dwin.c</FilePath>
             </File>
             <File>
               <FileName>dwin_port.c</FileName>
@@ -428,9 +408,29 @@
               <FilePath>applications\lhc_dwin\Src\dwin_port.c</FilePath>
             </File>
             <File>
+              <FileName>small_modbus_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\lhc_modbus\Src\small_modbus_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_irq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\stm32_irq.c</FilePath>
+            </File>
+            <File>
+              <FileName>small_modbus.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\lhc_modbus\Src\small_modbus.c</FilePath>
+            </File>
+            <File>
               <FileName>io_signal.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\io_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\main.c</FilePath>
             </File>
           </Files>
         </Group>

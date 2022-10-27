@@ -42,10 +42,9 @@
 .\objects\measure.o: applications\lhc_modbus\Inc\small_modbus_port.h
 .\objects\measure.o: applications\lhc_modbus\Inc\small_modbus.h
 .\objects\measure.o: applications\lhc_modbus\Inc\small_modbus_cfg.h
-.\objects\measure.o: rt-thread\include\rtdbg.h
-.\objects\measure.o: .\rtconfig.h
 .\objects\measure.o: applications\lhc_dwin\Inc\tool.h
 .\objects\measure.o: rt-thread\include\rtthread.h
+.\objects\measure.o: .\rtconfig.h
 .\objects\measure.o: rt-thread\include\rtdebug.h
 .\objects\measure.o: rt-thread\include\rtdef.h
 .\objects\measure.o: rt-thread\include\rtservice.h
@@ -54,3 +53,4 @@
 .\objects\measure.o: rt-thread\components\finsh\finsh.h
 .\objects\measure.o: applications\io_signal.h
 .\objects\measure.o: applications\flash.h
+.\objects\measure.o: rt-thread\include\rtdbg.h
