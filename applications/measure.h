@@ -16,15 +16,15 @@ extern "C"
 
 /*独立检测系统数量*/
 #define SYSYTEM_NUM 3U
-#define MEASURE_MAX_SENSOR_NUM 7U                //最大传感器数量
-#define MEASURE_SENSOR_NUM 6U                    //传感器数量
-#define MEASURE_MAX_ROW 5U                       //测量数据最大行
+#define MEASURE_MAX_SENSOR_NUM 7U                // 最大传感器数量
+#define MEASURE_SENSOR_NUM 6U                    // 传感器数量
+#define MEASURE_MAX_ROW 5U                       // 测量数据最大行
 #define MEASURE_MAX_POINT (MEASURE_MAX_ROW + 1U) // 测量的最大点数:段数+1U
-#define MEASURE_MAX_COLUMN 2U                    //测量数据最大列
-#define SOFT_TIMER_NUM 7U                        //软件定时器数量
-#define ADJUST_NUM 2U                            //调整对象数量
-#define COIL_NUM 7U                              //线圈数量
-#define CARTOON_NUM 6U                           //动画数量
+#define MEASURE_MAX_COLUMN 2U                    // 测量数据最大列
+#define SOFT_TIMER_NUM 7U                        // 软件定时器数量
+#define ADJUST_NUM 2U                            // 调整对象数量
+#define COIL_NUM 7U                              // 线圈数量
+#define CARTOON_NUM 6U                           // 动画数量
 #define CURRENT_UPPER 16.0F
 #define CURRENT_LOWER 4.0F
 /*https://blog.csdn.net/weixin_36443823/article/details/112775994*/
@@ -43,17 +43,17 @@ extern "C"
     typedef enum
     {
         null_system = 0,
-        pfl_system = 0x10,   //压力流量系统---------
+        pfl_system = 0x10,   // 压力流量系统---------
         pre_his_cmd = 0x11,  /*压力系统历史数据*/
         flo_his_cmd = 0x12,  /*流量系统历史数据*/
         lel_his_cmd = 0x13,  /*液位系统历史数据*/
         pre_cur_cmd = 0x14,  /*压力系统曲线数据*/
         flo_cur_cmd = 0x15,  /*流量系统曲线数据*/
         lel_cur_cmd = 0x16,  /*液位系统曲线数据*/
-        temp_system = 0x20,  //温度系统-------
+        temp_system = 0x20,  // 温度系统-------
         temp_his_cmd = 0x21, /*温度系统历史数据*/
         temp_cur_cmd = 0x24, /*温度系统曲线数据*/
-        con_system = 0x30,   //电导率系统------
+        con_system = 0x30,   // 电导率系统------
         con_his_cmd = 0x31,  /*温度系统历史数据*/
         con_cur_cmd = 0x34,  /*温度系统曲线数据*/
     } measure_system;
@@ -156,11 +156,12 @@ extern "C"
     typedef struct measure_adjust *padjust_t;
     struct measure_adjust
     {
-        float comp_val;     /*当前补偿值*/
-        float cur_val;      /*当前采样值*/
-        float tar_val;      /*目标要求值*/
-        float offset_val;   /*每个采样点偏移值*/
-        unsigned int point; /*采样点数*/
+        float comp_val;   /*当前补偿值*/
+        float cur_val;    /*当前采样值*/
+        float tar_val;    /*目标要求值*/
+        float offset_val; /*每个采样点偏移值*/
+        // unsigned int point; /*采样点数*/
+        int point; /*采样点数*/
     };
 
     typedef struct

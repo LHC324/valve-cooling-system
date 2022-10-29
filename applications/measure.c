@@ -172,6 +172,22 @@ static bool check_soft_timer_flag(pmeasure_t pm,
 }
 
 /**
+ * @brief	复位软件定时器计数
+ * @details
+ * @param   timer 目标定时器指针
+ * @param   timer_id 软件定时器id
+ * @retval  true/false
+ */
+static bool reset_soft_timer_count(measure_timer *timer,
+                                   uint8_t timer_id)
+{
+    if (timer == NULL || timer_id >= SOFT_TIMER_NUM)
+        return false;
+    timer[timer_id].count = 0;
+    return true;
+}
+
+/**
  * @brief	测量系统检测错误
  * @details
  * @param	pm 测量系统句柄
@@ -401,6 +417,36 @@ float get_ratio(padjust_t pa)
     return (pa->tar_val * 0.8666F + 0.33334F);
 }
 
+site_pid_t pfl_pid, temp_pid;
+
+/**
+ * @brief	位置式pid初始化
+ * @details
+ * @param	None
+ * @retval  None
+ */
+static void pid_init(void)
+{
+#define SEAMPING_TIMES 5.0e1F  // 采样时间：ms
+#define INTERGRAL_TIMES 5.0e6F // 积分时间
+#define DIFF_TIMES 1.0e3F      // 微分时间
+
+#define PFL_KP 2.0e-2F
+#define PFL_KI PFL_KP *(SEAMPING_TIMES / INTERGRAL_TIMES)
+#define PFL_KD 2.0e-1F
+
+#define TEMP_KP 3.0e1F
+#define TEMP_KI TEMP_KP *(SEAMPING_TIMES / INTERGRAL_TIMES)
+#define TEMP_KD TEMP_KP *(DIFF_TIMES / SEAMPING_TIMES)
+    /*压力、流量、液位*/
+    init_site_pid(&pfl_pid, PFL_KP, PFL_KI, PFL_KD);
+    /*温度系统*/
+    init_site_pid(&temp_pid, TEMP_KP, TEMP_KI, TEMP_KD);
+    // #undef SEAMPING_TIMES
+    // #undef INTERGRAL_TIMES
+    // #undef DIFF_TIMES
+}
+
 /**
  * @brief	调节变频器输出目标值
  * @details
@@ -411,13 +457,14 @@ static void adjust_inverter_out_handle(pmeasure_t pm)
 {
     // float ratio = 0;
     pModbusHandle pd = (pModbusHandle)pm->phandle;
-    if (pd == NULL || pm == NULL || pm->presour == NULL)
-        return;
     padjust_t pa = &pm->presour->adjust[Get_Sensor(sensor_pressure)];
     struct measure *pthis = &pm->me[0];
+    static uint8_t last_site = 0;
 
-    // if ((!pd) || (!pm) || (pthis->front.state != proj_onging))
-    //     return;
+    if (pd == NULL || pm == NULL || pm->presour == NULL ||
+        pd == NULL || pthis == NULL)
+        return;
+
     uint8_t current_site = Get_Sensor(pthis->front.cur_sensor);
     if (pthis->front.state == proj_onging)
         pa = &pm->presour->adjust[current_site];
@@ -425,9 +472,21 @@ static void adjust_inverter_out_handle(pmeasure_t pm)
     /*防止变频器反向增大*/
     if (pa->comp_val < 4.0F)
         pa->comp_val = 4.0F;
-    float ratio = get_ratio(pa);
-    // ratio = __Get_Ratio(pa->tar_val);
-    pa->comp_val += get_target_microcompensate(pa->cur_val, pa->tar_val, ratio);
+    // float ratio = get_ratio(pa);
+    // // ratio = __Get_Ratio(pa->tar_val);
+    // pa->comp_val += get_target_microcompensate(pa->cur_val, pa->tar_val, ratio);
+    /*传感器发生变化时，复位目标pid*/
+    if ((!pa->tar_val) || (last_site != current_site))
+    {
+        init_site_pid(&pfl_pid, PFL_KP, PFL_KI, PFL_KD);
+        pa->comp_val = 4.0F;
+        last_site = current_site;
+    }
+    else
+    {
+        pa->comp_val += get_pid_out(&pfl_pid, pa->cur_val, pa->tar_val);
+    }
+
     /*写入固定输出通道：默认写入通道0*/
     if (!pd->Mod_Operatex(pd, HoldRegister, Write, OUT_ANALOG_START_ADDR,
                           (uint8_t *)&pa->comp_val, sizeof(float)))
@@ -482,62 +541,6 @@ static void set_pwm(int argc, char **argv)
 MSH_CMD_EXPORT(set_pwm, set_pwm sample
                : set_pwm<(0 - 100)>);
 
-/*位置式PID*/
-typedef struct
-{
-    // uint32_t sampling_period; // PID计算周期--采样周期(ms)
-    float kp;      //比列系数
-    float ki;      //积分系数
-    float kd;      //微分系数
-    float last_ek; //上一次误差
-    float sum_ek;  //累计误差
-} pid_t;
-
-pid_t pid;
-
-/**
- * @brief	位置式pid初始化
- * @details
- * @param	None
- * @retval  None
- */
-static void pid_init(void)
-{
-#define SEAMPING_TIMES 5.0e1F  //采样时间：ms
-#define INTERGRAL_TIMES 5.0e6F //积分时间
-#define DIFF_TIMES 1.0e3F      //微分时间
-    pid.kp = 3.0e1F;
-    pid.ki = pid.kp * (SEAMPING_TIMES / INTERGRAL_TIMES);
-    pid.kd = pid.kp * (DIFF_TIMES / SEAMPING_TIMES);
-    pid.last_ek = 0;
-    pid.sum_ek = 0;
-#undef SEAMPING_TIMES
-#undef INTERGRAL_TIMES
-#undef DIFF_TIMES
-}
-
-/**
- * @brief	位置式pid初始化
- * @details
- * @param	None
- * @retval  None
- */
-static float get_pid_out(pid_t *pid, float cur_val, float tar_val)
-{
-    if (pid == NULL)
-        return 0;
-    float cur_ek = tar_val - cur_val;
-    float delta_ek = cur_ek - pid->last_ek; //Δ
-    float p_out = pid->kp * cur_ek;
-    float i_out = pid->ki * pid->sum_ek;
-    float d_out = pid->kd * delta_ek;
-
-    pid->sum_ek += cur_ek;
-    pid->last_ek = cur_ek; //更新偏差
-
-    return (p_out + i_out + d_out);
-}
-
 /**
  * @brief	调节加热棒输出目标值
  * @details
@@ -547,66 +550,33 @@ static float get_pid_out(pid_t *pid, float cur_val, float tar_val)
 static void adjust_temperature_out_handle(pmeasure_t pm)
 {
 #define PWM_DUTY_MAX 100.0F
+#define MIN_COMPAL_VAL 35.0F
     pModbusHandle pd = (pModbusHandle)pm->phandle;
     if (pm == NULL || pd == NULL || pm->presour == NULL)
         return;
     padjust_t pa = &pm->presour->adjust[Get_Sensor(sensor_temperature)];
-    // static bool first_flag = false;
-    // //    measure *pthis = &pm->me[1];
-
-    // // if ((!pm) || (!pd) || (pthis->front.state != proj_onging))
-    // //     return;
-    // // float ratio = Get_Ratio(pa->cur_val);
-    // /*温度系统滞后性较大：在除以一个动态时间系数*/
-    // // float time_cofe = (float)pm->presour->timer[tim_id_tempe].count;
-    // // if (!time_cofe) //防止除数变为0
-    // //     time_cofe = 1.0F;
-    // float ratio = get_ratio(pa); /// time_cofe
-    // static float target_val = 0;
-    // static float last_val = 0;
-
-    // if (pa->cur_val >= pa->tar_val)
-    // {
-    //     target_val = pa->tar_val;
-    //     first_flag = true;
-    // }
-    // if (!first_flag)
-    //     target_val = pa->tar_val - 5.0f;
-
-    // if (!pa->tar_val)
-    //     first_flag = false;
-
-    // /*据目标温度偏差一定值时开始调整*/
-    // pa->comp_val += get_target_microcompensate(pa->cur_val, target_val, ratio);
-    // float Rate = last_val - pa->cur_val;
-
-    // last_val = pa->cur_val;
-    // if (fabsf(Rate) > 0.05f)
-    //     pa->comp_val += (Rate / ratio);
 
     if (!pa->tar_val)
     {
-        pid_init();
+        // pid_init();
+        init_site_pid(&temp_pid, TEMP_KP, TEMP_KI, TEMP_KD);
         pa->comp_val = 0;
     }
     else
     {
-        pa->comp_val = get_pid_out(&pid, pa->cur_val, pa->tar_val);
-        pa->comp_val = pa->comp_val < 0
-                           ? 35.0f
+        pa->comp_val = get_pid_out(&temp_pid, pa->cur_val, pa->tar_val);
+        pa->comp_val = pa->comp_val < MIN_COMPAL_VAL
+                           ? MIN_COMPAL_VAL
                        : pa->comp_val > PWM_DUTY_MAX ? PWM_DUTY_MAX
                                                      : pa->comp_val;
     }
-
+    /*温度调节策略*/
     uint16_t duty = (uint16_t)get_pwm_value_base_on_duty(&htim4, (float)pa->comp_val / 100.0F);
     if (!set_pwm_flag)
         __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, duty);
 
-        // __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, 1000);
-        // __HAL_TIM_GET_AUTORELOAD(__HANDLE__)
-        /*温度调节策略*/
-
 #undef PWM_DUTY_MAX
+#undef MIN_COMPAL_VAL
 }
 
 /**
@@ -809,7 +779,8 @@ void set_measure_information(pmeasure_t pm,
                              uint8_t sensor_id,
                              measure_sensor next_sensor,
                              measure_flag_group sensor_flag,
-                             bool state)
+                             bool state,
+                             measure_timer_id timer_id)
 {
     if (pm == NULL || pm->presour == NULL || pthis == NULL)
         return;
@@ -824,23 +795,26 @@ void set_measure_information(pmeasure_t pm,
                sizeof(pm->presour->data[0]));
     }
     pthis->cur_node++;
-    if (pa->point)
+
+    if (pa->point <= 0)
+        return;
+    // if (pa->point > 0)
+    // {// }
+    // pa->point--;
+    if (!--pa->point)
     {
-        pa->point--;
-        if (!pa->point)
+        pthis->front.cur_sensor = next_sensor;
+        reset_soft_timer_count(pm->presour->timer, timer_id); // 解决多个传感器间产生暂停周期的问题
+        if (state)
         {
-            pthis->front.cur_sensor = next_sensor;
-            if (state)
-            {
-                pthis->front.state = proj_complete;
-                /*得到系统最后一个传感器检验结果*/
-                set_test_sensor_result(pm, sensor_id, sensor_flag);
-            }
+            pthis->front.state = proj_complete;
+            /*得到系统最后一个传感器检验结果*/
+            set_test_sensor_result(pm, sensor_id, sensor_flag);
         }
-        else /*只有压力、液位、流量系统支持偏移值递增*/
-            if (sensor_id < Get_Sensor(sensor_level))
-                pa->tar_val += pa->offset_val;
     }
+    else /*只有压力、液位、流量系统支持偏移值递增*/
+        if (sensor_id < Get_Sensor(sensor_level))
+            pa->tar_val += pa->offset_val;
 }
 
 /**
@@ -925,7 +899,8 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
                                 Get_Sensor(sensor_pressure),
                                 sensor_flow,
                                 measure_flag_max,
-                                false);
+                                false,
+                                tim_id_pfl);
         /*打开动画*/
         set_cartoon_state(pm, cartoon_inverter, mea_set);
     }
@@ -942,7 +917,8 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
                                 Get_Sensor(sensor_flow),
                                 sensor_level,
                                 measure_flag_max,
-                                false);
+                                false,
+                                tim_id_pfl);
         /*打开动画*/
         set_cartoon_state(pm, cartoon_flow, mea_set);
         set_cartoon_state(pm, cartoon_inverter, mea_reset);
@@ -962,7 +938,8 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
                                 Get_Sensor(sensor_level),
                                 sensor_null,
                                 lel_measure_flag,
-                                true);
+                                true,
+                                tim_id_pfl);
         /*打开动画*/
         set_cartoon_state(pm, cartoon_level, mea_set);
         set_cartoon_state(pm, cartoon_flow, mea_reset);
@@ -1048,7 +1025,7 @@ static void temperature_measure_system(pmeasure_t pm, struct measure *pthis)
 
     /*设置系统调整结构*/
     // pa->offset_val = get_compensate_value(pm, pthis, sensor_site);
-    pa->tar_val = pthis->back.permit_error; //目标温度值
+    pa->tar_val = pthis->back.permit_error; // 目标温度值
     /*设置阶段定时器*/
     if (check_soft_timer_flag(pm, pthis, (uint8_t)tim_id_tempe) == false)
         return;
@@ -1074,7 +1051,8 @@ static void temperature_measure_system(pmeasure_t pm, struct measure *pthis)
                             Get_Sensor(sensor_temperature),
                             sensor_null,
                             temp_measure_flag,
-                            true);
+                            true,
+                            tim_id_tempe);
     /*打开风扇动画*/
     // set_cartoon_state(pm, cartoon_fan, mea_set);
 
@@ -1153,7 +1131,8 @@ static void conductivity_measure_system(pmeasure_t pm, struct measure *pthis)
                             Get_Sensor(sensor_conductivity),
                             sensor_null,
                             con_measure_flag,
-                            true);
+                            true,
+                            tim_id_conv);
     /*打开电解质投入示意动画*/
     set_cartoon_state(pm, cartoon_con, mea_set);
 

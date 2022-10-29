@@ -25,6 +25,8 @@ extern "C"
 #define TOOL_USING_CRC16 1
 /*使用大小端字节交换*/
 #define TOOOL_USING_ENDIAN 1
+/*位置式pid*/
+#define TOOOL_USING_SITE_PID 1
 
 #if (TOOL_USING_RTOS == 1)
 #include "cmsis_os.h"
@@ -67,6 +69,24 @@ extern "C"
     } while (0)
 #endif
 
+#if (TOOOL_USING_SITE_PID)
+    /*位置式PID*/
+    typedef struct
+    {
+        float kp;      // 比列系数
+        float ki;      // 积分系数
+        float kd;      // 微分系数
+        float last_ek; // 上一次误差
+        float sum_ek;  // 累计误差
+    } site_pid_t;
+
+    extern void init_site_pid(site_pid_t *pid,
+                              float kp,
+                              float ki,
+                              float kd);
+    extern float get_pid_out(site_pid_t *pid, float cur_val, float tar_val);
+#endif
+
     typedef struct
     {
         void *pGPIOx;
@@ -76,18 +96,18 @@ extern "C"
 
 #if (TOOL_USING_KALMAN)
 /*以下为卡尔曼滤波参数*/
-#define LASTP 0.500F   //上次估算协方差
-#define COVAR_Q 0.005F //过程噪声协方差
-#define COVAR_R 0.067F //测噪声协方差
+#define LASTP 0.500F   // 上次估算协方差
+#define COVAR_Q 0.005F // 过程噪声协方差
+#define COVAR_R 0.067F // 测噪声协方差
 
     typedef struct
     {
-        float Last_Covariance; //上次估算协方差 初始化值为0.02
-        float Now_Covariance;  //当前估算协方差 初始化值为0
-        float Output;          //卡尔曼滤波器输出 初始化值为0
-        float Kg;              //卡尔曼增益 初始化值为0
-        float Q;               //过程噪声协方差 初始化值为0.001
-        float R;               //观测噪声协方差 初始化值为0.543
+        float Last_Covariance; // 上次估算协方差 初始化值为0.02
+        float Now_Covariance;  // 当前估算协方差 初始化值为0
+        float Output;          // 卡尔曼滤波器输出 初始化值为0
+        float Kg;              // 卡尔曼增益 初始化值为0
+        float Q;               // 过程噪声协方差 初始化值为0.001
+        float R;               // 观测噪声协方差 初始化值为0.543
     } KFP;
 
     extern float kalmanFilter(KFP *kfp, float input);

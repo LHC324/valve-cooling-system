@@ -93,6 +93,44 @@ void endian_swap(uint8_t *pdata, uint8_t start, uint8_t length)
 }
 #endif
 
+#if (TOOOL_USING_SITE_PID)
+void init_site_pid(site_pid_t *pid,
+                   float kp,
+                   float ki,
+                   float kd)
+{
+    if (pid == NULL)
+        return;
+    pid->kp = kp;
+    pid->ki = ki;
+    pid->kd = kd;
+    pid->last_ek = 0;
+    pid->sum_ek = 0;
+}
+
+/**
+ * @brief	位置式pid初始化
+ * @details 参看：https://blog.csdn.net/yunddun/article/details/107720644
+ * @param	None
+ * @retval  None
+ */
+float get_pid_out(site_pid_t *pid, float cur_val, float tar_val)
+{
+    if (pid == NULL)
+        return 0;
+    float cur_ek = tar_val - cur_val;
+    float delta_ek = cur_ek - pid->last_ek; // Δ
+    float p_out = pid->kp * cur_ek;
+    float i_out = pid->ki * pid->sum_ek;
+    float d_out = pid->kd * delta_ek;
+
+    pid->sum_ek += cur_ek;
+    pid->last_ek = cur_ek; // 更新偏差
+
+    return (p_out + i_out + d_out);
+}
+#endif
+
 #if (TOOL_USING_KALMAN)
 #define EPS 1e-8
 /**
@@ -108,7 +146,7 @@ float kalmanFilter(KFP *kfp, float input)
     /*卡尔曼增益方程：卡尔曼增益 = k时刻系统估算协方差 / （k时刻系统估算协方差 + 观测噪声协方差）*/
     kfp->Kg = kfp->Now_Covariance / (kfp->Now_Covariance + kfp->R);
     /*更新最优值方程：k时刻状态变量的最优值 = 状态变量的预测值 + 卡尔曼增益 * （测量值 - 状态变量的预测值）*/
-    kfp->Output = kfp->Output + kfp->Kg * (input - kfp->Output); //因为这一次的预测值就是上一次的输出值
+    kfp->Output = kfp->Output + kfp->Kg * (input - kfp->Output); // 因为这一次的预测值就是上一次的输出值
     /*更新协方差方程: 本次的系统协方差付给 kfp->Last_Covariance 为下一次运算准备。*/
     kfp->Last_Covariance = (1 - kfp->Kg) * kfp->Now_Covariance;
     /*当kfp->Output不等于0时，负方向迭代导致发散到无穷小*/
@@ -129,7 +167,7 @@ float kalmanFilter(KFP *kfp, float input)
  */
 float sidefilter(SideParm *side, float input)
 {
-    //第一次滤波
+    // 第一次滤波
     if (side->First_Flag)
     {
 
