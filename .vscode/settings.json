@@ -22,6 +22,25 @@
         "functional": "c",
         "flash.h": "c",
         "system_error": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "fal.h": "c",
+        "rtconfig.h": "c",
+        "fal_cfg.h": "c",
+        "fal_def.h": "c",
+        "string.h": "c",
+        "ostream": "c",
+        "*.tcc": "c",
+        "flashdb.h": "c",
+        "fdb_cfg.h": "c",
+        "fdb_def.h": "c",
+        "algorithm": "c",
+        "chrono": "c",
+        "array": "c",
+        "istream": "c",
+        "ratio": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "typeinfo": "c"
     }
 }

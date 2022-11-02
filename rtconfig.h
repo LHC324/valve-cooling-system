@@ -83,6 +83,10 @@
 #define DFS_FILESYSTEMS_MAX 4
 #define DFS_FILESYSTEM_TYPES_MAX 4
 #define DFS_FD_MAX 16
+#define RT_USING_FAL
+#define FAL_DEBUG_CONFIG
+#define FAL_DEBUG 1
+#define FAL_PART_HAS_TABLE_CFG
 
 /* Device Drivers */
 
@@ -179,6 +183,16 @@
 
 /* Micrium: Micrium software products porting for RT-Thread */
 
+#define PKG_USING_FLASHDB
+#define FDB_USING_KVDB
+#define FDB_USING_TSDB
+#define FDB_USING_FAL_MODE
+#define FDB_WRITE_GRAN_32BITS
+#define FDB_WRITE_GRAN 32
+#define FDB_NOT_USING_FILE_MODE
+#define FDB_DEBUG_ENABLE
+#define PKG_USING_FLASHDB_V10102
+#define PKG_FLASHDB_VER_NUM 0x10102
 
 /* peripheral libraries and drivers */
 

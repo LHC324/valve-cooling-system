@@ -20,6 +20,7 @@
 #include "io_signal.h"
 #include "measure.h"
 #include "flash.h"
+// #include <fal.h>
 
 typedef enum
 {
@@ -54,6 +55,7 @@ static void dwin_recive_thread_entry(void *parameter);
 static void sampling_thread_entry(void *parameter);
 static void contrl_thread_entry(void *parameter);
 static void measure_poll_thread_entry(void *parameter);
+static void measure_control_thread_entry(void *parameter);
 static void report_thread_entry(void *parameter);
 
 #define __init_rt_thread_pools(__name, __handle, __param, __statck_size,    \
@@ -81,7 +83,9 @@ static rt_thread_pools_t thread_pools[] = {
                            10, contrl_thread_entry, unusing_semaphore, RT_NULL),
     __init_rt_thread_pools("measure_thread", RT_NULL, RT_NULL, 2048U, 0x06,
                            10, measure_poll_thread_entry, unusing_semaphore, RT_NULL),
-    __init_rt_thread_pools("measure_exe", RT_NULL, RT_NULL, 2048U, 0x10,
+    __init_rt_thread_pools("measure_out", RT_NULL, RT_NULL, 1024U, 0x10,
+                           10, measure_control_thread_entry, unusing_semaphore, RT_NULL),
+    __init_rt_thread_pools("report", RT_NULL, RT_NULL, 2048U, 0x11,
                            10, report_thread_entry, unusing_semaphore, RT_NULL),
 
 };
@@ -152,8 +156,9 @@ static void rt_thread_hal_uartx_dma_info_init(rt_thread_pools_t *p_pool, pUartHa
         puart->semaphore = p_pool->semaphore;
 }
 
-static rt_timer_t timer1 = RT_NULL;
-static void timer_callback1(void *parameter);
+static rt_timer_t timer1 = RT_NULL, rtc_timer = RT_NULL;
+static void timer1_callback(void *parameter);
+static void rtc_timer_callback(void *parameter);
 /**
  * @brief	main线程
  * @details
@@ -169,15 +174,26 @@ int main(void)
     /*初始化线程池*/
     rt_thread_pools_init(&rt_thread_pool_map);
     /* 创建定时器1  周期定时器 */
-    timer1 = rt_timer_create("timer1", timer_callback1,
-                             RT_NULL, 1000,
+    timer1 = rt_timer_create("timer1",
+                             timer1_callback,
+                             RT_NULL,
+                             1000,
                              RT_TIMER_FLAG_PERIODIC);
-    /* 启动定时器 1 */
+    /* 启动rtc定时器 */
     if (timer1 != RT_NULL)
         rt_timer_start(timer1);
+    /* 创建rtc定时器  周期定时器 */
+    rtc_timer = rt_timer_create("rtc_timer",
+                                rtc_timer_callback,
+                                RT_NULL,
+                                1000,
+                                RT_TIMER_FLAG_PERIODIC);
+    /* 启动rtc定时器 */
+    if (rtc_timer != RT_NULL)
+        rt_timer_start(rtc_timer);
     //    int count = 1;
     //    while (count++)
-
+    // fal_init();
     for (;;)
     {
         //        LOG_D("Hello RT-Thread!");
@@ -195,9 +211,24 @@ int main(void)
  * @param	parameter:线程初始参数
  * @retval  None
  */
-void timer_callback1(void *parameter)
+void timer1_callback(void *parameter)
 {
+    UNUSED(parameter);
     measure_timer_poll();
+}
+
+/**
+ * @brief	rt_thread 软件定时器回调函数
+ * @details
+ * @param	parameter:线程初始参数
+ * @retval  None
+ */
+void rtc_timer_callback(void *parameter)
+{
+    UNUSED(parameter);
+    /*本地rtc时间维持*/
+    extern void dwin_rtc_count_inc(void);
+    dwin_rtc_count_inc();
 }
 
 /**
@@ -270,9 +301,9 @@ void sampling_thread_entry(void *parameter)
         // {
         // }
         //        LOG_D("samling is running!");
-        extern void measure_sampling(void);
+        // extern void measure_sampling(void);
         Read_Io_Handle();
-        measure_sampling();
+        // measure_sampling();
         rt_thread_mdelay(50);
     }
 }
@@ -389,6 +420,21 @@ static void get_system_infomation(void)
 }
 
 /**
+ * @brief   校准系统控制线程
+ * @details
+ * @param	parameter:线程初始参数
+ * @retval  None
+ */
+void measure_control_thread_entry(void *parameter)
+{
+    for (;;)
+    {
+        measure_output_control_event();
+        rt_thread_mdelay(250);
+    }
+}
+
+/**
  * @brief   定时上报数据到屏幕
  * @details
  * @param	parameter:线程初始参数
@@ -396,7 +442,7 @@ static void get_system_infomation(void)
  */
 void report_thread_entry(void *parameter)
 {
-#define VAL_FLOAT_NUM 45U //浮点数据数量（不包括历史数据）
+#define VAL_FLOAT_NUM 45U // 浮点数据数量（不包括历史数据）
     rt_thread_pools_t *p_rt_thread_pool = (rt_thread_pools_t *)parameter;
     pModbusHandle pd = Modbus_Object;
     pDwinHandle pw = Dwin_Object;
@@ -408,7 +454,7 @@ void report_thread_entry(void *parameter)
     /*首次切换到主界面*/
     if (pw)
     {
-        rt_thread_mdelay(3000); //解决首次上电迪文屏幕不接收参数问题
+        rt_thread_mdelay(3000); // 解决首次上电迪文屏幕不接收参数问题
         pw->Dw_Page(pw, MAIN_PAGE);
         rt_thread_mdelay(10);
         /*首次上报上下限实验标准*/
@@ -419,6 +465,9 @@ void report_thread_entry(void *parameter)
             endian_swap(&buf[i * sizeof(float)], 0, sizeof(float));
         pw->Dw_Write(pw, PRE_SENSOR_STD_UPPER_ADDR, (uint8_t *)buf, sizeof(float) * 30U);
         rt_thread_mdelay(10);
+        /*主动请求迪文屏幕更新本地RTC时间*/
+        pw->Dw_Read(pw, DWIN_SYSTEM_READ_RTC_ADDR, 0x04);
+        rt_thread_mdelay(50);
     }
     for (;;)
     {

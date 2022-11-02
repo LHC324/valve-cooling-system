@@ -142,11 +142,11 @@ static void Dwin_Read(pDwinHandle pd, uint16_t start_addr, uint8_t words)
 #if (DWIN_USING_CRC)
 	uint8_t buf[] = {
 		0x5A, 0xA5, 0x04 + 2U, DWIN_READ_CMD, start_addr >> 8U,
-		words};
+		start_addr, words};
 #else
 	uint8_t buf[] = {
 		0x5A, 0xA5, 0x04, DWIN_READ_CMD, start_addr >> 8U,
-		words};
+		start_addr, words};
 #endif
 	dwin_tx_count(pd) = 0U;
 	memcpy(dwin_tx_buf, buf, sizeof(buf));
@@ -206,19 +206,22 @@ static short int Dwin_GetSignedData(pDwinHandle pd, uint16_t udata)
  * @retval dwin_result 检验结果
  */
 static dwin_result Dwin_Recive_Check(pDwinHandle pd)
-{ /*检查帧头*/
-	if ((dwin_rx_buf[0] != 0x5A) && (dwin_rx_buf[1] != 0xA5))
+{
+#define DWIN_MIN_FRAME_LEN 5U // 3个前导码+2个crc16
+	/*检查帧头*/
+	if ((dwin_rx_buf[0] != 0x5A) || (dwin_rx_buf[1] != 0xA5))
 	{
 #if (DWIN_USING_DEBUG)
-		DWIN_DEBUG("@error:Protocol frame header error.");
+		DWIN_DEBUG("@error:Protocol frame header error.\r\n");
 #endif
 		return err_frame_head;
 	}
 	/*检查接收数据的尺寸*/
-	if (dwin_rx_count(pd) >= pd->Uart.rx.size)
+	if ((dwin_rx_count(pd) >= pd->Uart.rx.size) ||
+		(dwin_rx_count(pd) < DWIN_MIN_FRAME_LEN))
 	{
 #if (DWIN_USING_DEBUG)
-		DWIN_DEBUG("@error:Data length error.");
+		DWIN_DEBUG("@error:Data length error,cur_len: %d.\r\n", dwin_rx_count(pd));
 #endif
 		return err_data_len;
 	}
@@ -235,6 +238,7 @@ static dwin_result Dwin_Recive_Check(pDwinHandle pd)
 	}
 
 	return dwin_ok;
+#undef DWIN_MIN_FRAME_LEN
 }
 
 /**
@@ -244,6 +248,8 @@ static dwin_result Dwin_Recive_Check(pDwinHandle pd)
  */
 static void Dwin_Poll(pDwinHandle pd)
 {
+	if (pd == NULL)
+		return;
 	dwin_result dwin_code = Dwin_Recive_Check(pd);
 	if (dwin_code != dwin_ok)
 		return;

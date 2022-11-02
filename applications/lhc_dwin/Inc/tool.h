@@ -27,6 +27,10 @@ extern "C"
 #define TOOOL_USING_ENDIAN 1
 /*位置式pid*/
 #define TOOOL_USING_SITE_PID 1
+/*增量式pid*/
+#define TOOOL_USING_INCREMENT_PID 1
+/*Linux时间戳*/
+#define TOOOL_USING_LINUX_STAMP 1
 
 #if (TOOL_USING_RTOS == 1)
 #include "cmsis_os.h"
@@ -84,9 +88,50 @@ extern "C"
                               float kp,
                               float ki,
                               float kd);
-    extern float get_pid_out(site_pid_t *pid, float cur_val, float tar_val);
+    extern float get_site_pid_out(site_pid_t *pid, float cur_val, float tar_val);
 #endif
 
+#if (TOOOL_USING_INCREMENT_PID)
+    /*增量式PID*/
+    typedef struct
+    {
+        float kp;           // 比列系数
+        float ki;           // 积分系数
+        float kd;           // 微分系数
+        float last_ek;      // 上一次误差
+        float last_last_ek; // 上一次的上一次误差
+    } incremental_pid_t;
+
+    extern void init_increment_pid(incremental_pid_t *pid,
+                                   float kp,
+                                   float ki,
+                                   float kd);
+    extern float get_incremental_pid_out(incremental_pid_t *pid,
+                                         float cur_val,
+                                         float tar_val);
+#endif
+
+#if (TOOOL_USING_LINUX_STAMP == 1)
+    typedef struct
+    {
+        struct
+        {
+            unsigned char year;
+            unsigned char month;
+            unsigned char date;
+            unsigned char weelday;
+        } date;
+        struct
+        {
+            unsigned char hours;
+            unsigned char minutes;
+            unsigned char seconds;
+        } time;
+    } rtc_t;
+    extern unsigned int std_time_to_linux_stamp(rtc_t *prtc);
+    extern void get_weekday(rtc_t *prtc);
+    extern void linux_stamp_to_std_time(rtc_t *prtc, unsigned int cur_stamp, int time_zone);
+#endif
     typedef struct
     {
         void *pGPIOx;

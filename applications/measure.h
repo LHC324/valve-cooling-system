@@ -27,9 +27,17 @@ extern "C"
 #define CARTOON_NUM 6U                           // 动画数量
 #define CURRENT_UPPER 16.0F
 #define CURRENT_LOWER 4.0F
+#define HZ_MAX 50.0F
+#define HZ_MIN 0
 /*https://blog.csdn.net/weixin_36443823/article/details/112775994*/
 #define Get_Target(__current, __upper, __lower) \
     (((__current)-CURRENT_LOWER) / CURRENT_UPPER * ((__upper) - (__lower)) + (__lower))
+
+#define Get_Target_mA(__cur_val, __upper, __lower) \
+    (CURRENT_UPPER * ((__cur_val) - (__lower)) / ((__upper) - (__lower)) + (CURRENT_LOWER))
+
+#define Get_Target_Hz(__current, __upper, __lower) \
+    (((__upper) - (__lower)) * ((__current)-CURRENT_LOWER) / CURRENT_UPPER + (__lower))
 
 #define Get_Error(__std, __test) \
     (!(__std) ? 0 : (fabsf((__test) - (__std)) / (__std)) * 100.0F)
@@ -209,6 +217,7 @@ extern "C"
     //    extern measure_storage measure_storage_object;
     extern void measure_timer_poll(void);
     extern void measure_poll(void);
+    extern void measure_output_control_event(void);
     // extern void measure_event_handle(void);
 
 #ifdef __cplusplus

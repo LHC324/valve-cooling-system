@@ -4,6 +4,7 @@
 #include "io_signal.h"
 // #include "list.h"
 #include "flash.h"
+#include <flashdb.h>
 
 #ifdef DBG_TAG
 #undef DBG_TAG
@@ -87,6 +88,166 @@ measure_t measure_object = {
     .presour = &resources_pools,
 };
 
+/* TSDB object */
+struct fdb_tsdb measure_tsdb = {0};
+/* 指向互斥量的指针 */
+static rt_mutex_t flashdb_mutex = RT_NULL;
+/*flashdb锁实现区*/
+static void flashdb_lock(fdb_db_t db)
+{
+    UNUSED(db);
+    // __disable_irq();
+    rt_mutex_take(flashdb_mutex, RT_WAITING_FOREVER);
+}
+
+static void flashdb_unlock(fdb_db_t db)
+{
+    UNUSED(db);
+    // __enable_irq();
+    rt_mutex_release(flashdb_mutex);
+}
+
+static fdb_time_t get_time(void)
+{
+    /* Using the counts instead of timestamp.
+     * Please change this function to return RTC time.
+     */
+    extern uint32_t get_dwin_rtc(void);
+    return (fdb_time_t)get_dwin_rtc();
+}
+
+/**
+ * @brief	flashdb 数据库初始化
+ * @details
+ * @param	None
+ * @retval  none
+ */
+static void flash_db_init(void)
+{
+    fdb_err_t result;
+    /* 创建一个动态互斥量 */
+    flashdb_mutex = rt_mutex_create("fdb_mutex", RT_IPC_FLAG_PRIO);
+    /* set the lock and unlock function if you want */
+    fdb_tsdb_control(&measure_tsdb, FDB_TSDB_CTRL_SET_LOCK, (void *)flashdb_lock);
+    fdb_tsdb_control(&measure_tsdb, FDB_TSDB_CTRL_SET_UNLOCK, (void *)flashdb_unlock);
+    /* Time series database initialization
+     *
+     *       &measure_tsdb: database object
+     *       "user_his_data": database name
+     * "history_data": The flash partition name base on FAL. Please make sure it's in FAL partition table.
+     *              Please change to YOUR partition name.
+     *    get_time: The get current timestamp function.
+     *         128: maximum length of each log
+     *        NULL: The user data if you need, now is empty.
+     */
+    result = fdb_tsdb_init(&measure_tsdb, "user_his_data", "history_data", get_time, 32, NULL);
+    /* read last saved time for simulated timestamp */
+    // fdb_tsdb_control(&measure_tsdb, FDB_TSDB_CTRL_GET_LAST_TIME, &counts);
+
+    if (result != FDB_NO_ERR)
+    {
+        LOG_D("error:measure_tsdb initialization failed.");
+    }
+}
+
+typedef struct
+{
+    uint32_t sensor_id;
+    float data[3];
+} meas_his_data_t;
+
+/**
+ * @brief	历史数据写入tsdb数据库
+ * @details
+ * @param	ptsdb 时序数据库句柄
+ * @param   his_data
+ * @retval  none
+ */
+static void history_data_write_tsdb(fdb_tsdb_t ptsdb, meas_his_data_t *pdata)
+{
+    struct fdb_blob blob;
+
+    if (ptsdb == NULL || pdata == NULL)
+        return;
+
+    fdb_tsl_append(ptsdb, fdb_blob_make(&blob, pdata, sizeof(meas_his_data_t)));
+#if (MEASURE_USING_DEBUG)
+    MEASURE_DEBUG_D("@note:append the new hisdata. sensor_id(%d),std(%.2f)/test (%.2f)/error(%.2f).\n",
+                    pdata->sensor_id, pdata->data[0], pdata->data[1], pdata->data[2]);
+
+#endif
+}
+
+/**
+ * @brief   通过 TSDB 的迭代器 API ，在每次迭代时会自动执行 query_cb 回调函数，实现对 TSDB 中所有记录的查询
+ * @details
+ * @param   none
+ * @retval  none
+ */
+static bool query_cb(fdb_tsl_t tsl, void *arg)
+{
+    struct fdb_blob blob;
+    meas_his_data_t history;
+    fdb_tsdb_t db = arg;
+    rtc_t cur_rtc;
+
+    if (tsl == NULL || arg == NULL)
+        return true;
+
+    linux_stamp_to_std_time(&cur_rtc, tsl->time, 8);
+
+    fdb_blob_read((fdb_db_t)db, fdb_tsl_to_blob(tsl, fdb_blob_make(&blob, &history, sizeof(history))));
+#if (MEASURE_USING_DEBUG)
+    MEASURE_DEBUG_R("@note:[query_cb] queried a TSL: time: %d/%d/%d/%d %d:%d:%d, sn: %d, std: %f, test: %f, error: %f\r\n",
+                    cur_rtc.date.year + 2000, cur_rtc.date.month, cur_rtc.date.date, cur_rtc.date.weelday,
+                    cur_rtc.time.hours, cur_rtc.time.minutes, cur_rtc.time.seconds, history.sensor_id,
+                    history.data[0], history.data[1], history.data[2]);
+#endif
+
+    return false;
+}
+
+/**
+ * @brief   查询tsdb数据库所有数据
+ * @details
+ * @param   none
+ * @retval  none
+ */
+static void select_all(void)
+{
+    fdb_tsdb_t ptsdb = &measure_tsdb;
+    /* query all TSL in TSDB by iterator */
+    fdb_tsl_iter(ptsdb, query_cb, ptsdb);
+}
+MSH_CMD_EXPORT(select_all, View all historical data.);
+
+/**
+ * @brief   通过时间检索tsdb数据库数据
+ * @details
+ * @param   none
+ * @retval  none
+ */
+// static void set_pwm(int argc, char **argv)
+//{
+//     if (argc > 2)
+//     {
+//         MEASURE_DEBUG_R("@error:too many parameters,please input'set_pwm<(0 - 100)>.'\n");
+//         return;
+//     }
+//     uint16_t duty = (uint16_t)atoi(argv[1]);
+//     if (duty > 100)
+//     {
+//         MEASURE_DEBUG_R("@error:wrong pwm duty number,please input'set_pwm<(0 - 100)>.'\n");
+//         return;
+//     }
+//     MEASURE_DEBUG_R("pwm duty= %d.\n", duty);
+//     set_pwm_flag = duty ? true : false;
+//     duty = (uint16_t)get_pwm_value_base_on_duty(&htim4, (float)duty / 100.0F);
+//     __HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, duty);
+// }
+// MSH_CMD_EXPORT(set_pwm, set_pwm sample
+//                : set_pwm<(0 - 100)>);
+
 /**
  * @brief	压力检测流程
  * @details
@@ -97,7 +258,7 @@ int rt_measure_init(void)
 {
     pmeasure_t ps = &measure_object;
 
-    FLASH_Read(PARAM_SAVE_ADDRESS, (uint8_t *)ps, sizeof(measure_t));
+    onchip_flash_read(PARAM_SAVE_ADDRESS, (uint8_t *)ps, sizeof(measure_t));
     uint16_t crc16 = get_crc16((uint8_t *)ps, sizeof(measure_t) - sizeof(ps->crc16), 0xFFFF);
 
     if (crc16 != ps->crc16)
@@ -122,8 +283,11 @@ int rt_measure_init(void)
     }
     ps->presour = &resources_pools;
     ps->phandle = Modbus_Object;
+    /*初始化资源池*/
+    memset(ps->presour, 0x00, sizeof(measure_resources_pools_t));
     /*位置式pid初始化*/
     pid_init();
+    flash_db_init();
     return 0;
 }
 INIT_ENV_EXPORT(rt_measure_init);
@@ -366,7 +530,7 @@ MSH_CMD_EXPORT(see_sensor_data, display sensor data.);
  */
 #define MathUtils_SignBit(x) \
     (((signed char *)&x)[sizeof(x) - 1] >> 7 | 1)
-
+#if (0)
 /**
  * @brief	获取目标补偿值
  * @details
@@ -416,8 +580,17 @@ float get_ratio(padjust_t pa)
 {
     return (pa->tar_val * 0.8666F + 0.33334F);
 }
+#endif
 
-site_pid_t pfl_pid, temp_pid;
+#define USING_TEMPERATURE_SITE_PID 1
+// site_pid_t pfl_pid, temp_pid;
+
+incremental_pid_t pfl_pid;
+#if (USING_TEMPERATURE_SITE_PID == 1)
+site_pid_t temp_pid;
+#else
+incremental_pid_t temp_pid;
+#endif
 
 /**
  * @brief	位置式pid初始化
@@ -432,16 +605,25 @@ static void pid_init(void)
 #define DIFF_TIMES 1.0e3F      // 微分时间
 
 #define PFL_KP 2.0e-2F
-#define PFL_KI PFL_KP *(SEAMPING_TIMES / INTERGRAL_TIMES)
-#define PFL_KD 2.0e-1F
+#define PFL_KI 9.0e-3F // PFL_KP *(SEAMPING_TIMES / INTERGRAL_TIMES)
+#define PFL_KD 2.0e-3F // 2.0e-1F
 
+    /*压力、流量、液位*/
+    // init_site_pid(&pfl_pid, PFL_KP, PFL_KI, PFL_KD);
+    init_increment_pid(&pfl_pid, PFL_KP, PFL_KI, PFL_KD);
+/*温度系统*/
+#if (USING_TEMPERATURE_SITE_PID == 1)
 #define TEMP_KP 3.0e1F
 #define TEMP_KI TEMP_KP *(SEAMPING_TIMES / INTERGRAL_TIMES)
 #define TEMP_KD TEMP_KP *(DIFF_TIMES / SEAMPING_TIMES)
-    /*压力、流量、液位*/
-    init_site_pid(&pfl_pid, PFL_KP, PFL_KI, PFL_KD);
-    /*温度系统*/
     init_site_pid(&temp_pid, TEMP_KP, TEMP_KI, TEMP_KD);
+#else
+#define TEMP_KP 1.0e1F
+#define TEMP_KI 1.5e-1F // 1.0e-1F
+#define TEMP_KD 5.0e-1F // 2.0e-1F
+
+    init_increment_pid(&temp_pid, TEMP_KP, TEMP_KI, TEMP_KD);
+#endif
     // #undef SEAMPING_TIMES
     // #undef INTERGRAL_TIMES
     // #undef DIFF_TIMES
@@ -455,41 +637,53 @@ static void pid_init(void)
  */
 static void adjust_inverter_out_handle(pmeasure_t pm)
 {
-    // float ratio = 0;
     pModbusHandle pd = (pModbusHandle)pm->phandle;
+    static uint8_t last_site = 0;
+    float output_current = CURRENT_LOWER;
+
+    if (pd == NULL || pm == NULL || pm->presour == NULL)
+        return;
+
     padjust_t pa = &pm->presour->adjust[Get_Sensor(sensor_pressure)];
     struct measure *pthis = &pm->me[0];
-    static uint8_t last_site = 0;
-
-    if (pd == NULL || pm == NULL || pm->presour == NULL ||
-        pd == NULL || pthis == NULL)
-        return;
 
     uint8_t current_site = Get_Sensor(pthis->front.cur_sensor);
     if (pthis->front.state == proj_onging)
         pa = &pm->presour->adjust[current_site];
 
     /*防止变频器反向增大*/
-    if (pa->comp_val < 4.0F)
-        pa->comp_val = 4.0F;
+    // if (pa->comp_val < 4.0F)
+    //     pa->comp_val = 4.0F;
     // float ratio = get_ratio(pa);
     // // ratio = __Get_Ratio(pa->tar_val);
     // pa->comp_val += get_target_microcompensate(pa->cur_val, pa->tar_val, ratio);
     /*传感器发生变化时，复位目标pid*/
     if ((!pa->tar_val) || (last_site != current_site))
     {
-        init_site_pid(&pfl_pid, PFL_KP, PFL_KI, PFL_KD);
-        pa->comp_val = 4.0F;
+        // init_site_pid(&pfl_pid, PFL_KP, PFL_KI, PFL_KD);
+        init_increment_pid(&pfl_pid, PFL_KP, PFL_KI, PFL_KD);
+        pa->comp_val = 0;
         last_site = current_site;
     }
     else
     {
-        pa->comp_val += get_pid_out(&pfl_pid, pa->cur_val, pa->tar_val);
+        // float cur_out = get_site_pid_out(&pfl_pid, pa->cur_val, pa->tar_val);
+        float cur_out = get_incremental_pid_out(&pfl_pid, pa->cur_val, pa->tar_val);
+
+        float upper_limit = pm->limits[current_site * 4U], lower_limit = pm->limits[current_site * 4U + 1U];
+        pa->comp_val += cur_out;
+        output_current = Get_Target_mA(pa->comp_val, upper_limit, lower_limit);
     }
+
+    /*电流输出限幅*/
+    output_current = output_current < CURRENT_LOWER ? CURRENT_LOWER
+                     : output_current > (CURRENT_UPPER + CURRENT_LOWER)
+                         ? (CURRENT_UPPER + CURRENT_LOWER)
+                         : output_current;
 
     /*写入固定输出通道：默认写入通道0*/
     if (!pd->Mod_Operatex(pd, HoldRegister, Write, OUT_ANALOG_START_ADDR,
-                          (uint8_t *)&pa->comp_val, sizeof(float)))
+                          (uint8_t *)&output_current, sizeof(float)))
     {
 #if (SMODBUS_USING_DEBUG)
         MEASURE_DEBUG_D("@error:Hold register write failed!\r\n");
@@ -550,21 +744,30 @@ MSH_CMD_EXPORT(set_pwm, set_pwm sample
 static void adjust_temperature_out_handle(pmeasure_t pm)
 {
 #define PWM_DUTY_MAX 100.0F
-#define MIN_COMPAL_VAL 35.0F
+#define MIN_COMPAL_VAL 1.0F
     pModbusHandle pd = (pModbusHandle)pm->phandle;
     if (pm == NULL || pd == NULL || pm->presour == NULL)
         return;
+
     padjust_t pa = &pm->presour->adjust[Get_Sensor(sensor_temperature)];
 
     if (!pa->tar_val)
     {
-        // pid_init();
+// pid_init();
+#if (USING_TEMPERATURE_SITE_PID == 1)
         init_site_pid(&temp_pid, TEMP_KP, TEMP_KI, TEMP_KD);
+#else
+        init_increment_pid(&temp_pid, TEMP_KP, TEMP_KI, TEMP_KD);
+#endif
         pa->comp_val = 0;
     }
     else
     {
-        pa->comp_val = get_pid_out(&temp_pid, pa->cur_val, pa->tar_val);
+#if (USING_TEMPERATURE_SITE_PID == 1)
+        pa->comp_val = get_site_pid_out(&temp_pid, pa->cur_val, pa->tar_val);
+#else
+        pa->comp_val += get_incremental_pid_out(&temp_pid, pa->cur_val, pa->tar_val);
+#endif
         pa->comp_val = pa->comp_val < MIN_COMPAL_VAL
                            ? MIN_COMPAL_VAL
                        : pa->comp_val > PWM_DUTY_MAX ? PWM_DUTY_MAX
@@ -578,31 +781,6 @@ static void adjust_temperature_out_handle(pmeasure_t pm)
 #undef PWM_DUTY_MAX
 #undef MIN_COMPAL_VAL
 }
-
-/**
- * @brief	通用传感器数据采集
- * @details
- * @param	__operate 操作函数
- * @param   __next_sensor 下一个校准传感器
- * @param   __sensor_id 传感器id
- * @param   __end 结束操作
- * @retval  none
- */
-#define Set_Measure(__operate, __next_sensor, __sensor_id, __end)                      \
-    do                                                                                 \
-    {                                                                                  \
-        if (pa->point)                                                                 \
-            pa->tar_val += pa->offset_val;                                             \
-        __operate;                                                                     \
-        pm->presour->his_data[pthis->cur_node][0] = pm->presour->data[__sensor_id][0]; \
-        pm->presour->his_data[pthis->cur_node][1] = pm->presour->data[__sensor_id][1]; \
-        pthis->cur_node++;                                                             \
-        if (!(--pa->point))                                                            \
-        {                                                                              \
-            pthis->front.cur_sensor = __next_sensor;                                   \
-            __end;                                                                     \
-        }                                                                              \
-    } while (0)
 
 /**
  * @brief	采样系统入口参数检测
@@ -787,13 +965,18 @@ void set_measure_information(pmeasure_t pm,
     // if (pa->point)
     //     pa->tar_val += pa->offset_val;
     operate_target_switch(pm, sw, mea_set);
-    uint8_t this_offset = pthis - pm->me;
-    uint8_t base_addr = this_offset ? 12U + this_offset * 6U : 0U;
-    if ((base_addr + pthis->cur_node) < sizeof(pm->presour->his_data) / sizeof(pm->presour->his_data[0]))
-    {
-        memcpy(&pm->presour->his_data[base_addr + pthis->cur_node][0], &pm->presour->data[sensor_id][0],
-               sizeof(pm->presour->data[0]));
-    }
+    // uint8_t this_offset = pthis - pm->me;
+    // uint8_t base_addr = this_offset ? 12U + this_offset * 6U : 0U;
+    // if ((base_addr + pthis->cur_node) < sizeof(pm->presour->his_data) / sizeof(pm->presour->his_data[0]))
+    // {
+    //     memcpy(&pm->presour->his_data[base_addr + pthis->cur_node][0], &pm->presour->data[sensor_id][0],
+    //            sizeof(pm->presour->data[0]));
+    // }
+    meas_his_data_t history = {
+        .sensor_id = sensor_id,
+    };
+    memcpy(&history.data, &pm->presour->data[sensor_id][0], sizeof(history.data));
+    history_data_write_tsdb(&measure_tsdb, &history);
     pthis->cur_node++;
 
     if (pa->point <= 0)
@@ -805,6 +988,8 @@ void set_measure_information(pmeasure_t pm,
     {
         pthis->front.cur_sensor = next_sensor;
         reset_soft_timer_count(pm->presour->timer, timer_id); // 解决多个传感器间产生暂停周期的问题
+        pm->presour->adjust[Get_Sensor(next_sensor)].comp_val = 0;
+        // rt_thread_mdelay(10000);
         if (state)
         {
             pthis->front.state = proj_complete;
@@ -883,7 +1068,7 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
     pthis->front.percentage = get_system_percentage(pthis->cur_node, (pthis->back.offset + 1.0F) * 3U - 1U);
 
     /*清空对应阀门*/
-    Reset_Action(pm, sw_pressure, 2U);
+    // Reset_Action(pm, sw_pressure, 2U);
     /*关闭变频器*/
     // Close_inverter(pa);
 
@@ -891,7 +1076,10 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
     {
     case sensor_pressure:
     {
-        // Set_Measure(, sensor_flow, Get_Sensor(sensor_pressure), );
+        /*快速重复启动时，清除上一次液位电磁阀累计时间*/
+        pm->presour->timer[tim_id_close_level].count = 0;
+        /*关闭压力电磁阀*/
+        Close_Qx(sw_pressure);
         set_measure_information(pm,
                                 pa,
                                 pthis,
@@ -909,7 +1097,6 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
     {
         /*检测流量时，获得压力结果*/
         set_test_sensor_result(pm, Get_Sensor(sensor_pressure), pre_measure_flag);
-        // Set_Measure(Open_Qx(sw_pressure), sensor_level, Get_Sensor(sensor_flow), );
         set_measure_information(pm,
                                 pa,
                                 pthis,
@@ -928,9 +1115,10 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
     {
         /*检测液位时，获得流量结果*/
         set_test_sensor_result(pm, Get_Sensor(sensor_flow), flo_measure_flag);
+        /*延时10s关闭压力阀：等待液体完全流回水箱*/
+        rt_thread_mdelay(10000);
+        Close_Qx(sw_pressure);
         /*标志本轮传感器校准完毕*/
-        // Set_Measure(Open_Qx(sw_level), sensor_null, Get_Sensor(sensor_level),
-        //             Set_Measure_Complete(pthis));
         set_measure_information(pm,
                                 pa,
                                 pthis,
@@ -1042,8 +1230,6 @@ static void temperature_measure_system(pmeasure_t pm, struct measure *pthis)
     // Reset_Action(pm, 2, 1U);
     Open_Qx(sw_fan);
 
-    // Set_Measure(, sensor_null, Get_Sensor(sensor_temperature),
-    //             Set_Measure_Complete(pthis));
     set_measure_information(pm,
                             pa,
                             pthis,
@@ -1122,8 +1308,6 @@ static void conductivity_measure_system(pmeasure_t pm, struct measure *pthis)
     /*关闭加水、废液排空电磁阀*/
     // Reset_Action(pm, sw_add_level, 2U);
 
-    // Set_Measure(, sensor_null, Get_Sensor(sensor_conductivity),
-    //             Set_Measure_Complete(pthis));
     set_measure_information(pm,
                             pa,
                             pthis,
@@ -1141,6 +1325,18 @@ static void conductivity_measure_system(pmeasure_t pm, struct measure *pthis)
     /*关闭加水、废液排空电磁阀*/
     // Reset_Action(pm, sw_add_level, 2U);
     /*关闭动画*/
+}
+
+/**
+ * @brief	校准系统输出控制事件
+ * @details
+ * @param	none
+ * @retval  none
+ */
+void measure_output_control_event(void)
+{
+    adjust_inverter_out_handle(&measure_object);
+    adjust_temperature_out_handle(&measure_object);
 }
 
 /**
@@ -1172,19 +1368,4 @@ void measure_poll(void)
             pthis->measure_event(&measure_object, pthis);
     }
     measure_coil_handle(&measure_object);
-    // adjust_inverter_out_handle(&measure_object);
-    // adjust_temperature_out_handle(&measure_object);
-}
-
-/**
- * @brief	校准系统采样事件
- * @details
- * @param	none
- * @retval  none
- */
-void measure_sampling(void)
-{
-    // measure_sensor_data_handle(&measure_object);
-    adjust_inverter_out_handle(&measure_object);
-    adjust_temperature_out_handle(&measure_object);
 }

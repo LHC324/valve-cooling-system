@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>__STDC_LIMIT_MACROS, STM32F103xE, USE_HAL_DRIVER, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, __RTTHREAD__, RT_USING_ARM_LIBC</Define>
               <Undefine></Undefine>
-              <IncludePath>applications;applications;applications\lhc_modbus\Inc;applications\lhc_dwin\Inc;board\CubeMX_Config\Inc;.;packages\CmBacktrace-v1.4.1;rt-thread\components\libc\compilers\common\include;rt-thread\components\libc\compilers\common\extension;rt-thread\components\libc\compilers\common\extension\fcntl\octal;rt-thread\libcpu\arm\common;rt-thread\libcpu\arm\cortex-m3;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\include;board;board\CubeMX_Config\Inc;board\ports;libraries\HAL_Drivers;libraries\HAL_Drivers\config;libraries\HAL_Drivers\CMSIS\Include;rt-thread\components\dfs\include;rt-thread\components\finsh;.;rt-thread\include;libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include;libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc;rt-thread\components\libc\posix\io\poll;rt-thread\components\libc\posix\io\stdio;rt-thread\components\libc\posix\ipc</IncludePath>
+              <IncludePath>applications;applications;applications\lhc_modbus\Inc;applications\lhc_dwin\Inc;board\CubeMX_Config\Inc;.;packages\CmBacktrace-v1.4.1;rt-thread\components\libc\compilers\common\include;rt-thread\components\libc\compilers\common\extension;rt-thread\components\libc\compilers\common\extension\fcntl\octal;rt-thread\libcpu\arm\common;rt-thread\libcpu\arm\cortex-m3;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\include;board;board\CubeMX_Config\Inc;board\ports;libraries\HAL_Drivers;libraries\HAL_Drivers\config;libraries\HAL_Drivers\CMSIS\Include;rt-thread\components\fal\inc;rt-thread\components\dfs\include;rt-thread\components\finsh;packages\FlashDB-v1.1.2\inc;.;rt-thread\include;libraries\STM32F1xx_HAL\CMSIS\Device\ST\STM32F1xx\Include;libraries\STM32F1xx_HAL\STM32F1xx_HAL_Driver\Inc;rt-thread\components\libc\posix\io\poll;rt-thread\components\libc\posix\io\stdio;rt-thread\components\libc\posix\ipc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -383,39 +383,9 @@
           <GroupName>Applications</GroupName>
           <Files>
             <File>
-              <FileName>tool.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\lhc_dwin\Src\tool.c</FilePath>
-            </File>
-            <File>
-              <FileName>flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>measure.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\measure.c</FilePath>
-            </File>
-            <File>
               <FileName>dwin.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\lhc_dwin\Src\dwin.c</FilePath>
-            </File>
-            <File>
-              <FileName>dwin_port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\lhc_dwin\Src\dwin_port.c</FilePath>
-            </File>
-            <File>
-              <FileName>small_modbus_port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\lhc_modbus\Src\small_modbus_port.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32_irq.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\stm32_irq.c</FilePath>
             </File>
             <File>
               <FileName>small_modbus.c</FileName>
@@ -423,14 +393,44 @@
               <FilePath>applications\lhc_modbus\Src\small_modbus.c</FilePath>
             </File>
             <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>dwin_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\lhc_dwin\Src\dwin_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>measure.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\measure.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_irq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\stm32_irq.c</FilePath>
+            </File>
+            <File>
+              <FileName>small_modbus_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\lhc_modbus\Src\small_modbus_port.c</FilePath>
+            </File>
+            <File>
               <FileName>io_signal.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\io_signal.c</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>tool.c</FileName>
               <FileType>1</FileType>
-              <FilePath>applications\main.c</FilePath>
+              <FilePath>applications\lhc_dwin\Src\tool.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -630,6 +630,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Fal</GroupName>
+          <Files>
+            <File>
+              <FileName>fal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>rt-thread\components\fal\src\fal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>rt-thread\components\fal\src\fal.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal_rtt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>rt-thread\components\fal\src\fal_rtt.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal_partition.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>rt-thread\components\fal\src\fal_partition.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Filesystem</GroupName>
           <Files>
             <File>
@@ -681,6 +706,41 @@
               <FileName>msh_file.c</FileName>
               <FileType>1</FileType>
               <FilePath>rt-thread\components\finsh\msh_file.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FlashDB</GroupName>
+          <Files>
+            <File>
+              <FileName>fdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v1.1.2\src\fdb.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_file.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v1.1.2\src\fdb_file.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_kvdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v1.1.2\src\fdb_kvdb.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_tsdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v1.1.2\src\fdb_tsdb.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v1.1.2\src\fdb_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_cmd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v1.1.2\src\fdb_cmd.c</FilePath>
             </File>
           </Files>
         </Group>

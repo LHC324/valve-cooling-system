@@ -29,6 +29,8 @@ static void Dwin_SureOrCancelHandle(pDwinHandle pd, uint8_t site);
 static void Dwin_ButtonEventHandle(pDwinHandle pd, uint8_t site);
 static void Dwin_ClearHistoryData(pDwinHandle pd, uint8_t site);
 static void Dwin_DeveloperMode(pDwinHandle pd, uint8_t site);
+static void Dwin_Get_Rtc(pDwinHandle pd, uint8_t site);
+static void Dwin_Get_Rtc_From_Network(pDwinHandle pd, uint8_t site);
 // static void Dwin_Set_ExpeStd(pDwinHandle pd, uint8_t site);
 static void set_measure_system_state(struct measure *pe, measure_project_state state);
 
@@ -90,6 +92,10 @@ Event_Map Dwin_ObjMap[] = {
     {.addr = SYSTEM_STOP_ADDR, .upper = 0xFFFF, .lower = 0, .event = (dwin_struct__)Dwin_ButtonEventHandle},
     {.addr = HISTORY_DATA_CLEAN_ADDR, .upper = 0xFFFF, .lower = 0, .event = (dwin_struct__)Dwin_ClearHistoryData},
     {.addr = DEVELOPER_MODE_ADDR, .upper = 0xFFFF, .lower = 0, .event = (dwin_struct__)Dwin_DeveloperMode},
+    /*读取迪文系统变量*/
+    {.addr = DWIN_SYSTEM_READ_RTC_ADDR, .upper = 0xFFFF, .lower = 0, .event = (dwin_struct__)Dwin_Get_Rtc},
+    {.addr = NETWORK_TIME_UPDATE_ADDR, .upper = 0xFFFF, .lower = 0, .event = (dwin_struct__)Dwin_Get_Rtc_From_Network},
+    {.addr = Dwin_SCREEN_TIME_UPDATE_ADDR, .upper = 0xFFFF, .lower = 0, .event = (dwin_struct__)Dwin_Get_Rtc},
 };
 
 #define Dwin_EventSize (sizeof(Dwin_ObjMap) / sizeof(Event_Map))
@@ -272,8 +278,8 @@ static void Dwin_Save(pDwinHandle pd)
     {
         // __RESET_FLAG(ps->flag, measure_save);
         ps->crc16 = get_crc16((uint8_t *)ps, sizeof(measure_t) - sizeof(ps->crc16), 0xFFFF);
-        FLASH_Init();
-        FLASH_Write(PARAM_SAVE_ADDRESS, (uint16_t *)ps, sizeof(measure_t));
+        onchip_flash_init();
+        operate_onchip_flash(PARAM_SAVE_ADDRESS, (uint16_t *)ps, sizeof(measure_t));
 #if (DWIN_USING_DEBUG)
         DWIN_DEBUG("@note:DwinObject save param,crc: %#x\r\n", ps->crc16);
 #endif
@@ -646,6 +652,14 @@ static void Dwin_ButtonEventHandle(pDwinHandle pd, uint8_t site)
         switchx = sw_empty;
     }
     break;
+    case 0xF4: /*改变压力电磁阀状态*/
+    {
+    }
+    break;
+    case 0xF5: /*改变液位电磁阀状态*/
+    {
+    }
+    break;
     default:
         break;
     }
@@ -722,6 +736,96 @@ static void Dwin_DeveloperMode(pDwinHandle pd, uint8_t site)
     }
 
 #undef DEVOLOPER_PAGE
+}
+
+static uint32_t dwin_rtc_count;
+
+/**
+ * @brief  保存迪文屏幕时间到本地
+ * @param  time_stamp 当前时间戳
+ * @retval None
+ */
+static void set_dwin_rtc(uint32_t time_stamp)
+{
+    dwin_rtc_count = time_stamp;
+}
+
+/**
+ * @brief  获取迪文屏幕时间戳
+ * @param  None
+ * @retval None
+ */
+uint32_t get_dwin_rtc(void)
+{
+    return dwin_rtc_count;
+}
+
+/**
+ * @brief  获取迪文屏幕时间戳自更新
+ * @note   处于精度考虑可以放在标准1s定时器中断中
+ * @param  None
+ * @retval None
+ */
+void dwin_rtc_count_inc(void)
+{
+    dwin_rtc_count++;
+}
+
+/**
+ * @brief   查看当前系统时间
+ * @details
+ * @param   none
+ * @retval  none
+ */
+static void see_cur_time(void)
+{
+    rtc_t cur_rtc;
+
+    linux_stamp_to_std_time(&cur_rtc, dwin_rtc_count, 8);
+
+    DWIN_DEBUG("@note:time_stamp:%dS.\r\n%d/%d/%d/%d %d:%d:%d.\r\n",
+               dwin_rtc_count, cur_rtc.date.year + 2000, cur_rtc.date.month, cur_rtc.date.date,
+               cur_rtc.date.weelday, cur_rtc.time.hours, cur_rtc.time.minutes, cur_rtc.time.seconds);
+}
+MSH_CMD_EXPORT(see_cur_time, View the current system time.);
+
+/**
+ * @brief  迪文屏获取实时时钟
+ * @param  pd 迪文屏幕对象句柄
+ * @param  site 记录当前Map中位置
+ * @retval None
+ */
+static void Dwin_Get_Rtc(pDwinHandle pd, uint8_t site)
+{
+    rtc_t dwin_rtc = {
+        .date.year = pd->Uart.rx.pbuf[7],
+        .date.month = pd->Uart.rx.pbuf[8],
+        .date.date = pd->Uart.rx.pbuf[9],
+        .date.weelday = pd->Uart.rx.pbuf[10],
+        .time.hours = pd->Uart.rx.pbuf[11],
+        .time.minutes = pd->Uart.rx.pbuf[12],
+        .time.seconds = pd->Uart.rx.pbuf[13],
+    };
+    uint32_t temp_rtc = std_time_to_linux_stamp(&dwin_rtc);
+    set_dwin_rtc(temp_rtc);
+#if (DWIN_USING_DEBUG)
+    DWIN_DEBUG("@note:exe'Dwin_Get_Rtc',time_stamp:%dS.\r\n%d/%d/%d/%d %d:%d:%d.\r\n",
+               temp_rtc, dwin_rtc.date.year + 2000, dwin_rtc.date.month, dwin_rtc.date.date,
+               dwin_rtc.date.weelday, dwin_rtc.time.hours, dwin_rtc.time.minutes, dwin_rtc.time.seconds);
+#endif
+}
+
+/**
+ * @brief  迪文屏获取从网络模块获取实时时钟
+ * @param  pd 迪文屏幕对象句柄
+ * @param  site 记录当前Map中位置
+ * @retval None
+ */
+static void Dwin_Get_Rtc_From_Network(pDwinHandle pd, uint8_t site)
+{
+#if (DWIN_USING_DEBUG)
+    DWIN_DEBUG("@note:exe'Dwin_Get_Rtc_From_Network'.\r\n");
+#endif
 }
 
 /**

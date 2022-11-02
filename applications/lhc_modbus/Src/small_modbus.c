@@ -349,6 +349,7 @@ static void Modbus_Poll(pModbusHandle pd)
 
 /**
  * @brief  Modbus协议读取/写入寄存器
+ * @note   pd->Mod_Lock非空时（加锁）时，请不要在软件定时器或中断中调用该函数
  * @param  pd 需要初始化对象指针
  * @param  regaddr 寄存器地址[寄存器起始地址从0开始]
  * @param  pdat 数据指针
@@ -358,6 +359,8 @@ static void Modbus_Poll(pModbusHandle pd)
 static bool Modbus_Operatex(pModbusHandle pd, Regsiter_Type reg_type, Regsiter_Operate operate,
                             uint16_t addr, uint8_t *pdata, uint8_t len)
 {
+	if (pd == NULL)
+		return true;
     if (pd->Mod_Lock)
         pd->Mod_Lock();
     uint32_t max = reg_type < InputRegister

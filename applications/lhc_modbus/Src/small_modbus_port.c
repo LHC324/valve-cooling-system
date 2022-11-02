@@ -193,7 +193,7 @@ static void lhc_ota_update(pModbusHandle pd)
 #elif (SMODBUS_USING_RTOS == 2)
     rt_enter_critical();
 #endif
-    FLASH_Write(OTA_UPDATE_SAVE_ADDRESS, (uint16_t *)&update_flag, sizeof(update_flag));
+    operate_onchip_flash(OTA_UPDATE_SAVE_ADDRESS, (uint16_t *)&update_flag, sizeof(update_flag));
 #if (SMODBUS_USING_RTOS == 1)
     taskEXIT_CRITICAL();
 #define __RESET_SYSTEM
