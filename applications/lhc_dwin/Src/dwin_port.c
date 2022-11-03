@@ -16,6 +16,7 @@
 #include "dwin_port.h"
 #include "measure.h"
 #include "flash.h"
+#include <flashdb.h>
 
 /*用户函数声明区*/
 static void Dwin_Send(pDwinHandle pd);
@@ -273,6 +274,9 @@ static void Dwin_Save(pDwinHandle pd)
     /*运行过程中不允许修改系统参数*/
     for (uint8_t i = 0; i < SYSYTEM_NUM; ++i)
         set_measure_system_state(&ps->me[i], proj_null);
+    /*清除系统错误标志、校验结果*/
+    ps->flag &= 0x8000;
+
     /*系统参数存储*/
     // if (__GET_FLAG(ps->flag, measure_save))
     {
@@ -409,32 +413,106 @@ static void Dwin_Back_ParamHandle(pDwinHandle pd, uint8_t site)
 #undef DWIN_PARAM_OFFSET_SIT
 }
 
+#define HISTORY_DATA_RECORD_MAX 20U
+
+typedef struct
+{
+    /*当前传感器id*/
+    uint8_t cur_sensor;
+    /*当前迭代次数*/
+    uint8_t cur_count;
+    /*传感器历史数据暂存缓冲区*/
+    uint8_t dwin_his_data_buf[HISTORY_DATA_RECORD_MAX * 2U * sizeof(float)];
+} dwin_his_t;
+
+static dwin_his_t dwin_his;
+#undef HISTORY_DATA_RECORD_MAX
+/**
+ * @brief   通过 TSDB 的迭代器 API ，在每次迭代时会自动执行 query_cb 回调函数，实现对 TSDB 中所有记录的查询
+ * @details
+ * @param   none
+ * @retval  none
+ */
+static bool dwin_query_cb(fdb_tsl_t tsl, void *arg)
+{
+    struct fdb_blob blob;
+    meas_his_data_t history;
+    fdb_tsdb_t db = arg;
+    dwin_his_t *ph = &dwin_his;
+    uint8_t cur_site = ph->cur_count * sizeof(float) * 2U;
+    rtc_t cur_rtc;
+
+    if (tsl == NULL || arg == NULL)
+        return true;
+
+    linux_stamp_to_std_time(&cur_rtc, tsl->time, 8);
+
+    fdb_blob_read((fdb_db_t)db, fdb_tsl_to_blob(tsl, fdb_blob_make(&blob, &history, sizeof(history))));
+
+    /*确保数据地址不越界*/
+    if (cur_site >= sizeof(ph->dwin_his_data_buf))
+    {
+#if (DWIN_USING_DEBUG)
+        DWIN_DEBUG_R("@error:The current data position is out of bounds:%d.\r\n", cur_site);
+#endif
+        return true;
+    }
+    /*找到目标传感器数据*/
+    if (history.sensor_id == ph->cur_sensor)
+    {
+        memcpy(&ph->dwin_his_data_buf[cur_site], history.data, sizeof(history.data) - sizeof(history.data[2]));
+        ph->cur_count++;
+#if (DWIN_USING_DEBUG)
+        DWIN_DEBUG_R("@note:[dwin_query_cb] queried a TSL: time: %d/%d/%d/%d %d:%d:%d, sn: %d, std: %f, test: %f, error: %f\r\n",
+                     cur_rtc.date.year + 2000, cur_rtc.date.month, cur_rtc.date.date, cur_rtc.date.weelday,
+                     cur_rtc.time.hours, cur_rtc.time.minutes, cur_rtc.time.seconds, history.sensor_id,
+                     history.data[0], history.data[1], history.data[2]);
+#endif
+    }
+
+    return false;
+}
+
+/**
+ * @brief   查询tsdb数据库所有数据,并筛选出目标数据
+ * @details
+ * @param   none
+ * @retval  none
+ */
+static void select_target_data(void)
+{
+    extern struct fdb_tsdb measure_tsdb;
+    fdb_tsdb_t ptsdb = &measure_tsdb;
+
+    /* query all TSL in TSDB by iterator */
+    fdb_tsl_iter(ptsdb, dwin_query_cb, ptsdb);
+}
 typedef struct
 {
     measure_system code;
-    uint8_t base_addr;
-} history_struct;
+    uint8_t sensor_id;
+} history_t;
 
 /**
- * @brief  获取历史数据基地址
+ * @brief  获取目标传感器
  * @param  ms_code 系统编码
  * @retval None
  */
-static uint8_t get_history_base_addr(measure_system ms_code)
+static uint8_t get_target_sensor(measure_system ms_code)
 {
-    history_struct his_group[] = {
+    history_t his_group[] = {
         {pre_his_cmd, 0},
-        {flo_his_cmd, 6},
-        {lel_his_cmd, 12},
-        {temp_his_cmd, 18},
-        {con_his_cmd, 24},
+        {flo_his_cmd, 1},
+        {lel_his_cmd, 2},
+        {temp_his_cmd, 3},
+        {con_his_cmd, 4},
     };
 #define HIS_GROUP_SIZE() (sizeof(his_group) / sizeof(his_group[0]))
 
-    for (history_struct *p = his_group; p < his_group + HIS_GROUP_SIZE(); ++p)
+    for (history_t *p = his_group; p < his_group + HIS_GROUP_SIZE(); ++p)
     {
         if (p->code == ms_code)
-            return p->base_addr;
+            return p->sensor_id;
     }
     return 0xFF;
 }
@@ -448,10 +526,11 @@ static uint8_t get_history_base_addr(measure_system ms_code)
 static void Dwin_Cur_Operate_Distinguish(pDwinHandle pd, uint8_t site)
 {
 #define DWIN_PAGE_TOTAL_NUM 27U
+
     pmeasure_t ps = (pmeasure_t)pd->Slave.pHandle;
     uint8_t data = (uint8_t)Get_Dwin_Data(pd->Uart.rx.pbuf, 7U, pd->Uart.rx.pbuf[6U]);
     uint16_t page = 0x01;
-    uint8_t buf[MEASURE_MAX_POINT * 2U * sizeof(float)];
+    dwin_his_t *ph = &dwin_his;
 
     if (ps == NULL)
         return;
@@ -483,29 +562,32 @@ static void Dwin_Cur_Operate_Distinguish(pDwinHandle pd, uint8_t site)
         page = 0x01;
 
     /*历史数上报*/
-    memset(buf, 0x00, sizeof(buf));
-    uint8_t base_addr = get_history_base_addr(ps->current_system);
-    /*确认用户触控区域为历史数据显示*/
-    if (base_addr != 0xFF)
-    {
-        // /*拷贝数据到临时缓冲区*/
-        // for (uint8_t i = 0; i < MEASURE_MAX_POINT; ++i)
-        //     memcpy(&buf[i * 8U], &ps->presour->his_data[base_addr + i][0],
-        //            sizeof(ps->presour->his_data[0]));
-        // /*大小端数据交换*/
-        // for (uint8_t i = 0; i < MEASURE_MAX_POINT * 2U; ++i)
-        //     endian_swap(&buf[i * sizeof(float)], 0, sizeof(float));
+    memset(ph->dwin_his_data_buf, 0x00, sizeof(ph->dwin_his_data_buf));
 
-        // pd->Dw_Write(pd, PRE_SENSOR_HIS_DATA_ADDR, buf, sizeof(buf));
-        // /*确保屏幕能够反应*/
-        // if (pd->Dw_Delay)
-        //     pd->Dw_Delay(5);
+    ph->cur_sensor = get_target_sensor(ps->current_system);
+    /*清空查询记录*/
+    ph->cur_count = 0;
+    /*查询历史数据*/
+    select_target_data();
+    /*历史数据非空*/
+    if (ph->cur_sensor != 0xFF)
+    {
+        /*大小端数据交换*/
+        for (uint8_t i = 0; i < sizeof(ph->dwin_his_data_buf) / sizeof(float); ++i)
+            endian_swap(&ph->dwin_his_data_buf[i * sizeof(float)], 0, sizeof(float));
+
+        pd->Dw_Write(pd, PRE_SENSOR_HIS_DATA_ADDR, ph->dwin_his_data_buf, sizeof(ph->dwin_his_data_buf));
+        /*确保屏幕能够反应*/
+        if (pd->Dw_Delay)
+            pd->Dw_Delay(5);
     }
 
 #if (DWIN_USING_DEBUG)
     DWIN_DEBUG("@note:exe'Dwin_Cur_Operate_Distinguish',switch page: %#x\r\n", page);
 #endif
     pd->Dw_Page(pd, page);
+
+#undef DWIN_PAGE_TOTAL_NUM
 }
 
 /**
@@ -680,6 +762,10 @@ static void Dwin_ButtonEventHandle(pDwinHandle pd, uint8_t site)
 static void Dwin_ClearHistoryData(pDwinHandle pd, uint8_t site)
 {
     uint8_t data = (uint8_t)Get_Dwin_Data(pd->Uart.rx.pbuf, 7U, pd->Uart.rx.pbuf[6U]);
+    extern struct fdb_tsdb measure_tsdb;
+    fdb_tsdb_t ptsdb = &measure_tsdb;
+
+    fdb_tsl_clean(ptsdb);
 #if (DWIN_USING_DEBUG)
     DWIN_DEBUG("@note:exe'Dwin_ClearHistoryData',key_code:%#x.\r\n", data);
 #endif

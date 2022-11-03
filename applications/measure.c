@@ -150,12 +150,6 @@ static void flash_db_init(void)
     }
 }
 
-typedef struct
-{
-    uint32_t sensor_id;
-    float data[3];
-} meas_his_data_t;
-
 /**
  * @brief	历史数据写入tsdb数据库
  * @details
@@ -184,7 +178,7 @@ static void history_data_write_tsdb(fdb_tsdb_t ptsdb, meas_his_data_t *pdata)
  * @param   none
  * @retval  none
  */
-static bool query_cb(fdb_tsl_t tsl, void *arg)
+static bool measure_query_cb(fdb_tsl_t tsl, void *arg)
 {
     struct fdb_blob blob;
     meas_his_data_t history;
@@ -198,7 +192,7 @@ static bool query_cb(fdb_tsl_t tsl, void *arg)
 
     fdb_blob_read((fdb_db_t)db, fdb_tsl_to_blob(tsl, fdb_blob_make(&blob, &history, sizeof(history))));
 #if (MEASURE_USING_DEBUG)
-    MEASURE_DEBUG_R("@note:[query_cb] queried a TSL: time: %d/%d/%d/%d %d:%d:%d, sn: %d, std: %f, test: %f, error: %f\r\n",
+    MEASURE_DEBUG_R("@note:[measure_query_cb] queried a TSL: time: %d/%d/%d/%d %d:%d:%d, sn: %d, std: %f, test: %f, error: %f\r\n",
                     cur_rtc.date.year + 2000, cur_rtc.date.month, cur_rtc.date.date, cur_rtc.date.weelday,
                     cur_rtc.time.hours, cur_rtc.time.minutes, cur_rtc.time.seconds, history.sensor_id,
                     history.data[0], history.data[1], history.data[2]);
@@ -217,7 +211,7 @@ static void select_all(void)
 {
     fdb_tsdb_t ptsdb = &measure_tsdb;
     /* query all TSL in TSDB by iterator */
-    fdb_tsl_iter(ptsdb, query_cb, ptsdb);
+    fdb_tsl_iter(ptsdb, measure_query_cb, ptsdb);
 }
 MSH_CMD_EXPORT(select_all, View all historical data.);
 
@@ -935,7 +929,9 @@ static void set_test_sensor_result(pmeasure_t pm,
     if (pm->presour->data[sensor_id][2U] > pm->expe_std[sensor_id])
         __RESET_FLAG(pm->flag, (uint8_t)sensor_flag);
     else
-        __SET_FLAG(pm->flag, (uint8_t)sensor_flag);
+        /*误差为负数：不合格*/
+        if (pm->presour->data[sensor_id][2U] > 0)
+            __SET_FLAG(pm->flag, (uint8_t)sensor_flag);
 }
 
 /**
@@ -948,6 +944,7 @@ static void set_test_sensor_result(pmeasure_t pm,
  * @param   next_sensor 下一个目标传感器
  * @param   sensor_flag 传感器检验结果标准
  * @param   state 系统状态
+ * @param   timer_id 目标传感器组软件定时器id
  * @retval  None
  */
 void set_measure_information(pmeasure_t pm,
@@ -987,14 +984,14 @@ void set_measure_information(pmeasure_t pm,
     if (!--pa->point)
     {
         pthis->front.cur_sensor = next_sensor;
+        /*得到传感器检验结果*/
+        set_test_sensor_result(pm, sensor_id, sensor_flag);
         reset_soft_timer_count(pm->presour->timer, timer_id); // 解决多个传感器间产生暂停周期的问题
         pm->presour->adjust[Get_Sensor(next_sensor)].comp_val = 0;
         // rt_thread_mdelay(10000);
         if (state)
         {
             pthis->front.state = proj_complete;
-            /*得到系统最后一个传感器检验结果*/
-            set_test_sensor_result(pm, sensor_id, sensor_flag);
         }
     }
     else /*只有压力、液位、流量系统支持偏移值递增*/
@@ -1086,7 +1083,7 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
                                 sw_max,
                                 Get_Sensor(sensor_pressure),
                                 sensor_flow,
-                                measure_flag_max,
+                                pre_measure_flag,
                                 false,
                                 tim_id_pfl);
         /*打开动画*/
@@ -1096,14 +1093,14 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
     case sensor_flow:
     {
         /*检测流量时，获得压力结果*/
-        set_test_sensor_result(pm, Get_Sensor(sensor_pressure), pre_measure_flag);
+        // set_test_sensor_result(pm, Get_Sensor(sensor_pressure), pre_measure_flag);
         set_measure_information(pm,
                                 pa,
                                 pthis,
                                 sw_pressure,
                                 Get_Sensor(sensor_flow),
                                 sensor_level,
-                                measure_flag_max,
+                                flo_measure_flag,
                                 false,
                                 tim_id_pfl);
         /*打开动画*/
@@ -1114,7 +1111,7 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
     case sensor_level:
     {
         /*检测液位时，获得流量结果*/
-        set_test_sensor_result(pm, Get_Sensor(sensor_flow), flo_measure_flag);
+        // set_test_sensor_result(pm, Get_Sensor(sensor_flow), flo_measure_flag);
         /*延时10s关闭压力阀：等待液体完全流回水箱*/
         rt_thread_mdelay(10000);
         Close_Qx(sw_pressure);

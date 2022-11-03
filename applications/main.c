@@ -490,7 +490,7 @@ void report_thread_entry(void *parameter)
             /*错误代码*/
             buf[5] = (uint8_t)(pm->error_code & 0x00FF);
             /*检验结果*/
-            buf[6] = (uint8_t)((pm->flag & 0xFF00) >> 8U);
+            buf[7] = (uint8_t)((pm->flag & 0xFF00) >> 8U);
             /*系统项目*/
             for (uint8_t this = 0; this < sizeof(pm->me) / sizeof(pm->me[0]); ++this)
             {

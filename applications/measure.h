@@ -184,9 +184,9 @@ extern "C"
         unsigned char coil[COIL_NUM];        /*阀门*/
         unsigned short cartoon[CARTOON_NUM]; /*动画标志组*/
         measure_timer timer[SOFT_TIMER_NUM];
-        adjust_t adjust[MEASURE_MAX_SENSOR_NUM];                                         /*调整对象*/
-        float his_data[(MEASURE_MAX_ROW + 1U) * MEASURE_SENSOR_NUM][MEASURE_MAX_COLUMN]; /*传感器历史记录*/
-        float data[MEASURE_MAX_SENSOR_NUM][3U];                                          /*传感器数据：std、tset、error*/
+        adjust_t adjust[MEASURE_MAX_SENSOR_NUM]; /*调整对象*/
+        // float his_data[(MEASURE_MAX_ROW + 1U) * MEASURE_SENSOR_NUM][MEASURE_MAX_COLUMN]; /*传感器历史记录*/
+        float data[MEASURE_MAX_SENSOR_NUM][3U]; /*传感器数据：std、tset、error*/
     } measure_resources_pools_t;
 
     typedef struct measure_system measure_t;
@@ -212,6 +212,11 @@ extern "C"
     } __attribute__((aligned(4)));
 
 #define sssss sizeof(struct measure_system)
+    typedef struct
+    {
+        unsigned int sensor_id;
+        float data[3];
+    } meas_his_data_t;
 
     extern measure_t measure_object;
     //    extern measure_storage measure_storage_object;
