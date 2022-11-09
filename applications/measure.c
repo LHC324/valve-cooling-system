@@ -281,6 +281,7 @@ int rt_measure_init(void)
     memset(ps->presour, 0x00, sizeof(measure_resources_pools_t));
     /*位置式pid初始化*/
     pid_init();
+    /*实测发现TSDB数据库在每次升级后，原数据库都会被格式化，导致数据丢失*/
     flash_db_init();
     return 0;
 }
@@ -360,7 +361,7 @@ static bool measure_check_error(pmeasure_t pm, uint8_t system_id)
     static uint8_t error_limit_table[] = {18U, 24U, 30U};
     bool result = false;
 
-    if (pd == NULL || pm == NULL || system_id < SYSYTEM_NUM)
+    if (pd == NULL || pm == NULL || system_id > SYSYTEM_NUM)
         return true;
 
     uint8_t cur_error_code = error_limit_table[system_id];
@@ -667,6 +668,13 @@ static void adjust_inverter_out_handle(pmeasure_t pm)
         float upper_limit = pm->limits[current_site * 4U], lower_limit = pm->limits[current_site * 4U + 1U];
         pa->comp_val += cur_out;
         output_current = Get_Target_mA(pa->comp_val, upper_limit, lower_limit);
+        /*液位传感器：变频器输出最大12.5Hz，否则液体溢出*/
+        if (pthis->front.cur_sensor == sensor_level)
+        {
+            float target_current = Get_Target_mA(12.5F, HZ_MAX, HZ_MIN);
+            if (output_current > target_current)
+                output_current = target_current;
+        }
     }
 
     /*电流输出限幅*/
@@ -995,7 +1003,7 @@ void set_measure_information(pmeasure_t pm,
         }
     }
     else /*只有压力、液位、流量系统支持偏移值递增*/
-        if (sensor_id < Get_Sensor(sensor_level))
+        if (sensor_id < Get_Sensor(sensor_temperature))
             pa->tar_val += pa->offset_val;
 }
 
@@ -1009,10 +1017,10 @@ void set_measure_information(pmeasure_t pm,
 static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pthis)
 {
     // pModbusHandle pd = (pModbusHandle)pm->phandle;
-    uint8_t sensor_site = Get_Sensor(sensor_pressure);
-    padjust_t pa = &pm->presour->adjust[sensor_site];
+    // uint8_t sensor_site = Get_Sensor(sensor_pressure);
+    // padjust_t pa = &pm->presour->adjust[sensor_site];
     // struct measure *pthis = &pm->me[0];
-    uint8_t current_site = 0;
+    // uint8_t current_site = 0;
 /*检测系统是否存在错误*/
 #if (SMODBUS_USING_DEBUG)
     // Check_Measure_Param(0, pthis->front.cur_sensor,
@@ -1021,12 +1029,19 @@ static void pressure_flow_level_measure_system(pmeasure_t pm, struct measure *pt
 #endif
 
     /*系统是否存在错误*/
-    // if (measure_check_error(pm, 0))
-    //     return;
+    if (measure_check_error(pm, 0))
+        return;
 
-    current_site = Get_Sensor(pthis->front.cur_sensor);
-    if (pthis->front.cur_sensor != sensor_null)
-        pa = &pm->presour->adjust[current_site];
+    uint8_t current_site = pthis->front.cur_sensor > sensor_null
+                               ? Get_Sensor(pthis->front.cur_sensor)
+                               : 0;
+    if (current_site >= Get_Sensor(sensor_temperature))
+        current_site = 0;
+
+    padjust_t pa = &pm->presour->adjust[current_site];
+
+    // if (pthis->front.cur_sensor != sensor_null)
+    //     pa = &pm->presour->adjust[current_site];
     if (pthis->front.state != proj_onging)
     {
         for (adjust_t *p = &pm->presour->adjust[0];
@@ -1189,8 +1204,8 @@ static void temperature_measure_system(pmeasure_t pm, struct measure *pthis)
         : set_cartoon_state(pm, cartoon_fan, mea_reset); /*关闭风扇动画*/
 
     /*系统是否存在错误*/
-    // if (measure_check_error(pm, 1))
-    //     return;
+    if (measure_check_error(pm, 1))
+        return;
 
     if (pthis->front.state != proj_onging)
     {
@@ -1267,8 +1282,8 @@ static void conductivity_measure_system(pmeasure_t pm, struct measure *pthis)
 #endif
 
     /*系统是否存在错误*/
-    // if (measure_check_error(pm, 2))
-    //     return;
+    if (measure_check_error(pm, 2))
+        return;
 
     if (pthis->front.state != proj_onging)
     {

@@ -98,8 +98,9 @@ extern void MX_DwinInit(void);
 #define HISTORY_DATA_CLEAN_ADDR 0x3003      // 历史数据保存/清除按钮
 #define DEVELOPER_MODE_ADDR 0x3004          // 开发者模式地址
 #define PRE_SENSOR_HIS_DATA_ADDR 0x4000     // 压力传感器历史数据地址
-#define NETWORK_TIME_UPDATE_ADDR 0x5000     // 网络时间更新地址
-#define Dwin_SCREEN_TIME_UPDATE_ADDR 0x5001 // 迪文屏幕时间更新地址
+#define LIMIT_NOTE_PAGE_ADDR 0x5000         // 传感器参数设置界面限制提醒地址
+#define NETWORK_TIME_UPDATE_ADDR 0x6000     // 网络时间更新地址
+#define Dwin_SCREEN_TIME_UPDATE_ADDR 0x6001 // 迪文屏幕时间更新地址
 
 #define PFL_SYSTEM_PAGE_CMD 0x10  // 进入压力、流量、液位系统命令
 #define PRE_HIS_PAGE_CMD 0x11     // 进入压力系统历史数据显示命令

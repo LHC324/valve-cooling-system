@@ -208,6 +208,14 @@ static short int Dwin_GetSignedData(pDwinHandle pd, uint16_t udata)
 static dwin_result Dwin_Recive_Check(pDwinHandle pd)
 {
 #define DWIN_MIN_FRAME_LEN 5U // 3个前导码+2个crc16
+#if (DWIN_USING_DEBUG)
+	DWIN_DEBUG("\r\ndwin_rx_buf[%d]:", dwin_rx_count(pd));
+	for (uint8_t i = 0; i < dwin_rx_count(pd); i++)
+	{
+		DWIN_DEBUG_R("%02X ", dwin_rx_buf[i]);
+	}
+	DWIN_DEBUG_R("\r\n\r\n");
+#endif
 	/*检查帧头*/
 	if ((dwin_rx_buf[0] != 0x5A) || (dwin_rx_buf[1] != 0xA5))
 	{

@@ -374,7 +374,7 @@ typedef struct
 } System_InfoTypeDef;
 
 #define CURRENT_HARDWARE_VERSION 100
-#define CURRENT_SOFT_VERSION 106
+#define CURRENT_SOFT_VERSION 107
 #define SYSTEM_VERSION() ((uint32_t)((CURRENT_SOFT_VERSION << 16U) | CURRENT_HARDWARE_VERSION))
 /**
  * @brief   获取系统信息

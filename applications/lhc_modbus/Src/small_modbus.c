@@ -194,8 +194,11 @@ static Lhc_Modbus_State_Code Modbus_Recive_Check(pModbusHandle pd)
 #endif
         return lhc_mod_err_len;
     }
+     uint8_t lhc_modbus_id = pd->Slave.id;
+    if (pd->type == Smd_Master)
+        lhc_modbus_id = pd->Master.id;
     /*检查是否是目标从站*/
-    if (Get_Smodus_id() != pd->Slave.id)
+    if (Get_Smodus_id() != lhc_modbus_id)
     {
 #if (SMODBUS_USING_DEBUG)
         SMODBUS_DEBUG_D("@error:Protocol stack address error.\r\n");

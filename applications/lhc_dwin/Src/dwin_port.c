@@ -49,9 +49,9 @@ Event_Map Dwin_ObjMap[] = {
     {.addr = FLO_SENSOR_TEST_UPPER_ADDR, .upper = 100.0F, .lower = 0, .event = (dwin_struct__)Dwin_LimitHandle},
     {.addr = FLO_SENSOR_TEST_LOWER_ADDR, .upper = 100.0F, .lower = 0, .event = (dwin_struct__)Dwin_LimitHandle},
 
-    {.addr = LEL_SENSOR_STD_UPPER_ADDR, .upper = 50.0F, .lower = 0, .event = (dwin_struct__)Dwin_LimitHandle},
+    {.addr = LEL_SENSOR_STD_UPPER_ADDR, .upper = 400.0F, .lower = 0, .event = (dwin_struct__)Dwin_LimitHandle},
     {.addr = LEL_SENSOR_STD_LOWER_ADDR, .upper = 50.0F, .lower = 0, .event = (dwin_struct__)Dwin_LimitHandle},
-    {.addr = LEL_SENSOR_TEST_UPPER_ADDR, .upper = 50.0F, .lower = 0, .event = (dwin_struct__)Dwin_LimitHandle},
+    {.addr = LEL_SENSOR_TEST_UPPER_ADDR, .upper = 400.0F, .lower = 0, .event = (dwin_struct__)Dwin_LimitHandle},
     {.addr = LEL_SENSOR_TEST_LOWER_ADDR, .upper = 50.0F, .lower = 0, .event = (dwin_struct__)Dwin_LimitHandle},
 
     {.addr = TEMP_SENSOR_STD_UPPER_ADDR, .upper = 200.0F, .lower = -50.0F, .event = (dwin_struct__)Dwin_LimitHandle},
@@ -211,7 +211,7 @@ static void Dwin_Send(pDwinHandle pd)
 static void Dwin_ErrorHandle(pDwinHandle pd, dwin_result err_code, uint8_t site, void *pdata)
 {
 #define ERROR_NOTE_PAGE 31U
-#define NOTE_PAGE_ADDR 0x5000
+
     float tdata = *(float *)pdata;
     uint16_t tarry[] = {0, 0, 0};
 
@@ -220,14 +220,14 @@ static void Dwin_ErrorHandle(pDwinHandle pd, dwin_result err_code, uint8_t site,
         tarry[0] = 0x0100;
     }
 
+    memcpy(&tarry[1], (void *)&tdata, sizeof(tdata));
+    pd->Dw_Write(pd, LIMIT_NOTE_PAGE_ADDR, (uint8_t *)&tarry, sizeof(tarry));
+    pd->Dw_Delay(NEXT_DELAT_TIMES);
     /*切换到提示页面*/
     pd->Dw_Page(pd, ERROR_NOTE_PAGE);
     pd->Dw_Delay(NEXT_DELAT_TIMES);
-    memcpy(&tarry[1], (void *)&tdata, sizeof(tdata));
-    pd->Dw_Write(pd, NOTE_PAGE_ADDR, (uint8_t *)&tarry, sizeof(tarry));
-    pd->Dw_Delay(NEXT_DELAT_TIMES);
 #undef ERROR_NOTE_PAGE
-#undef NOTE_PAGE_ADDR
+#undef LIMIT_NOTE_PAGE_ADDR
 }
 
 /**
@@ -649,6 +649,15 @@ static void Dwin_SureOrCancelHandle(pDwinHandle pd, uint8_t site)
         {
             for (adjust_t *p = &ps->presour->adjust[1]; p < &ps->presour->adjust[1] + (SYSYTEM_NUM - 1U); ++p)
                 p->point = ps->presour->adjust[0].point;
+
+#if (DWIN_USING_DEBUG)
+            DWIN_DEBUG("\t\t[----Dwin_SureHandle----]\nsite\tpoint");
+            DWIN_DEBUG_R("----\t-----\n");
+            for (uint8_t i = 0; i < SYSYTEM_NUM; ++i)
+            {
+                DWIN_DEBUG_R("%d\t%d\n", i, ps->presour->adjust[i].point);
+            }
+#endif
         }
         // else /*温度和电导率：直接使用次数*/
         //     ps->presour->adjust[adjust_site].point = pback->offset;

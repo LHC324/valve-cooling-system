@@ -173,10 +173,7 @@ void USART2_IRQHandler(void)
     /* enter interrupt */
     rt_interrupt_enter();
     if (Dwin_Object)
-    {
-        //        Dwin_Object->Dw_Recive((pUartHandle)&Dwin_Object->Uart);
         uartx_irq_recive(Dwin_Object, Dw);
-    }
     /* USER CODE END USART2_IRQn 0 */
     HAL_UART_IRQHandler(&huart2);
     /* USER CODE BEGIN USART2_IRQn 1 */
@@ -194,14 +191,30 @@ void USART3_IRQHandler(void)
     /* enter interrupt */
     rt_interrupt_enter();
     if (Modbus_Object)
-    {
-        //        Modbus_Object->Mod_Recive((pModbusHandle)&Modbus_Object->Uart);
         uartx_irq_recive(Modbus_Object, Mod);
-    }
     /* USER CODE END USART3_IRQn 0 */
     HAL_UART_IRQHandler(&huart3);
     /* USER CODE BEGIN USART3_IRQn 1 */
     /* leave interrupt */
     rt_interrupt_leave();
     /* USER CODE END USART3_IRQn 1 */
+}
+
+/**
+ * @brief  串口DMA接收完成回调函数
+ * @param  ms_code 系统编码
+ * @retval None
+ */
+__weak void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2)
+    {
+        if (Dwin_Object)
+            uartx_irq_recive(Dwin_Object, Dw);
+    }
+    // else if (huart->Instance == USART3)
+    // {
+    //     if (Modbus_Object)
+    //         uartx_irq_recive(Modbus_Object, Mod);
+    // }
 }
