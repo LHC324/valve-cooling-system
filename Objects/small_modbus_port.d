@@ -54,4 +54,3 @@
 .\objects\small_modbus_port.o: applications\lhc_dwin\Inc\dwin_port.h
 .\objects\small_modbus_port.o: applications\lhc_dwin\Inc\dwin.h
 .\objects\small_modbus_port.o: applications\lhc_dwin\Inc\dwin_cfg.h
-.\objects\small_modbus_port.o: rt-thread\include\rtdbg.h

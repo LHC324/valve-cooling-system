@@ -878,7 +878,7 @@ static void see_cur_time(void)
 
     linux_stamp_to_std_time(&cur_rtc, dwin_rtc_count, 8);
 
-    DWIN_DEBUG("@note:time_stamp:%dS.\r\n%d/%d/%d/%d %d:%d:%d.\r\n",
+    rt_kprintf("@note:time_stamp:%dS.\r\n%d/%d/%d/%d %d:%d:%d.\r\n",
                dwin_rtc_count, cur_rtc.date.year + 2000, cur_rtc.date.month, cur_rtc.date.date,
                cur_rtc.date.weelday, cur_rtc.time.hours, cur_rtc.time.minutes, cur_rtc.time.seconds);
 }

@@ -1,10 +1,9 @@
 .\objects\dwin.o: applications\lhc_dwin\Src\dwin.c
 .\objects\dwin.o: applications\lhc_dwin\Inc\dwin.h
 .\objects\dwin.o: applications\lhc_dwin\Inc\dwin_cfg.h
-.\objects\dwin.o: rt-thread\include\rtdbg.h
-.\objects\dwin.o: .\rtconfig.h
 .\objects\dwin.o: applications\lhc_dwin\Inc\tool.h
 .\objects\dwin.o: rt-thread\include\rtthread.h
+.\objects\dwin.o: .\rtconfig.h
 .\objects\dwin.o: rt-thread\include\rtdebug.h
 .\objects\dwin.o: rt-thread\include\rtdef.h
 .\objects\dwin.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

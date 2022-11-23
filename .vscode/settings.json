@@ -42,6 +42,7 @@
         "type_traits": "c",
         "utility": "c",
         "typeinfo": "c",
-        "fdb_low_lvl.h": "c"
+        "fdb_low_lvl.h": "c",
+        "rtdbg.h": "c"
     }
 }

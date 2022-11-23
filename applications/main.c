@@ -420,6 +420,29 @@ static void get_system_infomation(void)
 }
 
 /**
+ * @brief   校准系统阀门自检
+ * @details 解决长时间移动导致阀门自松动问题
+ * @param	None
+ * @retval  None
+ */
+void measure_system_valve_self_check(void)
+{
+    Gpiox_info gpio[] = {
+        {.pGPIOx = Q_0_GPIO_Port, .Gpio_Pin = Q_0_Pin}, // 压力
+        {.pGPIOx = Q_1_GPIO_Port, .Gpio_Pin = Q_1_Pin}, // 液位
+        {.pGPIOx = Q_2_GPIO_Port, .Gpio_Pin = Q_2_Pin}, // 纯水加水
+        {.pGPIOx = Q_3_GPIO_Port, .Gpio_Pin = Q_3_Pin}, // 废液排空
+    };
+
+    for (Gpiox_info *p = gpio; p->pGPIOx && p < gpio + sizeof(gpio) / sizeof(gpio[0]); ++p)
+    {
+        HAL_GPIO_WritePin((GPIO_TypeDef *)p->pGPIOx, p->Gpio_Pin, GPIO_PIN_SET);
+        rt_thread_mdelay(100);
+        HAL_GPIO_WritePin((GPIO_TypeDef *)p->pGPIOx, p->Gpio_Pin, GPIO_PIN_RESET);
+    }
+}
+
+/**
  * @brief   校准系统控制线程
  * @details
  * @param	parameter:线程初始参数
@@ -427,6 +450,7 @@ static void get_system_infomation(void)
  */
 void measure_control_thread_entry(void *parameter)
 {
+    measure_system_valve_self_check();
     for (;;)
     {
         measure_output_control_event();
